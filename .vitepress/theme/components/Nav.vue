@@ -1,0 +1,483 @@
+<template>
+  <header class="main-header">
+    <nav :class="['main-nav', scrollData.direction, { top: scrollData.height === 0 }]">
+      <div class="nav-all">
+        <!-- 导航栏左侧 -->
+        <div class="left-nav">
+          <div class="more-menu nav-btn" title="更多内容">
+            <i class="iconfont icon-menu"></i>
+          </div>
+          <div class="site-name" @click="router.go('/')">
+            {{ site.title }}
+          </div>
+        </div>
+        <!-- 导航栏菜单 -->
+        <div class="nav-center">
+          <div class="site-menu">
+            <div v-for="(item, index) in theme.nav" :key="index" class="menu-item">
+              <a class="link-btn" @click="router.go(item?.link)"> {{ item.text }}</a>
+              <div v-if="item.items" class="link-child">
+                <span
+                  v-for="(child, childIndex) in item.items"
+                  :key="childIndex"
+                  class="link-child-btn"
+                  @click="router.go(child.link)"
+                >
+                  <i v-if="child.icon" :class="`iconfont icon-${child.icon}`" />
+                  {{ child.text }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <span class="site-title" @click="smoothScrolling">
+            {{ (frontmatter.home ? site.description : page.title) || site.description }}
+          </span>
+        </div>
+        <div class="right-nav">
+          <!-- 搜索 -->
+          <div class="menu-btn nav-btn" title="全站搜索">
+            <i class="iconfont icon-search"></i>
+          </div>
+          <!-- 中控台 -->
+          <div
+            id="open-control"
+            class="menu-btn nav-btn"
+            title="打开中控台"
+            @click="store.changeControlShow"
+          >
+            <i class="iconfont icon-dashboard" />
+          </div>
+          <!-- 返回顶部 -->
+          <div
+            :class="[
+              'to-top',
+              'menu-btn',
+              { hidden: scrollData.height === 0, long: scrollData.percentage > 90 },
+            ]"
+            title="返回顶部"
+            @click="smoothScrolling"
+          >
+            <div class="to-top-btn">
+              <Transition name="fade" mode="out-in">
+                <span :key="scrollData.percentage > 90" class="num">
+                  {{ scrollData.percentage <= 90 ? scrollData.percentage : "返回顶部" }}
+                </span>
+              </Transition>
+              <i class="iconfont icon-up"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+</template>
+
+<script setup>
+import { storeToRefs } from "pinia";
+import { mainStore } from "@/store";
+import { useData, useRouter } from "vitepress";
+import { smoothScrolling } from "@/utils/helper";
+
+const router = useRouter();
+const store = mainStore();
+const { scrollData } = storeToRefs(store);
+const { site, theme, frontmatter, page } = useData();
+</script>
+
+<style lang="scss" scoped>
+.main-header {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: show 0.3s backwards;
+  .main-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    width: 100dvw;
+    height: 60px;
+    background-color: var(--main-card-background);
+    transition: background-color 0.3s;
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      background-color: var(--main-card-border);
+      transition: opacity 0.3s;
+    }
+    &.top {
+      background-color: transparent;
+      outline: 0px;
+      &::after {
+        opacity: 0;
+      }
+    }
+    &.top,
+    &.up {
+      .nav-all {
+        .site-menu {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        .site-title {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+      }
+    }
+  }
+  .nav-all {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
+    align-items: center;
+    .left-nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      min-width: 200px;
+      .more-menu {
+        margin-right: 4px;
+      }
+      .site-name {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: bold;
+        height: 34px;
+        padding: 0 6px;
+        transition: transform 0.3s;
+        cursor: pointer;
+        &::after {
+          content: "回到首页";
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          color: var(--main-card-background);
+          background-color: var(--main-color);
+          font-size: 13px;
+          border-radius: 25px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      .site-menu {
+        position: absolute;
+        width: fit-content;
+        min-height: 60px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        opacity: 0;
+        transform: translateY(-50px);
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+        .menu-item {
+          position: relative;
+          padding: 0 0.4rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: auto;
+          cursor: pointer;
+          .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.2rem;
+            padding: 0 0.8rem 0 1rem;
+            font-weight: bold;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50px;
+            transition:
+              color 0.3s,
+              background-color 0.3s;
+          }
+          .link-child {
+            position: absolute;
+            top: 35px;
+            margin-top: 8px;
+            padding: 6px 4px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background-color: var(--main-mask-background);
+            border: 1px solid var(--main-color);
+            box-shadow: 0 8px 12px -3px var(--main-color-bg);
+            border-radius: 50px;
+            transform: translateY(-10px) scale(0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition:
+              opacity 0.3s,
+              visibility 0.3s,
+              transform 0.3s;
+            &::before {
+              content: "";
+              position: absolute;
+              top: -14px;
+              left: 0;
+              width: 100%;
+              height: 20px;
+            }
+            .link-child-btn {
+              display: flex;
+              align-items: center;
+              border-radius: 100px;
+              margin: 0 4px;
+              padding: 0.6rem 0.8rem;
+              white-space: nowrap;
+              transition:
+                color 0.3s,
+                padding 0.3s,
+                background-color 0.3s,
+                box-shadow 0.3s;
+              .iconfont {
+                margin-right: 6px;
+                font-size: 18px;
+                transition: color 0.3s;
+              }
+              &:hover {
+                color: var(--main-card-background);
+                background-color: var(--main-color);
+                box-shadow: 0 8px 12px -3px var(--main-color-bg);
+                padding: 0.6rem 1rem;
+                .iconfont {
+                  color: var(--main-card-background);
+                }
+              }
+            }
+          }
+          &:first-child {
+            .link-child {
+              &::after {
+                content: "";
+                position: absolute;
+                top: -60px;
+                left: 0;
+                width: 50%;
+                height: 60px;
+              }
+            }
+          }
+          &:last-child {
+            .link-child {
+              &::after {
+                content: "";
+                position: absolute;
+                top: -60px;
+                right: 0;
+                width: 50%;
+                height: 60px;
+              }
+            }
+          }
+          &:hover {
+            .link-btn {
+              color: var(--main-card-background);
+              background-color: var(--main-color);
+            }
+            .link-child {
+              transform: translateY(0) scale(1);
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+      .site-title {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 35px;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 4px 8px;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+        cursor: pointer;
+        &::after {
+          content: "返回顶部";
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 35px;
+          font-size: 16px;
+          border-radius: 50px;
+          color: var(--main-card-background);
+          background-color: var(--main-color);
+          opacity: 0;
+          transition: opacity 0.3s;
+          z-index: 1;
+        }
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+    .right-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      min-width: 200px;
+      .menu-btn {
+        margin-left: 0.5rem;
+      }
+      .to-top {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        transition: all 0.3s;
+        cursor: pointer;
+        .to-top-btn {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 25px;
+          height: 25px;
+          border-radius: 40px;
+          background-color: var(--main-font-color);
+          transition:
+            width 0.3s,
+            height 0.3s,
+            background-color 0.3s;
+          .num {
+            position: absolute;
+            font-size: 12px;
+            color: var(--main-card-background);
+            transition: opacity 0.1s;
+          }
+          .icon-up {
+            position: absolute;
+            color: var(--main-card-background);
+            opacity: 0;
+            transition: opacity 0.3s;
+          }
+        }
+
+        &.hidden {
+          width: 0;
+          opacity: 0;
+          transform: scale(0);
+          margin: 0;
+        }
+        &.long {
+          width: 80px;
+          .to-top-btn {
+            width: 70px;
+          }
+        }
+        &:hover {
+          .to-top-btn {
+            width: 35px;
+            height: 35px;
+            background-color: var(--main-color);
+            .num {
+              opacity: 0;
+            }
+            .icon-up {
+              opacity: 1;
+            }
+          }
+          &.long {
+            width: 80px;
+            .to-top-btn {
+              width: 80px;
+              height: 35px;
+            }
+          }
+        }
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+    cursor: pointer;
+    .iconfont {
+      font-size: 22px;
+      line-height: 1;
+      transition:
+        color 0.3s,
+        opacity 0.3s;
+    }
+    &:hover {
+      background-color: var(--main-color);
+      .iconfont {
+        color: var(--main-card-background);
+      }
+    }
+  }
+}
+</style>

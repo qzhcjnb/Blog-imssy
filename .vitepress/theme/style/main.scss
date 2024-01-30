@@ -1,0 +1,159 @@
+@import "./font.scss";
+@import "./animation.scss";
+
+// 全局颜色变量
+:root {
+  --main-color: #425aef;
+  --main-color-bg: #4259ef0d;
+  --main-site-background: #f7f9fe;
+  --main-card-background: #fff;
+  --main-card-second-background: #f7f7f9;
+  --main-font-color: #363636;
+  --main-font-second-color: #3c3c43cc;
+  --main-card-border: #e3e8f7;
+  --main-scrollbar-bar: rgba(60, 60, 67, 0.4);
+  --main-mask-background: rgba(255, 255, 255, 0.85);
+  --main-mask-Inverse-background: rgba(0, 0, 0, 0.08);
+  --main-mask-second-background: rgba(255, 255, 255, 0.45);
+  --main-border-radius: 8px;
+}
+
+html.dark {
+  --main-color: #dfac46;
+  --main-color-bg: #f2b94b23;
+  --main-site-background: #18171d;
+  --main-card-background: #1b1c20;
+  --main-card-second-background: #21232a;
+  --main-font-color: #f7f7fa;
+  --main-font-second-color: #a1a2b8;
+  --main-card-border: #3d3d3f;
+  --main-scrollbar-bar: rgba(200, 200, 223, 0.4);
+  --main-mask-background: rgba(0, 0, 0, 0.85);
+  --main-mask-Inverse-background: rgba(255, 255, 255, 0.08);
+  --main-mask-second-background: rgba(0, 0, 0, 0.45);
+}
+
+// 全局基础样式
+* {
+  -webkit-user-drag: none;
+  box-sizing: border-box;
+}
+
+html {
+  user-select: none;
+  scroll-behavior: smooth;
+  // 特殊情况
+  &.dark {
+    // 代码高亮
+    pre {
+      code {
+        .line {
+          span {
+            color: var(--shiki-dark) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--main-font-color);
+  background-color: var(--main-site-background);
+  animation: show forwards 0.5s;
+  overflow-x: hidden;
+  transition:
+    color 0.3s,
+    background-color 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-font-color);
+  transition: all 0.3s;
+  .iconfont {
+    transition: all 0.3s;
+  }
+  &:hover {
+    color: var(--main-color);
+  }
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+
+  // 滚动条
+  // .simplebar-content {
+  //   padding-right: 7px !important;
+  // }
+  .simplebar-scrollbar {
+    &::before {
+      right: 0;
+      left: 4px;
+      background: var(--main-scrolling-bar);
+      transition:
+        background 0.3s,
+        left 0.3s;
+      cursor: pointer;
+    }
+    &:hover {
+      &::before {
+        left: 2px;
+        background: var(--main-color);
+      }
+    }
+  }
+}
+
+// 通用卡片
+.s-card {
+  padding: 0.8rem;
+  border-radius: 16px;
+  background-color: var(--main-card-background);
+  border: 1px solid var(--main-card-border);
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    &.hover {
+      border-color: var(--main-color);
+    }
+  }
+}
+
+// 滚动条
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-scrollbar-bar);
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--main-color);
+  }
+}
+
+// 选中文本
+::selection {
+  background-color: var(--main-color);
+  color: #efefef;
+}
+
+// fancybox
+.fancybox__container {
+  .fancybox__progress {
+    background: var(--main-color) !important;
+  }
+  .fancybox__thumb {
+    &::after {
+      border-width: 2px !important;
+      border-color: var(--main-color) !important;
+    }
+  }
+}
