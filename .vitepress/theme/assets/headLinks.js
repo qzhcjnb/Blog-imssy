@@ -26,11 +26,6 @@ const headLinks = [
       rel: "stylesheet",
     },
   ],
-  // vanilla-lazyload
-  [
-    "script",
-    { src: "https://cdn.staticfile.net/vanilla-lazyload/17.8.5/lazyload.min.js", defer: true },
-  ],
   // Fancybox
   [
     "link",
@@ -40,6 +35,11 @@ const headLinks = [
     },
   ],
   ["script", { src: "https://cdn.staticfile.net/fancyapps-ui/4.0.31/fancybox.umd.js" }],
+  // 百度统计
+  ["script", { src: "https://hm.baidu.com/hm.js?9267c4f28b616921175e384bf7835a4a" }],
+  // 51 LA
+  ["script", { charset: "UTF-8", id: "LA_COLLECT", src: "https://sdk.51.la/js-sdk-pro.min.js" }],
+  ["script", {}, `LA.init({id:"KKMqCI5RC3srS4kX",ck:"KKMqCI5RC3srS4kX",hashMode:true})`],
 ];
 
 export default headLinks;

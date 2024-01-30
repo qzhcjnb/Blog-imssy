@@ -13,7 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
-out
+test.html
 .env
 .vitepress/dist
 .vitepress/cache

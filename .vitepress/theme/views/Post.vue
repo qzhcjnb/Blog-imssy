@@ -82,7 +82,7 @@ const changePostContent = () => {
     const alt = img.alt;
     const template = `
         <a class="img-fancybox" href="${src}" data-fancybox="gallery" data-caption="${alt}">
-            <img class="post-img lazyload" data-src="${src}" alt="${alt}" />
+            <img class="post-img" src="${src}" alt="${alt}" loading="lazy" />
             <span class="post-img-tip">${alt}</span>
         </a>`;
     img.outerHTML = template;
@@ -91,19 +91,6 @@ const changePostContent = () => {
 
 onMounted(() => {
   changePostContent();
-  // 懒加载配置
-  window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-  };
-  window.addEventListener(
-    "LazyLoad::Initialized",
-    (event) => {
-      console.log("LazyLoad::Initialized");
-      window.lazyLoadInstance = event.detail.instance;
-    },
-    false,
-  );
-  window.lazyLoadInstance?.update();
 });
 </script>
 

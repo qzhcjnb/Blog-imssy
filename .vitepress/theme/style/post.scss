@@ -117,12 +117,8 @@
       max-height: 450px;
       margin: 0 auto;
       border-radius: 12px;
-      opacity: 0;
       cursor: zoom-in;
       transition: opacity 0.3s;
-      &.loaded {
-        opacity: 1;
-      }
     }
     .post-img-tip {
       display: inline-flex;
