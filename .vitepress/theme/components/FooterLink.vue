@@ -125,6 +125,7 @@ const socialLinkData = computed(() => {
   .footer-social {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -168,6 +169,11 @@ const socialLinkData = computed(() => {
       }
       &:active {
         transform: scale(1);
+      }
+    }
+    @media (max-width: 768px) {
+      .logo {
+        display: none;
       }
     }
   }

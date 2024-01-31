@@ -462,6 +462,18 @@ const { site, theme, frontmatter, page } = useData();
         }
       }
     }
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .left-nav,
+      .right-nav {
+        min-width: auto;
+      }
+      .nav-center {
+        display: none;
+      }
+    }
   }
   .nav-btn {
     display: flex;

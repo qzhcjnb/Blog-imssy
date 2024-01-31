@@ -67,6 +67,14 @@ const postData = computed(() => {
       width: 300px;
       padding-left: 1rem;
     }
+    @media (max-width: 1200px) {
+      .posts-content {
+        width: 100%;
+      }
+      .main-aside {
+        display: none;
+      }
+    }
   }
 }
 </style>

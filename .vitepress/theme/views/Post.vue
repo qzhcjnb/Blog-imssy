@@ -280,6 +280,14 @@ onMounted(() => {
       width: 300px;
       padding-left: 1rem;
     }
+    @media (max-width: 1200px) {
+      .post-article {
+        width: 100%;
+      }
+      .main-aside {
+        display: none;
+      }
+    }
   }
 }
 </style>
