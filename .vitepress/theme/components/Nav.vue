@@ -34,6 +34,14 @@
           </span>
         </div>
         <div class="right-nav">
+          <!-- 随机文章 -->
+          <div
+            class="menu-btn nav-btn"
+            title="随机前往一篇文章"
+            @click="router.go(shufflePost(theme.postData))"
+          >
+            <i class="iconfont icon-shuffle"></i>
+          </div>
           <!-- 搜索 -->
           <div class="menu-btn nav-btn" title="全站搜索">
             <i class="iconfont icon-search"></i>
@@ -76,7 +84,7 @@
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { useData, useRouter } from "vitepress";
-import { smoothScrolling } from "@/utils/helper";
+import { smoothScrolling, shufflePost } from "@/utils/helper";
 
 const router = useRouter();
 const store = mainStore();

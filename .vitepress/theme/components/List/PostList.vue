@@ -4,7 +4,7 @@
     <div
       v-for="(item, index) in listData"
       :key="index"
-      :class="['post-item', 's-card', { cover: item.cover }]"
+      :class="['post-item', 's-card', 'hover', { cover: item.cover }]"
       @click="router.go(item.regularPath)"
     >
       <div class="post-content">

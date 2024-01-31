@@ -15,18 +15,21 @@
   <!-- 页脚 -->
   <FooterLink v-show="!store.loadingStatus" :showBar="isPostPage" />
   <Footer v-show="!store.loadingStatus" />
+  <!-- 右键菜单 -->
+  <RightMenu ref="rightMenuRef" />
 </template>
 
 <script setup>
 import { mainStore } from "@/store";
 import { useData, useRoute } from "vitepress";
-import { onMounted, computed, onBeforeUnmount } from "vue";
 import { calculateScroll } from "@/utils/helper";
+import { ref, onMounted, computed, onBeforeUnmount } from "vue";
 import Nav from "@/components/Nav.vue";
 import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
 import FooterLink from "@/components/FooterLink.vue";
 import Control from "@/components/Control.vue";
+import RightMenu from "@/components/RightMenu.vue";
 import Home from "@/views/Home.vue";
 import Page from "@/views/Page.vue";
 import Post from "@/views/Post.vue";
@@ -36,21 +39,26 @@ const route = useRoute();
 const store = mainStore();
 const { frontmatter, page, theme } = useData();
 
+// 右键菜单
+const rightMenuRef = ref(null);
+
 // 判断是否为文章页面
 const isPostPage = computed(() => {
   const routePath = decodeURIComponent(route.path);
   return routePath.includes("/posts/");
 });
 
+// 开启右键菜单
+const openRightMenu = (e) => {
+  rightMenuRef.value?.openRightMenu(e);
+};
+
 onMounted(() => {
   console.log(theme.value);
   // 滚动监听
   window.addEventListener("scroll", calculateScroll);
   // 右键监听
-  window.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-    console.log(e, e.target);
-  });
+  window.addEventListener("contextmenu", openRightMenu);
 });
 
 onBeforeUnmount(() => {

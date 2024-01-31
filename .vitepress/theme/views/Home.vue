@@ -4,7 +4,7 @@
     <div class="home-content">
       <div class="posts-content">
         <!-- 分类总览 -->
-        <CategoryBar />
+        <TypeBar :type="showTags ? 'tags' : 'categories'" />
         <!-- 文章列表 -->
         <PostList v-if="showCategories" :listData="theme.categoriesData[showCategories].articles" />
         <PostList v-else-if="showTags" :listData="theme.tagsData[showTags].articles" />
@@ -20,7 +20,7 @@
 import { computed } from "vue";
 import { useData } from "vitepress";
 import PostList from "@/components/List/PostList.vue";
-import CategoryBar from "@/components/List/CategoryBar.vue";
+import TypeBar from "@/components/List/TypeBar.vue";
 import Aside from "@/components/Aside/index.vue";
 
 const { theme } = useData();

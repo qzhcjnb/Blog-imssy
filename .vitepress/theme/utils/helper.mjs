@@ -148,3 +148,74 @@ export const daysFromNow = (dateStr) => {
   const dayDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   return dayDiff;
 };
+
+/**
+ * 随机前往一篇文章
+ * @param {Object} postData - 文章数据
+ * @returns {number} 天数差值
+ */
+let lastIndex = -1;
+export const shufflePost = (postData) => {
+  let randomIndex;
+  do {
+    // 随机生成一个索引值
+    randomIndex = Math.floor(Math.random() * postData.length);
+  } while (randomIndex === lastIndex && postData.length > 1);
+  // 更新上一次的索引值
+  lastIndex = randomIndex;
+  // 随机文章
+  const randomPost = postData[randomIndex];
+  console.log(randomPost);
+  // 跳转到随机文章
+  return randomPost.regularPath;
+};
+
+/**
+ * 复制文本到剪贴板
+ * @param {string} data 要复制到剪贴板的文本
+ */
+export const copyText = async (data) => {
+  if (navigator.clipboard) {
+    try {
+      await navigator.clipboard.writeText(data);
+    } catch (error) {
+      console.error("复制出错：", error);
+    }
+  } else {
+    // 如果浏览器不支持 navigator.clipboard
+    const textArea = document.createElement("textarea");
+    textArea.value = data;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand("copy");
+    } catch (err) {
+      console.error("复制出错：", err);
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  }
+};
+
+/**
+ * 图片 URL 复制到剪贴板
+ * @param {string} imageURL 要复制到剪贴板的图片的URL
+ */
+export const copyImage = async (imageURL) => {
+  if (!navigator.clipboard) {
+    console.error("浏览器不支持 Clipboard API");
+    return;
+  }
+  try {
+    const response = await fetch(imageURL);
+    const blob = await response.blob();
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob,
+      }),
+    ]);
+    console.log("图片已复制到剪贴板");
+  } catch (error) {
+    console.error("复制图片出错：", error);
+  }
+};

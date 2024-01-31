@@ -11,11 +11,12 @@
   --main-font-color: #363636;
   --main-font-second-color: #3c3c43cc;
   --main-card-border: #e3e8f7;
+  --main-border-shadow: #2c2d300c;
   --main-scrollbar-bar: rgba(60, 60, 67, 0.4);
   --main-mask-background: rgba(255, 255, 255, 0.85);
   --main-mask-Inverse-background: rgba(0, 0, 0, 0.08);
   --main-mask-second-background: rgba(255, 255, 255, 0.45);
-  --main-border-radius: 8px;
+  --main-error-color: #ff3842;
 }
 
 html.dark {
@@ -27,6 +28,7 @@ html.dark {
   --main-font-color: #f7f7fa;
   --main-font-second-color: #a1a2b8;
   --main-card-border: #3d3d3f;
+  --main-border-shadow: #00000050;
   --main-scrollbar-bar: rgba(200, 200, 223, 0.4);
   --main-mask-background: rgba(0, 0, 0, 0.85);
   --main-mask-Inverse-background: rgba(255, 255, 255, 0.08);
@@ -115,11 +117,13 @@ a {
   border-radius: 16px;
   background-color: var(--main-card-background);
   border: 1px solid var(--main-card-border);
+  box-shadow: 0 8px 16px -4px var(--main-border-shadow);
   transition: all 0.3s;
   cursor: pointer;
   &:hover {
     &.hover {
       border-color: var(--main-color);
+      box-shadow: 0 8px 16px -4px var(--main-color-bg);
     }
   }
 }

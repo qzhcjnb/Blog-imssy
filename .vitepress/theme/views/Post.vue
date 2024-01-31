@@ -46,6 +46,28 @@
         <Content id="post-article" />
         <!-- 版权 -->
         <Copyright v-if="frontmatter.copyright !== false" :postData="postMetaData" />
+        <!-- 其他信息 -->
+        <div class="other-meta">
+          <div class="all-tags">
+            <a
+              v-for="(item, index) in postMetaData.tags"
+              :key="index"
+              :href="`/pages/tags/${item}`"
+              class="tag-item"
+            >
+              <i class="iconfont icon-hashtag" />
+              <span class="name">{{ item }}</span>
+            </a>
+          </div>
+          <a
+            href="https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre"
+            class="report"
+            target="_blank"
+          >
+            <i class="iconfont icon-report" />
+            反馈与投诉
+          </a>
+        </div>
         <!-- 评论 -->
         <Comments />
       </article>
@@ -196,6 +218,62 @@ onMounted(() => {
       cursor: auto;
       &:hover {
         border-color: var(--main-card-border);
+      }
+      .other-meta {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 2rem 0;
+        opacity: 0.8;
+        .all-tags {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .tag-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: var(--main-card-border);
+            margin-right: 12px;
+            .iconfont {
+              margin-right: 4px;
+              opacity: 0.6;
+              font-weight: normal;
+            }
+            &:hover {
+              color: var(--main-color);
+              background-color: var(--main-color-bg);
+              .iconfont {
+                color: var(--main-color);
+              }
+            }
+          }
+        }
+        .report {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 6px 12px;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 8px;
+          background-color: var(--main-card-border);
+          .iconfont {
+            margin-right: 6px;
+          }
+          &:hover {
+            color: #efefef;
+            background-color: var(--main-error-color);
+            .iconfont {
+              color: #efefef;
+            }
+          }
+        }
       }
     }
     .main-aside {

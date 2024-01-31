@@ -38,6 +38,7 @@ const props = defineProps({
       font-weight: bold;
       display: flex;
       align-items: center;
+      opacity: 0.75;
       .iconfont {
         opacity: 0.6;
         margin-right: 6px;
