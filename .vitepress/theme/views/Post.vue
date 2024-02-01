@@ -42,6 +42,8 @@
     </div>
     <div class="post-content">
       <article class="post-article s-card">
+        <!-- AI 摘要 -->
+        <ArticleGPT />
         <!-- 文章内容 -->
         <Content id="post-article" />
         <!-- 版权 -->
@@ -84,6 +86,7 @@ import { generateId } from "@/utils/commonTools";
 import Aside from "@/components/Aside/index.vue";
 import Copyright from "@/components/Copyright.vue";
 import Comments from "@/components/Comments.vue";
+import ArticleGPT from "@/components/Aside/Widgets/ArticleGPT.vue";
 
 const { page, theme, frontmatter } = useData();
 
@@ -100,14 +103,16 @@ const changePostContent = () => {
   // 替换图片
   const allImg = postDom.querySelectorAll("img");
   allImg.forEach((img) => {
-    const src = img.src;
-    const alt = img.alt;
-    const template = `
+    if (!img.classList.contains("post-img")) {
+      const src = img.src;
+      const alt = img.alt;
+      const template = `
         <a class="img-fancybox" href="${src}" data-fancybox="gallery" data-caption="${alt}">
             <img class="post-img" src="${src}" alt="${alt}" loading="lazy" />
             <span class="post-img-tip">${alt}</span>
         </a>`;
-    img.outerHTML = template;
+      img.outerHTML = template;
+    }
   });
 };
 

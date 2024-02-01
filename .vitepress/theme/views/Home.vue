@@ -62,6 +62,7 @@ const postData = computed(() => {
     flex-direction: row;
     .posts-content {
       width: calc(100% - 300px);
+      transition: width 0.3s;
     }
     .main-aside {
       width: 300px;

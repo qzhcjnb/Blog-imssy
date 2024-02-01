@@ -1,6 +1,7 @@
 import { h } from "vue";
 import { createPinia } from "pinia";
 import { routerTools } from "@/utils/initTools.mjs";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 // import Theme from "vitepress/theme";
 
 // 根组件
@@ -10,6 +11,7 @@ import "@/style/main.scss";
 
 // pinia
 const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 
 /** @type {import('vitepress').Theme} */
 export default {

@@ -1,6 +1,13 @@
 <!-- 评论 -->
 <template>
   <div id="main-comment" class="comment">
+    <div class="title">
+      <span class="name">
+        <i class="iconfont icon-chat"></i>
+        评论
+      </span>
+      <span class="tool" @click="anonymousComments"> 匿名评论 </span>
+    </div>
     <div ref="commentRef" class="comment-content" />
   </div>
 </template>
@@ -25,6 +32,19 @@ const initArtalk = () => {
   });
 };
 
+// 匿名评论
+const anonymousComments = () => {
+  const arkDom = document.querySelector(".atk-header");
+  if (!arkDom) return false;
+  const name = arkDom.querySelector("input[name='nick']");
+  const email = arkDom.querySelector("input[name='email']");
+  const link = arkDom.querySelector("input[name='link']");
+  // 填写信息
+  name.value = "不愿透露名称的网友";
+  email.value = "anonymous@example.com";
+  link.value = "https://example.com";
+};
+
 onMounted(() => {
   initArtalk();
 });
@@ -37,6 +57,31 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .comment {
   margin-top: 2rem;
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 3rem 0 1rem 0;
+    padding: 0 6px;
+    .name {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      .iconfont {
+        font-size: 26px;
+        font-weight: normal;
+        margin-right: 8px;
+      }
+    }
+    .tool {
+      opacity: 0.6;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
   .comment-content {
     --at-color-font: var(--main-font-color);
     --at-color-deep: var(--main-font-second-color);
@@ -52,8 +97,8 @@ onUnmounted(() => {
       .atk-bottom {
         padding: 0 0 0 8px;
         height: 40px;
-        .atk-send-btn{
-            height: 40px;
+        .atk-send-btn {
+          height: 40px;
         }
       }
     }

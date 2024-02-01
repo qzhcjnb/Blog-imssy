@@ -17,19 +17,22 @@
   <Footer v-show="!store.loadingStatus" />
   <!-- 右键菜单 -->
   <RightMenu ref="rightMenuRef" />
+  <!-- 全局消息 -->
+  <Message />
 </template>
 
 <script setup>
 import { mainStore } from "@/store";
 import { useData, useRoute } from "vitepress";
 import { calculateScroll } from "@/utils/helper";
-import { ref, onMounted, computed, onBeforeUnmount } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount, watch } from "vue";
 import Nav from "@/components/Nav.vue";
 import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
 import FooterLink from "@/components/FooterLink.vue";
 import Control from "@/components/Control.vue";
 import RightMenu from "@/components/RightMenu.vue";
+import Message from "@/components/Message.vue";
 import Home from "@/views/Home.vue";
 import Page from "@/views/Page.vue";
 import Post from "@/views/Post.vue";
@@ -53,16 +56,71 @@ const openRightMenu = (e) => {
   rightMenuRef.value?.openRightMenu(e);
 };
 
+// 复制时触发
+const copyTip = () => {
+  const copiedText = window.getSelection().toString();
+  // 检查文本内容是否不为空
+  if (copiedText.trim().length > 0 && typeof $message !== "undefined") {
+    $message.success("复制成功，在转载时请标注本文地址");
+  }
+};
+
+// 更改正确主题类别
+const changeSiteThemeType = () => {
+  // 主题 class
+  const themeClasses = {
+    dark: "dark",
+    light: "light",
+    auto: "auto",
+  };
+  // 必要数据
+  const themeType = store.themeType;
+  const htmlElement = document.documentElement;
+  console.log("当前模式：", themeType);
+  // 清除所有可能已经设置的主题相关的class
+  Object.values(themeClasses).forEach((themeClass) => {
+    htmlElement.classList.remove(themeClass);
+  });
+  // 添加新的 class
+  if (themeType === "auto") {
+    // 根据当前操作系统颜色方案更改明暗主题
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const autoThemeClass = systemPrefersDark ? themeClasses.dark : themeClasses.light;
+    htmlElement.classList.add(autoThemeClass);
+  } else if (themeClasses[themeType]) {
+    htmlElement.classList.add(themeClasses[themeType]);
+  }
+};
+
+// 监听主题类型变化
+watch(
+  () => store.themeType,
+  (val) => {
+    changeSiteThemeType();
+    if (typeof $message !== "undefined") {
+      const text = val === "light" ? "浅色模式" : val === "dark" ? "深色模式" : "跟随系统";
+      $message.info("当前主题为" + text);
+    }
+  },
+);
+
 onMounted(() => {
   console.log(theme.value);
+  // 更改主题类别
+  changeSiteThemeType();
   // 滚动监听
   window.addEventListener("scroll", calculateScroll);
   // 右键监听
   window.addEventListener("contextmenu", openRightMenu);
+  // 复制监听
+  window.addEventListener("copy", copyTip);
+  // 监听系统颜色
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", changeSiteThemeType);
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", calculateScroll);
+  window.removeEventListener("contextmenu", openRightMenu);
 });
 </script>
 

@@ -152,6 +152,9 @@ const props = defineProps({
         }
       }
     }
+    &:active {
+      transform: scale(0.98);
+    }
   }
 }
 </style>

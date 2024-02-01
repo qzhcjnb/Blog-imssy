@@ -178,8 +178,10 @@ export const copyText = async (data) => {
   if (navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(data);
+      $message.success("复制成功，在转载时请标注本文地址");
     } catch (error) {
       console.error("复制出错：", error);
+      $message.error("复制出现错误，请重试");
     }
   } else {
     // 如果浏览器不支持 navigator.clipboard
@@ -189,8 +191,10 @@ export const copyText = async (data) => {
     textArea.select();
     try {
       document.execCommand("copy");
+      $message.success("复制成功，在转载时请标注本文地址");
     } catch (err) {
       console.error("复制出错：", err);
+      $message.error("复制出现错误，请重试");
     } finally {
       document.body.removeChild(textArea);
     }
@@ -215,7 +219,33 @@ export const copyImage = async (imageURL) => {
       }),
     ]);
     console.log("图片已复制到剪贴板");
+    $message.success("图片已复制到剪贴板");
   } catch (error) {
     console.error("复制图片出错：", error);
+    $message.error("复制图片错误，请重试");
+  }
+};
+
+/**
+ * 下载图片
+ * @param {string} imageUrl 要下载的图片的URL地址
+ */
+export const downloadImage = (imageUrl) => {
+  try {
+    // 获取当前日期并转换为字符串形式，作为文件名
+    const date = new Date();
+    const timestamp = date.toISOString().replace(/[:.]/g, "-");
+    const imageName = `image-${timestamp}.jpg`;
+    const anchor = document.createElement("a");
+    anchor.download = imageName;
+    anchor.href = imageUrl;
+    anchor.target = "_blank";
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  } catch (error) {
+    console.error("下载图片出错：", error);
+    $message.error("下载图片错误，请重试");
   }
 };

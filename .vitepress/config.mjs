@@ -13,6 +13,10 @@ const defineConfig = async () => {
     description: "分享技术与科技生活",
     // 简洁的 URL
     cleanUrls: true,
+    // 最后更新时间戳
+    lastUpdated: true,
+    // 主题
+    appearance: "dark",
     // Head
     head: headLinks,
     // 主题配置

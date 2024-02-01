@@ -3,6 +3,8 @@ import { defineStore } from "pinia";
 export const mainStore = defineStore("main", {
   state: () => {
     return {
+      // 主题类别
+      themeType: "auto",
       // 加载状态
       loadingStatus: true,
       // 滚动高度
@@ -27,4 +29,11 @@ export const mainStore = defineStore("main", {
       document.body.style.overflow = this.controlShow ? "hidden" : "";
     },
   },
+  // 数据持久化
+  persist: [
+    {
+      key: "siteData",
+      paths: ["themeType"],
+    },
+  ],
 });

@@ -40,6 +40,7 @@
               <i class="iconfont icon-shuffle"></i>
               <span class="name">随便逛逛</span>
             </div>
+            <!-- 链接类型 -->
             <div v-if="clickedType === 'link'" class="btn" @click="rightMenuFunc('open-link')">
               <i class="iconfont icon-window"></i>
               <span class="name">新标签页打开</span>
@@ -48,6 +49,7 @@
               <i class="iconfont icon-link"></i>
               <span class="name">复制链接地址</span>
             </div>
+            <!-- 图片类型 -->
             <div
               v-if="clickedType === 'image'"
               class="btn"
@@ -55,6 +57,47 @@
             >
               <i class="iconfont icon-image-copy"></i>
               <span class="name">复制此图片</span>
+            </div>
+            <div
+              v-if="clickedType === 'image'"
+              class="btn"
+              @click="downloadImage(clickedTypeData?.src)"
+            >
+              <i class="iconfont icon-download"></i>
+              <span class="name">下载此图片</span>
+            </div>
+            <!-- 选中文本 -->
+            <div v-if="clickedType === 'text'" class="btn" @click="copyText(clickedTypeData)">
+              <i class="iconfont icon-copy"></i>
+              <span class="name">复制选中文本</span>
+            </div>
+          </div>
+          <!-- 通用菜单 -->
+          <div class="all-menu general">
+            <div class="btn" @click="rightMenuFunc('copy-link')">
+              <i class="iconfont icon-copy"></i>
+              <span class="name">复制本页地址</span>
+            </div>
+            <div
+              class="btn"
+              @click.stop="
+                store.themeType === 'auto'
+                  ? (store.themeType = 'dark')
+                  : store.themeType === 'dark'
+                    ? (store.themeType = 'light')
+                    : (store.themeType = 'auto')
+              "
+            >
+              <i :class="`iconfont icon-${store.themeType}`"></i>
+              <span class="name">
+                {{
+                  store.themeType === "auto"
+                    ? "跟随系统"
+                    : store.themeType === "dark"
+                      ? "深色模式"
+                      : "浅色模式"
+                }}
+              </span>
             </div>
           </div>
         </div>
@@ -65,11 +108,13 @@
 
 <script setup>
 import { ref, nextTick } from "vue";
+import { mainStore } from "@/store";
 import { useRouter, useData } from "vitepress";
-import { smoothScrolling, shufflePost, copyText, copyImage } from "@/utils/helper";
+import { smoothScrolling, shufflePost, copyText, copyImage, downloadImage } from "@/utils/helper";
 
 const { theme } = useData();
 const router = useRouter();
+const store = mainStore();
 
 // 右键菜单数据
 const rightMenuX = ref(0);
@@ -145,6 +190,7 @@ const checkClickType = (target) => {
       if (window.getSelection().toString().length > 0) {
         // 已选中的文本
         clickedType.value = "text";
+        clickedTypeData.value = window.getSelection().toString();
       } else {
         // 普通模式
         clickedType.value = "normal";
@@ -155,20 +201,29 @@ const checkClickType = (target) => {
 
 // 右键菜单点击事件
 const rightMenuFunc = (type) => {
-  if (!type) return false;
-  switch (type) {
-    case "back":
-      window.history.back();
-      break;
-    case "forward":
-      window.history.forward();
-      break;
-    case "reload":
-      window.location.reload();
-      break;
-    case "open-link":
-      window.open(clickedTypeData.value?.href);
-      break;
+  try {
+    if (!type) return false;
+    switch (type) {
+      case "back":
+        window.history.back();
+        break;
+      case "forward":
+        window.history.forward();
+        break;
+      case "reload":
+        window.location.reload();
+        break;
+      case "open-link":
+        window.open(clickedTypeData.value?.href);
+        break;
+      case "copy-link":
+        const pageLink = theme.value.site + router.route.path;
+        if (pageLink) copyText(pageLink);
+        break;
+    }
+  } catch (error) {
+    $message.error("右键菜单发生错误，请重试");
+    console.error("右键菜单出错：", error);
   }
 };
 

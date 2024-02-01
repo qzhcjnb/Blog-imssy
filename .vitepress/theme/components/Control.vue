@@ -7,6 +7,8 @@
         <div ref="closeControlRef" class="close-control">
           <i class="iconfont icon-close"></i>
         </div>
+        <!-- 背景遮罩 -->
+        <div class="control-mask" />
         <!-- 中控台内容 -->
         <div class="control-content" @click.stop>114514</div>
       </div>
@@ -48,7 +50,6 @@ const changeCloseStyle = () => {
   width: 100dvw;
   height: 100vh;
   height: 100dvh;
-  background-color: var(--main-mask-second-background);
   z-index: 1109;
   .close-control {
     position: absolute;
@@ -82,15 +83,15 @@ const changeCloseStyle = () => {
     position: absolute;
     animation: show 0.5s forwards;
   }
-  &::before {
-    content: "";
+  .control-mask {
     top: 0;
     left: 0;
     position: absolute;
     width: 100%;
     height: 100%;
     z-index: -1;
-    backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: blur(20px);
+    background-color: var(--main-mask-background);
   }
 }
 </style>
