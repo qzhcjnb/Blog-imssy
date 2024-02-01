@@ -88,7 +88,7 @@ const showOther = () => {
 };
 
 onMounted(() => {
-  initAbstract();
+  if (frontmatter.value.articleGPT) initAbstract();
 });
 
 onBeforeUnmount(() => {

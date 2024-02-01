@@ -261,4 +261,14 @@
     overflow-y: auto;
     user-select: text;
   }
+  // blockquote
+  blockquote {
+    padding: 2px 16px;
+    margin: 0 0 20px;
+    color: var(--main-font-color);
+    text-align: left;
+    border-left: 8px solid var(--main-card-border);
+    background-color: var(--main-card-second-background);
+    border-radius: 4px 8px 8px 4px;
+  }
 }
