@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "rewrites": [{ "source": "/:path*", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/feed.xml", "destination": "/feed.xml" },
+    { "source": "/:path*", "destination": "/index.html" }
+  ]
 }
