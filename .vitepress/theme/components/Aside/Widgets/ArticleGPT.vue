@@ -42,6 +42,7 @@ const showType = ref(false);
 const typeWriter = (text = null) => {
   try {
     const data = text || frontmatter.value.articleGPT;
+    if (!data) return false;
     if (showIndex.value < data.length) {
       abstractData.value += data.charAt(showIndex.value++);
       // 生成字符延迟

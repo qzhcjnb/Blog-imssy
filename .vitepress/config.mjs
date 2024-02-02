@@ -1,5 +1,11 @@
-// import { defineConfig } from "vitepress";
-import { getAllPosts, getAllType, getAllCategories } from "./theme/utils/getPostData.mjs";
+import {
+  getAllPosts,
+  getAllType,
+  getAllCategories,
+  getAllArchives,
+} from "./theme/utils/getPostData.mjs";
+import { createRssFile } from "./theme/utils/generateRSS.mjs";
+import { withPwa } from "@vite-pwa/vitepress";
 import headLinks from "./theme/assets/headLinks";
 import path from "path";
 
@@ -19,14 +25,18 @@ const defineConfig = async () => {
     appearance: "dark",
     // Head
     head: headLinks,
+    // sitemap
+    sitemap: {
+      hostname: "https://blog.imsyy.top",
+    },
     // 主题配置
     themeConfig: {
       // 站点信息
-      logo: "/logo/logo.png",
+      logo: "/images/logo/logo.png",
       site: "https://blog.imsyy.top",
       author: {
         text: "無名",
-        cover: "/logo/logo.png",
+        cover: "/images/logo/logo.png",
         link: "https://www.imsyy.top",
       },
       // 备案信息
@@ -160,13 +170,16 @@ const defineConfig = async () => {
       postData: postData,
       tagsData: getAllType(postData),
       categoriesData: getAllCategories(postData),
+      archivesData: getAllArchives(postData),
     },
     // markdown
     markdown: {
       lineNumbers: true,
     },
+    buildEnd: createRssFile,
     // vite
     vite: {
+      plugins: [],
       resolve: {
         // 配置路径别名
         alias: {
@@ -188,7 +201,63 @@ const defineConfig = async () => {
         },
       },
     },
+    // PWA
+    pwa: {
+      registerType: "autoUpdate",
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: /(.*?)\.(woff2|woff|ttf)/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "file-cache",
+            },
+          },
+          {
+            urlPattern: /(.*?)\.(webp|png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "image-cache",
+            },
+          },
+        ],
+      },
+      manifest: {
+        name: "無名小栈",
+        short_name: "無名小栈",
+        description: "分享技术与科技生活",
+        display: "standalone",
+        start_url: "/",
+        theme_color: "#fff",
+        background_color: "#efefef",
+        icons: [
+          {
+            src: "/images/logo/favicon-32x32.png",
+            sizes: "32x32",
+            type: "image/png",
+          },
+          {
+            src: "/images/logo/favicon-96x96.png",
+            sizes: "96x96",
+            type: "image/png",
+          },
+          {
+            src: "/images/logo/favicon-256x256.png",
+            sizes: "256x256",
+            type: "image/png",
+          },
+          {
+            src: "/images/logo/favicon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
+    },
   };
 };
 
-export default defineConfig();
+export default withPwa(defineConfig());

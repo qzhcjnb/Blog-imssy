@@ -16,7 +16,14 @@
           <span class="by">Powered by</span>
           <span class="name">VitePress</span>
         </div>
-        <div class="cc link" @click="jumpLink('https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans')">
+        <div class="rss link" @click="jumpLink('https://blog.imsyy.top/feed.xml')">
+          <i class="iconfont icon-rss" />
+          <span class="name">订阅</span>
+        </div>
+        <div
+          class="cc link"
+          @click="jumpLink('https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans')"
+        >
           <i class="iconfont icon-line" />
           <i class="iconfont icon-by-line" />
           <i class="iconfont icon-nc-line" />
@@ -82,6 +89,12 @@ const thisYear = computed(() => new Date().getFullYear());
         .by {
           font-weight: normal;
           opacity: 0.8;
+          margin-right: 6px;
+        }
+      }
+      .rss {
+        .iconfont {
+          font-weight: normal;
           margin-right: 6px;
         }
       }

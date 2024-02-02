@@ -137,3 +137,34 @@ export const getAllCategories = (postData) => {
   });
   return catData;
 };
+
+/**
+ * 获取所有年份及其相关文章的统计信息
+ * @param {Object[]} postData - 包含文章信息的数组
+ * @returns {Object} - 包含归档统计信息的对象
+ */
+export const getAllArchives = (postData) => {
+  const archiveData = {};
+  // 遍历数据
+  postData.forEach((item) => {
+    // 检查是否有 date 属性
+    if (item.date) {
+      // 将时间戳转换为日期对象
+      const date = new Date(item.date);
+      // 获取年份
+      const year = date.getFullYear().toString();
+      // 初始化该年份的统计信息，如果不存在
+      if (!archiveData[year]) {
+        archiveData[year] = {
+          count: 1,
+          articles: [item],
+        };
+      } else {
+        // 如果年份已存在，则增加计数和记录所属文章
+        archiveData[year].count++;
+        archiveData[year].articles.push(item);
+      }
+    }
+  });
+  return archiveData;
+};

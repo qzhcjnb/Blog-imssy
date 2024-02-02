@@ -77,7 +77,7 @@ onMounted(() => {
   .message-content {
     font-size: 18px;
     font-weight: bold;
-    color: var(--main-card-background);
+    color: #efefef;
   }
   &.success {
     background-color: var(--main-success-color);
