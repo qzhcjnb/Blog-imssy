@@ -166,5 +166,7 @@ export const getAllArchives = (postData) => {
       }
     }
   });
-  return archiveData;
+  // 提取年份并按降序排序
+  const sortedYears = Object.keys(archiveData).sort((a, b) => parseInt(b) - parseInt(a));
+  return { data: archiveData, year: sortedYears };
 };
