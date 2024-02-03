@@ -1,6 +1,7 @@
 <!-- 首页 -->
 <template>
   <div class="home">
+    <Banner v-if="showHeader" />
     <div class="home-content">
       <div class="posts-content">
         <!-- 分类总览 -->
@@ -19,6 +20,7 @@
 <script setup>
 import { computed } from "vue";
 import { useData } from "vitepress";
+import Banner from "@/components/Banner.vue";
 import PostList from "@/components/List/PostList.vue";
 import TypeBar from "@/components/List/TypeBar.vue";
 import Aside from "@/components/Aside/index.vue";
@@ -28,7 +30,7 @@ const props = defineProps({
   // 显示首页头部
   showHeader: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   // 当前页数
   page: {

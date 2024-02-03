@@ -9,7 +9,7 @@
     <div class="post-meta">
       <div class="meta-item">
         <span class="tip">作者</span>
-        <span class="name">{{ theme.author.text }}</span>
+        <span class="name">{{ theme.author.name }}</span>
       </div>
       <div class="meta-item">
         <span class="tip">发布于</span>

@@ -24,6 +24,22 @@ console.log(page.value);
 
 <style lang="scss" scoped>
 .page {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   animation: fade-up 0.6s 0.1s backwards;
+  .page-content {
+    width: 100%;
+  }
+  &.has-aside {
+    animation: fade-up 0.6s 0.3s backwards;
+    .page-content {
+      width: calc(100% - 300px);
+    }
+    .main-aside {
+      width: 300px;
+      padding-left: 1rem;
+    }
+  }
 }
 </style>

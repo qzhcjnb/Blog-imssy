@@ -102,6 +102,11 @@ onUnmounted(() => {
         }
       }
     }
+    :deep(.atk-list) {
+      .atk-comment-wrap {
+        border-bottom: 1px dashed var(--main-card-border);
+      }
+    }
   }
 }
 </style>

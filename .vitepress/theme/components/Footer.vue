@@ -4,7 +4,7 @@
       <div class="copyright">
         <span class="time">@ 2019 - {{ thisYear }} By </span>
         <span class="author link" @click="jumpLink(theme.author.link)">
-          {{ theme.author.text }}
+          {{ theme.author.name }}
         </span>
         <span class="icp link" @click="jumpLink('https://beian.miit.gov.cn/')">
           <i class="iconfont icon-safe" />
@@ -93,6 +93,7 @@ const thisYear = computed(() => new Date().getFullYear());
         }
       }
       .rss {
+        margin-right: 4px;
         .iconfont {
           font-weight: normal;
           margin-right: 6px;

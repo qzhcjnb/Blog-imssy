@@ -74,10 +74,12 @@
           </div>
           <!-- 通用菜单 -->
           <div class="all-menu general">
+            <!-- 复制地址 -->
             <div class="btn" @click="rightMenuFunc('copy-link')">
               <i class="iconfont icon-copy"></i>
               <span class="name">复制本页地址</span>
             </div>
+            <!-- 明暗模式 -->
             <div
               class="btn"
               @click.stop="
@@ -92,10 +94,10 @@
               <span class="name">
                 {{
                   store.themeType === "auto"
-                    ? "跟随系统"
+                    ? "深色系统"
                     : store.themeType === "dark"
-                      ? "深色模式"
-                      : "浅色模式"
+                      ? "浅色模式"
+                      : "跟随系统"
                 }}
               </span>
             </div>
@@ -276,6 +278,10 @@ defineExpose({ openRightMenu });
         &:last-child {
           margin-bottom: 0;
         }
+      }
+      &.general {
+        padding-top: 12px;
+        border-top: 1px solid var(--main-card-border);
       }
     }
     .btn {

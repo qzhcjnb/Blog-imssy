@@ -50,7 +50,8 @@
   }
   // 文本
   p,
-  ul {
+  ul,
+  li {
     margin: 1rem 0;
     text-align: left;
     letter-spacing: 0.6px;
@@ -264,7 +265,7 @@
   // blockquote
   blockquote {
     padding: 2px 16px;
-    margin: 0 0 20px;
+    margin: 1rem 0;
     color: var(--main-font-color);
     text-align: left;
     border-left: 8px solid var(--main-card-border);

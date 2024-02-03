@@ -173,7 +173,8 @@ const { site, theme, frontmatter, page } = useData();
         transition: transform 0.3s;
         cursor: pointer;
         &::after {
-          content: "回到首页";
+          content: "\e032";
+          font-family: "iconfont";
           display: flex;
           align-items: center;
           justify-content: center;
@@ -184,7 +185,7 @@ const { site, theme, frontmatter, page } = useData();
           height: 100%;
           color: var(--main-card-background);
           background-color: var(--main-color);
-          font-size: 13px;
+          font-size: 22px;
           border-radius: 25px;
           opacity: 0;
           transition: opacity 0.3s;

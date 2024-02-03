@@ -1,15 +1,17 @@
 import { createContentLoader } from "vitepress";
 import { writeFileSync } from "fs";
+import { siteBasicData } from "../assets/themeConfig.mjs";
 import { Feed } from "feed";
 import path from "path";
 
-const hostLink = "https://blog.imsyy.top";
+// 主网址
+const hostLink = siteBasicData.site;
 
 export const createRssFile = async (config) => {
   // Feed 实例
   const feed = new Feed({
-    title: "無名小栈",
-    description: "分享技术与科技生活",
+    title: siteBasicData.title,
+    description: siteBasicData.description,
     id: hostLink,
     link: hostLink,
     language: "zh-CH",
@@ -40,9 +42,9 @@ export const createRssFile = async (config) => {
       content: html,
       author: [
         {
-          name: "無名",
-          email: "one@imsyy.top",
-          link: "https://www.imsyy.top",
+          name: siteBasicData.author.name,
+          email: siteBasicData.author.email,
+          link: siteBasicData.author.link,
         },
       ],
     });

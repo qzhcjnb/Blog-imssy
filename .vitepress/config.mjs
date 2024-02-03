@@ -28,6 +28,9 @@ export default withPwa(
     markdown: {
       lineNumbers: true,
     },
+    // 构建排除
+    srcExclude: ['**/README.md', '**/TODO.md'],
+    // buildEnd
     buildEnd: createRssFile,
     // vite
     vite: {

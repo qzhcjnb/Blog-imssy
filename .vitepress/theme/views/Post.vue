@@ -36,7 +36,7 @@
         </span>
         <span class="update time">
           <i class="iconfont icon-time" />
-          更新于 {{ formatTimestamp(postMetaData.lastModified) }}
+          更新于 {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
         </span>
       </div>
     </div>

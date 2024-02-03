@@ -7,7 +7,7 @@
   <Nav />
   <!-- 主内容 -->
   <main :class="['mian-layout', { loading: store.loadingStatus }]">
-    <Home v-if="frontmatter.home" />
+    <Home v-if="frontmatter.home" showHeader />
     <NotFound v-else-if="page.isNotFound" />
     <Post v-else-if="isPostPage" />
     <Page v-else :type="frontmatter.layout" :showAside="frontmatter.aside" />

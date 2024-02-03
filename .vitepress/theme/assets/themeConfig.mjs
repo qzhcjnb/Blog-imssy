@@ -15,8 +15,9 @@ export const siteBasicData = {
   logo: "/images/logo/logo.png",
   site: "https://blog.imsyy.top",
   author: {
-    text: "無名",
+    name: "無名",
     cover: "/images/logo/logo.png",
+    email: "one@imsyy.top",
     link: "https://www.imsyy.top",
   },
 };
