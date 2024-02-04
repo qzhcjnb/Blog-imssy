@@ -108,5 +108,15 @@ const route = useRoute();
     font-size: 16rem;
     transform: rotate(334deg);
   }
+  @media (max-width: 768px) {
+    .post-meta {
+      display: none;
+    }
+    .meta-tip {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+  }
 }
 </style>

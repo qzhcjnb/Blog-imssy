@@ -294,5 +294,44 @@ onMounted(() => {
       }
     }
   }
+  @media (max-width: 768px) {
+    .post-meta {
+      padding: 4rem 1.5rem;
+      .meta {
+        justify-content: center;
+        .categories {
+          margin-right: 0;
+        }
+        .tags {
+          display: none;
+        }
+      }
+      .title {
+        font-size: 1.6rem;
+        text-align: center;
+        line-height: 40px;
+      }
+      .other-meta {
+        justify-content: center;
+      }
+    }
+    .post-content {
+      .post-article {
+        .other-meta {
+          margin: 1rem 0 2rem 0;
+          flex-direction: column;
+          .all-tags {
+            flex-wrap: wrap;
+            .tag-item {
+              margin-top: 12px;
+            }
+          }
+          .report {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

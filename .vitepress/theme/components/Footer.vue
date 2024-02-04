@@ -129,6 +129,21 @@ const thisYear = computed(() => new Date().getFullYear());
         }
       }
     }
+    @media (max-width: 768px) {
+      font-size: 14px;
+      .meta {
+        display: none;
+      }
+    }
+    @media (max-width: 420px) {
+      .copyright {
+        .icp {
+          .iconfont {
+            display: none;
+          }
+        }
+      }
+    }
   }
 }
 </style>

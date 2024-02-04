@@ -164,6 +164,11 @@ onBeforeUnmount(() => {
     .tip {
       opacity: 0.6;
     }
+    .report {
+      white-space: nowrap;
+      margin-left: 12px;
+      opacity: 0.8;
+    }
   }
 }
 </style>

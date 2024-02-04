@@ -78,6 +78,9 @@ const postData = computed(() => {
         display: none;
       }
     }
+    @media (max-width: 768px) {
+      padding: 0 1.5rem;
+    }
   }
 }
 </style>

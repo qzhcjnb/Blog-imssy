@@ -50,6 +50,7 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   animation: fade-up 0.6s 0.1s backwards;
+  transition: height 0.3s;
   .title {
     font-family: "Site Title";
     font-weight: bold;
@@ -59,6 +60,17 @@ onBeforeUnmount(() => {
     font-size: 20px;
     opacity: 0.8;
     animation: fade-up-opacity 0.6s 0.1s backwards;
+  }
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+    align-items: flex-start;
+    height: 240px;
+    .title {
+      font-size: 36px;
+    }
+    .subtitle {
+      font-size: 18px;
+    }
   }
 }
 </style>

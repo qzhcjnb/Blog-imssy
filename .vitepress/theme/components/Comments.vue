@@ -103,8 +103,13 @@ onUnmounted(() => {
       }
     }
     :deep(.atk-list) {
-      .atk-comment-wrap {
-        border-bottom: 1px dashed var(--main-card-border);
+      .atk-list-comments-wrap {
+        > .atk-comment-wrap {
+          border-bottom: 1px dashed var(--main-card-border);
+          &:last-child {
+            border-bottom: none;
+          }
+        }
       }
     }
   }

@@ -21,7 +21,7 @@ const messageType = ref("success");
 const messageTimeOut = ref(null);
 
 // 消息处理
-const showMessage = (text, type) => {
+const showMessage = (text, type, time) => {
   messageShow.value = false;
   clearTimeout(messageTimeOut.value);
   nextTick().then(() => {
@@ -31,27 +31,27 @@ const showMessage = (text, type) => {
     // 自动关闭消息
     messageTimeOut.value = setTimeout(() => {
       messageShow.value = false;
-    }, 3000);
+    }, time);
   });
 };
 
 // 弹出消息
 const message = {
   // 信息
-  info: (text) => {
-    showMessage(text, "info");
+  info: (text, time = 3000) => {
+    showMessage(text, "info", time);
   },
   // 成功
-  success: (text) => {
-    showMessage(text, "success");
+  success: (text, time = 3000) => {
+    showMessage(text, "success", time);
   },
   // 警告
-  warning: (text) => {
-    showMessage(text, "warning");
+  warning: (text, time = 3000) => {
+    showMessage(text, "warning", time);
   },
   // 错误
-  error: (text) => {
-    showMessage(text, "error");
+  error: (text, time = 3000) => {
+    showMessage(text, "error", time);
   },
 };
 

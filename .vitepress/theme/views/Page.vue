@@ -30,6 +30,7 @@ console.log(page.value);
   animation: fade-up 0.6s 0.1s backwards;
   .page-content {
     width: 100%;
+    transition: width 0.3s;
   }
   &.has-aside {
     animation: fade-up 0.6s 0.3s backwards;
@@ -40,6 +41,17 @@ console.log(page.value);
       width: 300px;
       padding-left: 1rem;
     }
+  }
+  @media (max-width: 1200px) {
+    .page-content {
+      width: 100% !important;
+    }
+    .main-aside {
+      display: none;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
   }
 }
 </style>
