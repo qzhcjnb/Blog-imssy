@@ -10,6 +10,7 @@ export default withPwa(
   defineConfig({
     title: siteBasicData.title,
     description: siteBasicData.description,
+    lang: "zh-CN",
     // 简洁的 URL
     cleanUrls: true,
     // 最后更新时间戳
