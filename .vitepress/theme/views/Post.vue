@@ -317,6 +317,7 @@ onMounted(() => {
     }
     .post-content {
       .post-article {
+        padding: 20px 30px;
         .other-meta {
           margin: 1rem 0 2rem 0;
           flex-direction: column;

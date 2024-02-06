@@ -24,8 +24,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { throttle } from "@/utils/helper";
+import { mainStore } from "@/store";
+
+const store = mainStore();
 
 const tocData = ref(null);
 const postDom = ref(null);
@@ -89,6 +92,20 @@ const scrollToHeader = (id) => {
     console.error("目录滚动失败：", error);
   }
 };
+
+// 监听滚动数值
+watch(
+  () => store.scrollData.percentage,
+  (val) => {
+    if (val === 0) {
+      console.log("回到顶部");
+      const headers = postDom.value.querySelectorAll("h2, h3");
+      if (!headers) return false;
+      activeTocHeight.value = 4;
+      activeHeader.value = headers[0].id;
+    }
+  },
+);
 
 onMounted(() => {
   generateDirData();

@@ -66,8 +66,21 @@
               <i class="iconfont icon-download"></i>
               <span class="name">下载此图片</span>
             </div>
+            <!-- 输入框 -->
+            <div
+              v-if="clickedType === 'input' && typeof clickedTypeData.value === 'string'"
+              class="btn"
+              @click="rightMenuFunc('input-paste')"
+            >
+              <i class="iconfont icon-paste"></i>
+              <span class="name">粘贴文本</span>
+            </div>
             <!-- 选中文本 -->
-            <div v-if="clickedType === 'text'" class="btn" @click="copyText(clickedTypeData)">
+            <div
+              v-if="clickedType === 'text' || clickedType === 'input'"
+              class="btn"
+              @click="copyText(clickedTypeData)"
+            >
               <i class="iconfont icon-copy"></i>
               <span class="name">复制选中文本</span>
             </div>
@@ -94,7 +107,7 @@
               <span class="name">
                 {{
                   store.themeType === "auto"
-                    ? "深色系统"
+                    ? "深色模式"
                     : store.themeType === "dark"
                       ? "浅色模式"
                       : "跟随系统"
@@ -177,7 +190,9 @@ const closeRightMenu = (e) => {
 // 判断点击元素类型
 const checkClickType = (target) => {
   if (!target?.tagName) return false;
-  clickedTypeData.value = target;
+  // 写入内容
+  clickedTypeData.value =
+    window.getSelection().toString().length > 0 ? window.getSelection().toString() : target;
   console.log(clickedTypeData.value);
   switch (target.tagName) {
     case "A":
@@ -188,11 +203,15 @@ const checkClickType = (target) => {
       // 图片类型
       clickedType.value = "image";
       break;
+    case "INPUT":
+    case "TEXTAREA":
+      // 输入框类型
+      clickedType.value = "input";
+      break;
     default:
       if (window.getSelection().toString().length > 0) {
         // 已选中的文本
         clickedType.value = "text";
-        clickedTypeData.value = window.getSelection().toString();
       } else {
         // 普通模式
         clickedType.value = "normal";
@@ -202,7 +221,7 @@ const checkClickType = (target) => {
 };
 
 // 右键菜单点击事件
-const rightMenuFunc = (type) => {
+const rightMenuFunc = async (type) => {
   try {
     if (!type) return false;
     switch (type) {
@@ -222,6 +241,23 @@ const rightMenuFunc = (type) => {
         const pageLink = theme.value.site + router.route.path;
         if (pageLink) copyText(pageLink);
         break;
+      case "input-paste":
+        const text = await navigator.clipboard.readText();
+        if (clickedTypeData.value && typeof clickedTypeData.value === "object") {
+          const inputElement = clickedTypeData.value;
+          const start = inputElement.selectionStart;
+          const end = inputElement.selectionEnd;
+          const value = inputElement.value;
+          // 在光标位置插入文本
+          const newValue = value.substring(0, start) + text + value.substring(end);
+          inputElement.value = newValue;
+          // 更新光标位置
+          const newCursorPosition = start + text.length;
+          inputElement.setSelectionRange(newCursorPosition, newCursorPosition);
+        }
+        break;
+      default:
+        return false;
     }
   } catch (error) {
     $message.error("右键菜单发生错误，请重试");

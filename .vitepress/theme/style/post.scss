@@ -272,4 +272,32 @@
     background-color: var(--main-card-second-background);
     border-radius: 4px 8px 8px 4px;
   }
+  // 标点&
+  ul {
+    list-style-type: none;
+    padding-left: 1rem;
+    li {
+      position: relative;
+      padding-left: 1.2rem;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.7rem;
+        width: 0.6rem;
+        height: 0.6rem;
+        background-color: var(--main-color);
+        border-radius: 50%;
+      }
+    }
+  }
+  ol {
+    padding-left: 2rem;
+    li {
+      &::marker {
+        color: var(--main-color);
+        font-weight: bold;
+      }
+    }
+  }
 }

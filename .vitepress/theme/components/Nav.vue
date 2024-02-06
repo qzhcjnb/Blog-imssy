@@ -149,7 +149,7 @@ const { site, theme, frontmatter, page } = useData();
     width: 100%;
     height: 100%;
     max-width: 1400px;
-    padding: 0 1.5rem;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
     align-items: center;

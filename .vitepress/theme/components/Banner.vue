@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
     animation: fade-up-opacity 0.6s 0.1s backwards;
   }
   @media (max-width: 768px) {
-    padding: 0 1.5rem;
+    padding: 0 20px;
     align-items: flex-start;
     height: 240px;
     .title {

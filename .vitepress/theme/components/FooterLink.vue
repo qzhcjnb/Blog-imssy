@@ -82,7 +82,7 @@ const socialLinkData = computed(() => {
   flex-direction: row;
   margin: 1rem auto;
   margin-bottom: 3rem;
-  padding: 0 1.5rem;
+  padding: 0 20px;
   animation: show 0.3s backwards;
   .footer-bar {
     width: 100%;
