@@ -195,13 +195,15 @@ const { site, theme, frontmatter, page } = useData();
           opacity: 0;
           transition: opacity 0.3s;
         }
-        &:hover {
-          &::after {
-            opacity: 1;
+        @media (min-width: 678px) {
+          &:hover {
+            &::after {
+              opacity: 1;
+            }
           }
-        }
-        &:active {
-          transform: scale(0.95);
+          &:active {
+            transform: scale(0.95);
+          }
         }
       }
     }

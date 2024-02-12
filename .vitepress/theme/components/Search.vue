@@ -219,9 +219,12 @@ const jumpSearch = (url) => {
       .search-item {
         margin-bottom: 12px;
         .title {
+          display: inline;
+          font-size: 16px;
           margin-bottom: 6px;
         }
         .anchor {
+          margin-top: 6px;
           opacity: 0.6;
           font-size: 14px;
           &::before {
@@ -230,7 +233,7 @@ const jumpSearch = (url) => {
         }
         .content {
           opacity: 0.8;
-          margin-top: 12px;
+          margin-top: 0.8rem;
           font-size: 12px;
           padding: 8px;
           border-radius: 8px;
@@ -312,6 +315,12 @@ const jumpSearch = (url) => {
       }
       .name {
         font-weight: bold;
+      }
+    }
+    @media (max-width: 512px) {
+      justify-content: center;
+      .information {
+        display: none;
       }
     }
   }
