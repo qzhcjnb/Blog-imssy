@@ -13,6 +13,9 @@ import "@/style/main.scss";
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
+// InstantSearch
+import InstantSearch from "vue-instantsearch/vue3/es";
+
 /** @type {import('vitepress').Theme} */
 export default {
   // extends: Theme,
@@ -22,6 +25,7 @@ export default {
   enhanceApp({ app, router, siteData }) {
     // 挂载
     app.use(pinia);
+    app.use(InstantSearch);
     // 路由守卫
     router.onBeforeRouteChange = (to, from) => {
       routerTools("before", to, from);

@@ -40,6 +40,22 @@
               <i class="iconfont icon-shuffle"></i>
               <span class="name">随便逛逛</span>
             </div>
+            <div
+              v-if="clickedType === 'normal'"
+              class="btn"
+              @click="router.go('/pages/categories')"
+            >
+              <i class="iconfont icon-folder"></i>
+              <span class="name">全部分类</span>
+            </div>
+            <div
+              v-if="clickedType === 'normal'"
+              class="btn"
+              @click="router.go('/pages/tags')"
+            >
+              <i class="iconfont icon-hashtag"></i>
+              <span class="name">全部标签</span>
+            </div>
             <!-- 链接类型 -->
             <div v-if="clickedType === 'link'" class="btn" @click="rightMenuFunc('open-link')">
               <i class="iconfont icon-window"></i>

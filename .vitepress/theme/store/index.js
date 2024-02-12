@@ -18,6 +18,8 @@ export const mainStore = defineStore("main", {
       },
       // 中控台显示
       controlShow: false,
+      // 搜索框显示
+      searchShow: false,
     };
   },
   getters: {},
@@ -27,6 +29,12 @@ export const mainStore = defineStore("main", {
       this.controlShow = !this.controlShow;
       // 阻止滚动
       document.body.style.overflow = this.controlShow ? "hidden" : "";
+    },
+    // 切换搜索框
+    changeSearchShow() {
+      this.searchShow = !this.searchShow;
+      // 阻止滚动
+      document.body.style.overflow = this.searchShow ? "hidden" : "";
     },
   },
   // 数据持久化

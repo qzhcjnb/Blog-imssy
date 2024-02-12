@@ -15,7 +15,7 @@
         <div class="nav-center">
           <div class="site-menu">
             <div v-for="(item, index) in theme.nav" :key="index" class="menu-item">
-              <a class="link-btn" @click="router.go(item?.link)"> {{ item.text }}</a>
+              <span class="link-btn"> {{ item.text }}</span>
               <div v-if="item.items" class="link-child">
                 <span
                   v-for="(child, childIndex) in item.items"
@@ -43,7 +43,7 @@
             <i class="iconfont icon-shuffle"></i>
           </div>
           <!-- 搜索 -->
-          <div class="menu-btn nav-btn" title="全站搜索">
+          <div class="menu-btn nav-btn" title="全站搜索" @click="store.changeSearchShow">
             <i class="iconfont icon-search"></i>
           </div>
           <!-- 中控台 -->
@@ -77,6 +77,10 @@
         </div>
       </div>
     </nav>
+    <!-- 全局搜索 -->
+    <ClientOnly>
+      <Search />
+    </ClientOnly>
   </header>
 </template>
 
@@ -85,6 +89,7 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { useData, useRouter } from "vitepress";
 import { smoothScrolling, shufflePost } from "@/utils/helper";
+import Search from "@/components/Search.vue";
 
 const router = useRouter();
 const store = mainStore();

@@ -20,9 +20,13 @@
     "vitepress": "^1.0.0-rc.40"
   },
   "dependencies": {
+    "algoliasearch": "^4.22.1",
     "artalk": "^2.7.3",
+    "instantsearch.css": "^8.1.0",
+    "instantsearch.js": "^4.64.3",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.15",
+    "vue-instantsearch": "^4.13.7"
   }
 }

@@ -81,12 +81,12 @@ const changeCloseStyle = () => {
   }
   .control-content {
     position: absolute;
-    animation: show 0.5s forwards;
+    animation: fade-up 0.5s forwards;
   }
   .control-mask {
+    position: absolute;
     top: 0;
     left: 0;
-    position: absolute;
     width: 100%;
     height: 100%;
     z-index: -1;

@@ -1,13 +1,15 @@
 <template>
   <div class="not-found">
-    <h1 class="title">404</h1>
-    <span class="title-tip">Page not found</span>
-    <a href="/" class="to-home">回到主页</a>
+    <div class="not-found-content">
+      <h1 class="title">404</h1>
+      <span class="title-tip">Page not found</span>
+      <a href="/" class="to-home">回到主页</a>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.not-found {
+.not-found-content {
   animation: fade-up 0.6s 0.1s backwards;
   display: flex;
   flex-direction: column;

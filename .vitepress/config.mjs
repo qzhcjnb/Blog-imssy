@@ -30,7 +30,7 @@ export default withPwa(
       lineNumbers: true,
     },
     // 构建排除
-    srcExclude: ['**/README.md', '**/TODO.md'],
+    srcExclude: ["**/README.md", "**/TODO.md"],
     // buildEnd
     buildEnd: createRssFile,
     // vite

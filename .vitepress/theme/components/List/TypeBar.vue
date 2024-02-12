@@ -20,12 +20,13 @@
   <div v-else-if="type === 'tags'" class="type-bar s-card hover">
     <div class="all-type">
       <a
-        v-for="(_, key, index) in theme.tagsData"
+        v-for="(item, key, index) in theme.tagsData"
         :key="index"
         :href="`/pages/tags/${key}`"
         :class="['type-item', { choose: currentCatName === key }]"
       >
         {{ key }}
+        <span class="num">{{ item.count }}</span>
       </a>
     </div>
   </div>
@@ -69,6 +70,7 @@ const currentCatName = computed(() => {
     flex-direction: row;
     align-items: center;
     margin-right: 12px;
+    overflow: hidden;
     .type-item {
       display: flex;
       align-items: center;
@@ -76,11 +78,24 @@ const currentCatName = computed(() => {
       margin-right: 6px;
       font-weight: bold;
       border-radius: 8px;
+      white-space: nowrap;
       height: 30px;
       cursor: pointer;
+      .num {
+        margin-left: 4px;
+        font-weight: normal;
+        padding: 2px 6px;
+        font-size: 12px;
+        color: var(--main-font-color);
+        background-color: var(--main-card-border);
+        border-radius: 8px;
+      }
       &.choose {
         color: var(--main-card-background);
         background-color: var(--main-color);
+        .num {
+          color: var(--main-color);
+        }
       }
       &:hover {
         color: var(--main-card-background);
