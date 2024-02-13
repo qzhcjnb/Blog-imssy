@@ -1,11 +1,13 @@
 <template>
   <div class="banner">
     <h1 class="title">你好，欢迎来到{{ theme.title }}</h1>
-    <Transition name="fade" mode="out-in">
-      <span :key="hitokotoData?.hitokoto" class="subtitle">
-        {{ hitokotoData?.hitokoto ? hitokotoData?.hitokoto : theme.description }}
-      </span>
-    </Transition>
+    <div class="subtitle">
+      <Transition name="fade" mode="out-in">
+        <span :key="hitokotoData?.hitokoto" class="text">
+          {{ hitokotoData?.hitokoto ? hitokotoData?.hitokoto : theme.description }}
+        </span>
+      </Transition>
+    </div>
   </div>
 </template>
 

@@ -7,10 +7,21 @@
   <Nav />
   <!-- 主内容 -->
   <main :class="['mian-layout', { loading: store.loadingStatus }]">
-    <Home v-if="frontmatter.home" showHeader />
-    <NotFound v-else-if="page.isNotFound" />
-    <Post v-else-if="isPostPage" />
-    <Page v-else :type="frontmatter.layout" :showAside="frontmatter.aside" />
+    <!-- 404 -->
+    <NotFound v-if="page.isNotFound" />
+    <!-- 首页 -->
+    <Home v-if="frontmatter.layout === 'home'" showHeader />
+    <!-- 页面 -->
+    <template v-else>
+      <!-- 文章页面 -->
+      <Post v-if="isPostPage" />
+      <!-- 普通页面 -->
+      <Page
+        v-else-if="!page.isNotFound"
+        :type="frontmatter.layout"
+        :showAside="frontmatter.aside"
+      />
+    </template>
   </main>
   <!-- 页脚 -->
   <FooterLink v-show="!store.loadingStatus" :showBar="isPostPage" />
@@ -105,7 +116,7 @@ watch(
 );
 
 onMounted(() => {
-  console.log(theme.value);
+  console.info(frontmatter.value, page.value, theme.value);
   // 更改主题类别
   changeSiteThemeType();
   // 滚动监听
@@ -146,7 +157,6 @@ onBeforeUnmount(() => {
   &.loading {
     display: none;
   }
-
   @media (max-width: 768px) {
     padding: 1rem 0;
   }

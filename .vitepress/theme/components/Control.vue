@@ -90,7 +90,6 @@ const changeCloseStyle = () => {
     width: 100%;
     height: 100%;
     z-index: -1;
-    backdrop-filter: blur(20px);
     background-color: var(--main-mask-background);
   }
 }

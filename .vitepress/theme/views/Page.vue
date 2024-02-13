@@ -50,8 +50,5 @@ console.log(page.value);
       display: none;
     }
   }
-  @media (max-width: 768px) {
-    padding: 0 20px;
-  }
 }
 </style>

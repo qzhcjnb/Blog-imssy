@@ -41,13 +41,13 @@
               </ais-hits>
               <ais-pagination v-if="hasSearchValue" />
               <ais-stats>
-                <template v-slot="{ nbHits, processingTimeMS }">
+                <template v-slot="{ processingTimeMS }">
                   <div class="information">
                     <span v-if="hasSearchValue" class="text">
-                      找到 {{ nbHits }} 条结果，用时 {{ processingTimeMS }} 毫秒
+                      本次用时 {{ processingTimeMS }} 毫秒
                     </span>
                   </div>
-                  <div class="power">
+                  <div class="power" @click="jumpLink('https://www.algolia.com/')">
                     <i class="iconfont icon-algolia" />
                     <span class="name">Algolia</span>
                   </div>
@@ -65,6 +65,7 @@
 import { ref } from "vue";
 import { mainStore } from "@/store";
 import { useRouter } from "vitepress";
+import { jumpLink } from "@/utils/helper";
 import algoliasearch from "algoliasearch/lite";
 
 const store = mainStore();
@@ -130,7 +131,6 @@ const jumpSearch = (url) => {
     width: 100%;
     height: 100%;
     z-index: -1;
-    backdrop-filter: blur(20px);
     background-color: var(--main-mask-background);
   }
   .search-content {
@@ -225,14 +225,14 @@ const jumpSearch = (url) => {
         }
         .anchor {
           margin-top: 6px;
-          opacity: 0.6;
+          color: var(--main-font-second-color);
           font-size: 14px;
           &::before {
             content: "# ";
           }
         }
         .content {
-          opacity: 0.8;
+          color: var(--main-font-second-color);
           margin-top: 0.8rem;
           font-size: 12px;
           padding: 8px;
@@ -268,8 +268,7 @@ const jumpSearch = (url) => {
         border-radius: 8px;
         transition: background-color 0.3s;
         cursor: pointer;
-        a,
-        span {
+        .ais-Pagination-link {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -282,11 +281,16 @@ const jumpSearch = (url) => {
         &:hover {
           color: var(--main-font-color);
           background-color: var(--main-color);
+          .ais-Pagination-link {
+            color: var(--main-card-border);
+          }
         }
         &.ais-Pagination-item--selected {
           font-weight: bold;
-          color: var(--main-font-color);
           background-color: var(--main-color);
+          .ais-Pagination-link {
+            color: var(--main-card-border);
+          }
         }
         &.ais-Pagination-item--disabled,
         &.ais-Pagination-item--nextPage,
@@ -309,6 +313,7 @@ const jumpSearch = (url) => {
       flex-direction: row;
       align-items: center;
       font-size: 16px;
+      opacity: 0.6;
       .iconfont {
         margin-right: 4px;
         font-size: 20px;

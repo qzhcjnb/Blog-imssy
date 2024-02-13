@@ -3,10 +3,16 @@
     <div class="not-found-content">
       <h1 class="title">404</h1>
       <span class="title-tip">Page not found</span>
-      <a href="/" class="to-home">回到主页</a>
+      <button class="to-home" @click="router.go('/')">回到主页</button>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useRouter } from "vitepress";
+
+const router = useRouter();
+</script>
 
 <style lang="scss" scoped>
 .not-found-content {
@@ -28,8 +34,13 @@
     margin-top: 2rem;
     padding: 12px 26px;
     font-size: 20px;
+    color: var(--main-font-color);
     background-color: var(--main-card-border);
     border-radius: 12px;
+    outline: none;
+    border: none;
+    transition: color 0.3s, background-color 0.3s;
+    cursor: pointer;
     &:hover {
       color: var(--main-card-background);
       background-color: var(--main-color);
