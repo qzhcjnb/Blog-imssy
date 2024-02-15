@@ -100,7 +100,7 @@ const postMetaData = computed(() => {
 const changePostContent = () => {
   const postDom = document.getElementById("post-article");
   if (!postDom) return false;
-  // 替换图片
+  // 图片
   const allImg = postDom.querySelectorAll("img");
   allImg.forEach((img) => {
     if (!img.classList.contains("post-img")) {

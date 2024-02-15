@@ -1,6 +1,7 @@
 ---
 title: 标签
 aside: false
+padding: false
 ---
 
 <script setup>

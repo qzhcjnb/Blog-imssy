@@ -1,5 +1,6 @@
 // 文章内容样式
-:deep(#post-article) {
+:deep(#post-article),
+:deep(.page-content) {
   // 标题
   h2 {
     font-size: 1.6rem;

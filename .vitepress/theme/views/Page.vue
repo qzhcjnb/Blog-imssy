@@ -1,6 +1,6 @@
 <!-- 普通页面 -->
 <template>
-  <div :class="['page', { 'has-aside': showAside }]">
+  <div :class="['page', { 'show-padding': showPadding, 'has-aside': showAside }]">
     <Content class="page-content" />
     <Aside v-if="showAside" />
   </div>
@@ -17,12 +17,18 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  // 显示边距
+  showPadding: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 console.log(page.value);
 </script>
 
 <style lang="scss" scoped>
+@import "../style/post.scss";
 .page {
   width: 100%;
   display: flex;
@@ -40,6 +46,14 @@ console.log(page.value);
     .main-aside {
       width: 300px;
       padding-left: 1rem;
+    }
+  }
+  &.show-padding {
+    .page-content {
+      padding: 0 1.5rem;
+      @media (max-width: 768px) {
+        padding: 0 1rem;
+      }
     }
   }
   @media (max-width: 1200px) {

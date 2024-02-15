@@ -154,7 +154,7 @@ const { site, theme, frontmatter, page } = useData();
     width: 100%;
     height: 100%;
     max-width: 1400px;
-    padding: 0 20px;
+    padding: 0 1rem;
     display: grid;
     grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
     align-items: center;
@@ -195,7 +195,7 @@ const { site, theme, frontmatter, page } = useData();
           opacity: 0;
           transition: opacity 0.3s;
         }
-        @media (min-width: 678px) {
+        @media (min-width: 768px) {
           &:hover {
             &::after {
               opacity: 1;

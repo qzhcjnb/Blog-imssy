@@ -20,6 +20,7 @@
         v-else-if="!page.isNotFound"
         :type="frontmatter.layout"
         :showAside="frontmatter.aside"
+        :showPadding="frontmatter.padding"
       />
     </template>
   </main>

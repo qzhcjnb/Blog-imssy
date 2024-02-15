@@ -67,7 +67,7 @@ const thisYear = computed(() => new Date().getFullYear());
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1rem;
     color: var(--main-font-color);
     line-height: 1;
     min-height: 32px;

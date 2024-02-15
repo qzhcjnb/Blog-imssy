@@ -1,6 +1,7 @@
 ---
 title: 分类
 aside: false
+padding: false
 ---
 
 <script setup>

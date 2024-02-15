@@ -115,11 +115,14 @@ const props = defineProps({
           flex-wrap: wrap;
           width: 100%;
           opacity: 0.8;
+          margin-right: 20px;
+          overflow: hidden;
           .tags-name {
             display: flex;
             flex-direction: row;
             align-items: center;
             margin-right: 8px;
+            white-space: nowrap;
             transition: color 0.3s;
             .iconfont {
               font-weight: normal;
@@ -133,6 +136,9 @@ const props = defineProps({
                 color: var(--main-color);
               }
             }
+          }
+          @media (max-width: 768px) {
+            flex-wrap: nowrap;
           }
         }
         .post-time {

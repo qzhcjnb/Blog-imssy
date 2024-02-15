@@ -103,6 +103,13 @@
           </div>
           <!-- 通用菜单 -->
           <div class="all-menu general">
+            <!-- 版权协议 -->
+            <div class="btn" @click="router.go('/pages/cc')">
+              <i class="iconfont icon-accessible"></i>
+              <span class="name">版权协议</span>
+            </div>
+          </div>
+          <div class="all-menu general">
             <!-- 复制地址 -->
             <div class="btn" @click="rightMenuFunc('copy-link')">
               <i class="iconfont icon-copy"></i>
