@@ -48,11 +48,7 @@
               <i class="iconfont icon-folder"></i>
               <span class="name">全部分类</span>
             </div>
-            <div
-              v-if="clickedType === 'normal'"
-              class="btn"
-              @click="router.go('/pages/tags')"
-            >
+            <div v-if="clickedType === 'normal'" class="btn" @click="router.go('/pages/tags')">
               <i class="iconfont icon-hashtag"></i>
               <span class="name">全部标签</span>
             </div>
@@ -190,6 +186,12 @@ const openRightMenu = (e) => {
       if (correctY + menuHeight > screenHeight - marginWidth) {
         correctY = screenHeight - menuHeight - marginWidth;
       }
+      if (correctX < marginWidth) {
+        correctX = marginWidth;
+      }
+      if (correctY < marginWidth) {
+        correctY = marginWidth;
+      }
       rightMenuX.value = correctX;
       rightMenuY.value = correctY;
     };
@@ -216,7 +218,6 @@ const checkClickType = (target) => {
   // 写入内容
   clickedTypeData.value =
     window.getSelection().toString().length > 0 ? window.getSelection().toString() : target;
-  console.log(clickedTypeData.value);
   switch (target.tagName) {
     case "A":
       // 链接类型

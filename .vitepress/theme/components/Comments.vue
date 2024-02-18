@@ -93,6 +93,7 @@ onUnmounted(() => {
     --at-color-bg: var(--main-card-background);
     --at-color-bg-grey: var(--main-card-border);
     --at-color-bg-transl: var(--main-card-second-background);
+    --at-color-gradient: linear-gradient(180deg, transparent, var(--main-card-background));
     :deep(.atk-main-editor) {
       .atk-bottom {
         padding: 0 0 0 8px;

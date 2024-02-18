@@ -30,13 +30,17 @@
         {{ postMetaData.title || "未命名文章" }}
       </h1>
       <div class="other-meta">
-        <span class="time">
+        <span class="meta">
           <i class="iconfont icon-date" />
           {{ formatTimestamp(postMetaData.date) }}
         </span>
-        <span class="update time">
+        <span class="update meta">
           <i class="iconfont icon-time" />
-          更新于 {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
+          {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
+        </span>
+        <span class="hot meta">
+          <i class="iconfont icon-fire" />
+          <span id="ArtalkPV">0</span>
         </span>
       </div>
     </div>
@@ -198,7 +202,7 @@ onMounted(() => {
       display: flex;
       flex-direction: row;
       align-items: center;
-      .time {
+      .meta {
         display: flex;
         flex-direction: row;
         align-items: center;

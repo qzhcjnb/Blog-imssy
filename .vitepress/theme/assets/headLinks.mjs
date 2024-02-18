@@ -31,10 +31,10 @@ const headLinks = [
     "link",
     {
       rel: "stylesheet",
-      href: "https://cdn.staticfile.net/fancyapps-ui/4.0.31/fancybox.min.css",
+      href: "https://cdn.staticfile.net/fancyapps-ui/4.0.27/fancybox.min.css",
     },
   ],
-  ["script", { src: "https://cdn.staticfile.net/fancyapps-ui/4.0.31/fancybox.umd.js" }],
+  ["script", { src: "https://cdn.staticfile.net/fancyapps-ui/4.0.27/fancybox.umd.js" }],
   // 预载 DocSearch
   [
     "link",
