@@ -43,8 +43,8 @@ export const themeConfig = {
     {
       text: "专栏",
       items: [
-        { text: "设计报告", link: "/pages/about" },
-        { text: "实际分享", link: "/api-examples" },
+        { text: "我的项目", link: "/pages/about", icon: "code" },
+        { text: "技术分享", link: "/api-examples" },
         { text: "设计工具", link: "/api-examples" },
       ],
     },
@@ -59,9 +59,8 @@ export const themeConfig = {
     {
       text: "我的",
       items: [
-        { text: "我的装备", link: "/pages/about" },
-        { text: "在线工具", link: "/api-examples" },
-        { text: "关于本站", link: "https://www.imsyy.top" },
+        { text: "畅所欲言", link: "/pages/message", icon: "chat" },
+        { text: "关于本站", link: "/pages/about", icon: "contacts" },
       ],
     },
   ],

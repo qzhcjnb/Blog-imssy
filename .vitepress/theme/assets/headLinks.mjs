@@ -45,6 +45,7 @@ const headLinks = [
     },
   ],
   // 百度统计
+  ["meta", { name: "baidu-site-verification", content: "codeva-w1yWYD5DlA" }],
   ["script", { src: "https://hm.baidu.com/hm.js?9267c4f28b616921175e384bf7835a4a" }],
   // 51 LA
   ["script", { charset: "UTF-8", id: "LA_COLLECT", src: "https://sdk.51.la/js-sdk-pro.min.js" }],

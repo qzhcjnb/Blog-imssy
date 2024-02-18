@@ -12,7 +12,7 @@
         {{ key }}
       </a>
     </div>
-    <a href="/pages/categories" class="more-category">
+    <a href="/pages/categories" class="more-type">
       <i class="iconfont icon-arrow-right" />
       更多
     </a>
@@ -29,17 +29,10 @@
         <span class="num">{{ item.count }}</span>
       </a>
     </div>
-    <div class="all-type-more s-card hover">
-      <a
-        v-for="(item, key, index) in theme.tagsData"
-        :key="index"
-        :href="`/pages/tags/${key}`"
-        :class="['type-item', { choose: currentCatName === key }]"
-      >
-        {{ key }}
-        <span class="num">{{ item.count }}</span>
-      </a>
-    </div>
+    <a href="/pages/tags" class="more-type">
+      <i class="iconfont icon-arrow-right" />
+      更多
+    </a>
   </div>
 </template>
 
@@ -76,8 +69,7 @@ const currentCatName = computed(() => {
   padding: 0.6rem;
   font-weight: bold;
   animation: fade-up 0.6s 0.3s backwards;
-  .all-type,
-  .all-type-more {
+  .all-type {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -123,21 +115,7 @@ const currentCatName = computed(() => {
       }
     }
   }
-  .all-type-more {
-    position: absolute;
-    top: 0;
-    left: 0;
-    flex-wrap: wrap;
-    opacity: 0;
-    transform: translateY(20px);
-    z-index: 2;
-    pointer-events: none;
-    mask: none;
-    .type-item {
-      margin: 0 6px 4px 0;
-    }
-  }
-  .more-category {
+  .more-type {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -152,13 +130,6 @@ const currentCatName = computed(() => {
       .iconfont {
         color: var(--main-color);
       }
-    }
-  }
-  &:hover {
-    .all-type-more {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
     }
   }
 }

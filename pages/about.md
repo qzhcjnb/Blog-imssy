@@ -1,7 +1,10 @@
 ---
 title: 关于
+aside: false
 ---
 
-## 测试一下
+<script setup>
+import About from "@/views/About.vue"
+</script>
 
-66
+<About />
