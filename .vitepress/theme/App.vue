@@ -25,7 +25,7 @@
     </template>
   </main>
   <!-- 页脚 -->
-  <FooterLink v-show="!store.loadingStatus" :showBar="isPostPage" />
+  <FooterLink v-show="!store.loadingStatus" :showBar="isPostPage && !page.isNotFound" />
   <Footer v-show="!store.loadingStatus" />
   <!-- 右键菜单 -->
   <RightMenu ref="rightMenuRef" />

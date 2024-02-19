@@ -1,6 +1,6 @@
 <!-- 侧边栏 - 目录 -->
 <template>
-  <div v-if="tocData" class="toc s-card">
+  <div v-if="tocData && tocData?.length" class="toc s-card">
     <div class="toc-title">
       <i class="iconfont icon-toc" />
       <span class="name">目录</span>

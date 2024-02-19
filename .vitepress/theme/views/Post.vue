@@ -1,6 +1,6 @@
 <!-- 文章页面 -->
 <template>
-  <div class="post">
+  <div v-if="postMetaData" class="post">
     <div class="post-meta">
       <div class="meta">
         <div class="categories">

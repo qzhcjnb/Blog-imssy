@@ -28,6 +28,9 @@ export default withPwa(
     // markdown
     markdown: {
       lineNumbers: true,
+      image: {
+        lazyLoading: true,
+      },
     },
     // 构建排除
     srcExclude: ["**/README.md", "**/TODO.md"],
