@@ -2,9 +2,10 @@
 <template>
   <div v-if="frontmatter.articleGPT" class="article-gpt s-card">
     <div class="title">
-      <span class="name">
+      <span class="name" @click="router.go('/posts/2024/0218')">
         <i class="iconfont icon-robot"></i>
         文章摘要
+        <i class="iconfont icon-up"></i>
       </span>
       <span :class="['logo', { loading }]" @click="showOther"> FakeGPT </span>
     </div>
@@ -26,10 +27,11 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
+import { useData, useRouter } from "vitepress";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const { frontmatter } = useData();
+const router = useRouter();
 
 // 摘要数据
 const loading = ref(true);
@@ -115,7 +117,8 @@ onBeforeUnmount(() => {
       align-items: center;
       color: var(--main-color);
       font-weight: bold;
-      .iconfont {
+      cursor: pointer;
+      .icon-robot {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -127,6 +130,14 @@ onBeforeUnmount(() => {
         background-color: var(--main-color);
         border-radius: 50%;
         margin-right: 8px;
+      }
+      .icon-up {
+        font-weight: normal;
+        font-size: 12px;
+        margin-left: 6px;
+        opacity: 0.6;
+        color: var(--main-color);
+        transform: rotate(90deg);
       }
     }
     .logo {
