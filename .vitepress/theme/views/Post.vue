@@ -46,6 +46,10 @@
     </div>
     <div class="post-content">
       <article class="post-article s-card">
+        <!-- 过期提醒 -->
+        <div class="expired s-card" v-if="postMetaData?.expired >= 180">
+          本文发表于 <strong>{{ postMetaData?.expired }}</strong> 天前，其中的信息可能已经事过境迁
+        </div>
         <!-- AI 摘要 -->
         <ArticleGPT />
         <!-- 文章内容 -->
@@ -83,7 +87,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useData } from "vitepress";
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
@@ -98,30 +102,6 @@ const { page, theme, frontmatter } = useData();
 const postMetaData = computed(() => {
   const postId = generateId(page.value.relativePath);
   return theme.value.postData.find((item) => item.id === postId);
-});
-
-// 修改文章内容
-const changePostContent = () => {
-  const postDom = document.getElementById("post-article");
-  if (!postDom) return false;
-  // 图片
-  const allImg = postDom.querySelectorAll("img");
-  allImg.forEach((img) => {
-    if (!img.classList.contains("post-img")) {
-      const src = img.src;
-      const alt = img.alt;
-      const template = `
-        <a class="img-fancybox" href="${src}" data-fancybox="gallery" data-caption="${alt}">
-            <img class="post-img" src="${src}" alt="${alt}" loading="lazy" />
-            <span class="post-img-tip">${alt}</span>
-        </a>`;
-      img.outerHTML = template;
-    }
-  });
-};
-
-onMounted(() => {
-  changePostContent();
 });
 </script>
 
@@ -227,6 +207,16 @@ onMounted(() => {
       cursor: auto;
       &:hover {
         border-color: var(--main-card-border);
+      }
+      .expired {
+        margin: 1.2rem 0 2rem 0;
+        padding: 0.8rem 1.2rem;
+        border-left: 6px solid var(--main-warning-color);
+        border-radius: 6px 16px 16px 6px;
+        user-select: none;
+        strong {
+          color: var(--main-warning-color);
+        }
       }
       .other-meta {
         display: flex;

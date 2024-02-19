@@ -54,6 +54,7 @@ const route = useRoute();
   border-radius: 8px;
   background-color: var(--main-card-second-background);
   padding: 18px;
+  margin-top: 2rem;
   overflow: hidden;
   .title {
     display: flex;

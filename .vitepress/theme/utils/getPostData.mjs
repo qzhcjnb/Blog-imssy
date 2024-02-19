@@ -52,12 +52,17 @@ export const getAllPosts = async () => {
           // 解析 front matter
           const { data } = matter(content);
           const { title, date, categories, description, tags } = data;
+          // 计算文章的过期天数
+          const expired = Math.floor(
+            (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24),
+          );
           // 返回文章对象
           return {
             id: generateId(item),
             title: title || "未命名文章",
             date: date ? new Date(date).getTime() : birthtimeMs,
             lastModified: mtimeMs,
+            expired,
             tags,
             categories,
             description,

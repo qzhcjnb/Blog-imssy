@@ -3,6 +3,7 @@ import { createRssFile } from "./theme/utils/generateRSS.mjs";
 import { themeConfig, siteBasicData } from "./theme/assets/themeConfig.mjs";
 import { withPwa } from "@vite-pwa/vitepress";
 import headLinks from "./theme/assets/headLinks.mjs";
+import markdownItAttrs from "markdown-it-attrs";
 import path from "path";
 
 // https://vitepress.dev/reference/site-config
@@ -30,6 +31,27 @@ export default withPwa(
       lineNumbers: true,
       image: {
         lazyLoading: true,
+      },
+      config: (md) => {
+        // 插件
+        md.use(markdownItAttrs);
+        // 表格规则
+        md.renderer.rules.table_open = () => {
+          return '<div class="table-container"><table>';
+        };
+        md.renderer.rules.table_close = () => {
+          return "</table></div>";
+        };
+        // 图片规则
+        md.renderer.rules.image = (tokens, idx) => {
+          const token = tokens[idx];
+          const src = token.attrs[token.attrIndex("src")][1];
+          const alt = token.content;
+          return `<a class="img-fancybox" href="${src}" data-fancybox="gallery" data-caption="${alt}">
+                    <img class="post-img" src="${src}" alt="${alt}" loading="lazy" />
+                    <span class="post-img-tip">${alt}</span>
+                  </a>`;
+        };
       },
     },
     // 构建排除
@@ -85,7 +107,7 @@ export default withPwa(
           },
         ],
         // 排除路径
-        navigateFallbackDenylist: [/^\/sitemap.xml$/, /^\/feed.xml$/],
+        navigateFallbackDenylist: [/^\/sitemap.xml$/, /^\/feed.xml$/, /^\/robots.txt$/],
       },
       manifest: {
         name: siteBasicData.title,

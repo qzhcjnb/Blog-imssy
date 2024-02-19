@@ -1,24 +1,26 @@
 <!-- 侧边栏 - 目录 -->
 <template>
   <div v-if="tocData && tocData?.length" class="toc s-card">
-    <div class="toc-title">
-      <i class="iconfont icon-toc" />
-      <span class="name">目录</span>
-    </div>
-    <div class="toc-list" :style="{ '--height': activeTocHeight + 'px' }">
-      <span
-        v-for="(item, index) in tocData"
-        :key="index"
-        :id="'toc-' + item.id"
-        :class="[
-          'toc-item',
-          item.type,
-          { active: item.id === activeHeader || (index === 0 && !activeHeader) },
-        ]"
-        @click="scrollToHeader(item.id)"
-      >
-        {{ item.text }}
-      </span>
+    <div id="toc-all">
+      <div class="toc-title">
+        <i class="iconfont icon-toc" />
+        <span class="name">目录</span>
+      </div>
+      <div class="toc-list" :style="{ '--height': activeTocHeight + 'px' }">
+        <span
+          v-for="(item, index) in tocData"
+          :key="index"
+          :id="'toc-' + item.id"
+          :class="[
+            'toc-item',
+            item.type,
+            { active: item.id === activeHeader || (index === 0 && !activeHeader) },
+          ]"
+          @click="scrollToHeader(item.id)"
+        >
+          {{ item.text }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -35,12 +37,25 @@ const postDom = ref(null);
 const activeHeader = ref(null);
 const activeTocHeight = ref(4);
 
+// 获取所有目录数据
+const getAllTitle = () => {
+  try {
+    postDom.value = document.getElementById("post-article");
+    if (!postDom.value) return false;
+    // 所有标题
+    const headers = Array.from(postDom.value.querySelectorAll("h2, h3")).filter(
+      (header) => header.parentElement.tagName.toLowerCase() === "div",
+    );
+    return headers;
+  } catch (error) {
+    console.error("获取所有目录数据出错：", error);
+  }
+};
+
 // 生成目录数据
 const generateDirData = () => {
-  postDom.value = document.getElementById("post-article");
-  if (!postDom.value) return false;
   // 所有标题
-  const headers = postDom.value.querySelectorAll("h2, h3");
+  const headers = getAllTitle();
   // 构造目录数据
   const nestedData = [];
   headers.forEach((header) => {
@@ -60,7 +75,8 @@ const activeTocItem = throttle(
   () => {
     if (!tocData.value) return false;
     // 所有标题
-    const headers = postDom.value.querySelectorAll("h2, h3");
+    const headers = getAllTitle();
+    if (!headers) return false;
     // 容错高度
     const bufferheight = 120;
     // 遍历所有标题
@@ -70,9 +86,6 @@ const activeTocItem = throttle(
       if (rect.top - bufferheight <= 0 && rect.bottom + bufferheight >= 0) {
         // 高亮对应标题
         activeHeader.value = header.id;
-        // 计算目录滚动位置
-        const activeTocItem = document.getElementById("toc-" + header.id);
-        activeTocHeight.value = activeTocItem?.offsetTop || 4;
       }
     }
   },
@@ -93,17 +106,30 @@ const scrollToHeader = (id) => {
   }
 };
 
-// 监听滚动数值
+// 是否回到顶部
 watch(
   () => store.scrollData.percentage,
   (val) => {
     if (val === 0) {
       console.log("回到顶部");
-      const headers = postDom.value.querySelectorAll("h2, h3");
+      // 所有标题
+      const headers = getAllTitle();
       if (!headers) return false;
       activeTocHeight.value = 4;
       activeHeader.value = headers[0].id;
     }
+  },
+);
+
+// 计算目录滚动位置
+watch(
+  () => activeHeader.value,
+  (val) => {
+    const tocAllDom = document.getElementById("toc-all");
+    const activeTocItem = document.getElementById("toc-" + val);
+    if (!tocAllDom || !activeTocItem) return false;
+    activeTocHeight.value = activeTocItem?.offsetTop || 4;
+    tocAllDom?.scrollTo({ top: activeTocHeight.value - 80, behavior: "smooth" });
   },
 );
 
@@ -120,10 +146,21 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .toc {
+  padding: 0 !important;
+  overflow: hidden;
+  #toc-all {
+    max-height: 70vh;
+    overflow: auto;
+  }
   .toc-title {
+    position: sticky;
+    top: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 18px;
+    background-color: var(--main-card-background);
+    z-index: 1;
     .iconfont {
       margin-right: 8px;
       font-size: 12px;
@@ -135,7 +172,7 @@ onBeforeUnmount(() => {
   }
   .toc-list {
     position: relative;
-    margin-top: 12px;
+    margin: 0 18px 18px 18px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -180,7 +217,7 @@ onBeforeUnmount(() => {
       position: absolute;
       left: 0;
       width: 4px;
-      height: 94%;
+      height: calc(100% - 20px);
       background-color: var(--main-card-border);
       border-radius: 8px;
     }
