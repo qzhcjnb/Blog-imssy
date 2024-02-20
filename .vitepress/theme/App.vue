@@ -49,6 +49,7 @@ import Home from "@/views/Home.vue";
 import Page from "@/views/Page.vue";
 import Post from "@/views/Post.vue";
 import NotFound from "@/views/NotFound.vue";
+import messageSW from "@/utils/messageSW";
 
 const route = useRoute();
 const store = mainStore();
@@ -129,13 +130,7 @@ onMounted(() => {
   // 监听系统颜色
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", changeSiteThemeType);
   // PWA
-  if ("serviceWorker" in navigator) {
-    // 更新完成提醒
-    navigator.serviceWorker.addEventListener("controllerchange", () => {
-      console.info("站点资源有更新，请刷新以应用更新");
-      $message.warning("站点资源有更新，请刷新以应用更新", 8000);
-    });
-  }
+  messageSW();
 });
 
 onBeforeUnmount(() => {
