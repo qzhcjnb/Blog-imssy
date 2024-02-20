@@ -112,7 +112,9 @@ watch(
     changeSiteThemeType();
     if (typeof $message !== "undefined") {
       const text = val === "light" ? "浅色模式" : val === "dark" ? "深色模式" : "跟随系统";
-      $message.info("当前主题为" + text);
+      $message.info("当前主题为" + text, {
+        duration: 1500,
+      });
     }
   },
 );

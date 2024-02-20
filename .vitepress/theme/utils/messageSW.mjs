@@ -9,7 +9,10 @@ const messageSW = () => {
         // 当更新发现时
         registration.addEventListener("updatefound", () => {
           console.info("Service worker init");
-          $message.info("站点资源正在更新，请不要关闭页面", 8000);
+          $message.info("站点资源正在更新，请不要关闭页面", {
+            always: true,
+            close: true,
+          });
           // 获得新的Service Worker
           const newWorker = registration.installing;
           // 监听新的Service Worker状态变化
@@ -26,7 +29,10 @@ const messageSW = () => {
                 break;
               case "activated":
                 console.info("Service worker 已激活。");
-                $message.warning("站点资源有更新，请刷新以应用更新", 8000);
+                $message.warning("站点资源有更新，请刷新以应用更新", {
+                  always: true,
+                  close: true,
+                });
                 break;
               case "redundant":
                 console.info("Service worker 缓存失效");
