@@ -8,6 +8,8 @@ const messageSW = () => {
         });
         // 当更新发现时
         registration.addEventListener("updatefound", () => {
+          console.info("Service worker init");
+          $message.info("站点资源正在更新，请不要关闭页面", 8000);
           // 获得新的Service Worker
           const newWorker = registration.installing;
           // 监听新的Service Worker状态变化
@@ -21,7 +23,6 @@ const messageSW = () => {
                 break;
               case "activating":
                 console.info("Service worker 正在激活");
-                $message.info("站点资源正在更新，请不要关闭页面", 8000);
                 break;
               case "activated":
                 console.info("Service worker 已激活。");

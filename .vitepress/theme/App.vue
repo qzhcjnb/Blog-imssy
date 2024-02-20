@@ -118,7 +118,7 @@ watch(
 );
 
 onMounted(() => {
-  console.info(frontmatter.value, page.value, theme.value);
+  console.log(frontmatter.value, page.value, theme.value);
   // 更改主题类别
   changeSiteThemeType();
   // 滚动监听
