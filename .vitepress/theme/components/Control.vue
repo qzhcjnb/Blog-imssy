@@ -10,7 +10,31 @@
         <!-- 背景遮罩 -->
         <div class="control-mask" />
         <!-- 中控台内容 -->
-        <div class="control-content" @click.stop>114514</div>
+        <div class="control-content" @click.stop>
+          <!-- 功能菜单 -->
+          <div class="menu">
+            <div
+              class="menu-item open"
+              title="显示模式切换"
+              @click.stop="
+                store.themeType === 'auto'
+                  ? (store.themeType = 'dark')
+                  : store.themeType === 'dark'
+                    ? (store.themeType = 'light')
+                    : (store.themeType = 'auto')
+              "
+            >
+              <i :class="`iconfont icon-${store.themeType}`"></i>
+            </div>
+            <div
+              :class="['menu-item', { open: store.useRightMenu }]"
+              title="右键菜单开关"
+              @click.stop="rightMenuSwitch"
+            >
+              <i class="iconfont icon-list"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </Transition>
   </Teleport>
@@ -35,6 +59,12 @@ const changeCloseStyle = () => {
       closeControlRef.value.style.opacity = "1";
     }
   });
+};
+
+// 右键菜单开关
+const rightMenuSwitch = () => {
+  store.useRightMenu = !store.useRightMenu;
+  $message.info(`${store.useRightMenu ? "已开启" : "已关闭"}自定义右键菜单`);
 };
 </script>
 
@@ -79,10 +109,6 @@ const changeCloseStyle = () => {
       }
     }
   }
-  .control-content {
-    position: absolute;
-    animation: fade-up 0.5s forwards;
-  }
   .control-mask {
     position: absolute;
     top: 0;
@@ -91,6 +117,46 @@ const changeCloseStyle = () => {
     height: 100%;
     z-index: -1;
     background-color: var(--main-mask-background);
+  }
+  .control-content {
+    position: absolute;
+    animation: fade-up 0.5s forwards;
+    .menu {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .menu-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 6px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 1px solid var(--main-card-border);
+        transition:
+          transform 0.3s,
+          background-color 0.3s;
+        cursor: pointer;
+        .iconfont {
+          font-size: 24px;
+          color: var(--main-font-color);
+          transition: color 0.3s;
+        }
+        &.open {
+          background-color: var(--main-color);
+          .iconfont {
+            color: #fff;
+          }
+        }
+        &:hover {
+          transform: scale(1.05);
+        }
+        &:active {
+          transform: scale(1);
+        }
+      }
+    }
   }
 }
 </style>

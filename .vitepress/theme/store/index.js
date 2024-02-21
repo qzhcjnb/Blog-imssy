@@ -20,6 +20,8 @@ export const mainStore = defineStore("main", {
       controlShow: false,
       // 搜索框显示
       searchShow: false,
+      // 使用自定义右键菜单
+      useRightMenu: true,
     };
   },
   getters: {},
@@ -41,7 +43,7 @@ export const mainStore = defineStore("main", {
   persist: [
     {
       key: "siteData",
-      paths: ["themeType"],
+      paths: ["themeType", "useRightMenu"],
     },
   ],
 });

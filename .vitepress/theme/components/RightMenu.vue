@@ -160,8 +160,8 @@ const rightMenuShow = ref(false);
 
 // 开启右键菜单
 const openRightMenu = (e) => {
-  // 检测是否按下了 ctrl
-  if (e.ctrlKey) return true;
+  // 检测是否可开启
+  if (e.ctrlKey || !store.useRightMenu) return true;
   e.preventDefault();
   rightMenuShow.value = false;
   // 获取点击类型
