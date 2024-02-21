@@ -249,3 +249,30 @@ export const downloadImage = (imageUrl) => {
     $message.error("下载图片错误，请重试");
   }
 };
+
+/**
+ * 获取根据当前时间的问候语
+ * @returns {string} 当前时间对应的问候语
+ */
+export const getGreetings = () => {
+  const hour = new Date().getHours();
+  let hello;
+  if (hour < 6) {
+    hello = "凌晨好，昨晚睡得怎么样？";
+  } else if (hour < 9) {
+    hello = "早上好，今天也要开心哦！";
+  } else if (hour < 12) {
+    hello = "上午好，今天也要加油哦！";
+  } else if (hour < 14) {
+    hello = "中午好，吃饱了精神好！";
+  } else if (hour < 17) {
+    hello = "下午好，继续加油！";
+  } else if (hour < 19) {
+    hello = "傍晚好，是时候放松一下了！";
+  } else if (hour < 22) {
+    hello = "晚上好，是时候休息了！";
+  } else {
+    hello = "夜深了，明天继续加油！";
+  }
+  return hello;
+};

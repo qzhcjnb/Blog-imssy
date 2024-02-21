@@ -29,7 +29,7 @@ const messageSW = () => {
                 break;
               case "activated":
                 console.info("Service worker 已激活。");
-                $message.warning("站点资源有更新，请刷新以应用更新", {
+                $message.warning("站点资源已更新，请刷新以应用", {
                   always: true,
                   close: true,
                 });
