@@ -44,16 +44,16 @@ export const themeConfig = {
       text: "专栏",
       items: [
         { text: "我的项目", link: "/pages/about", icon: "code" },
-        { text: "技术分享", link: "/api-examples" },
-        { text: "设计工具", link: "/api-examples" },
+        { text: "技术分享", link: "/" },
+        { text: "设计工具", link: "/" },
       ],
     },
     {
       text: "友链",
       items: [
         { text: "友链鱼塘", link: "/pages/about" },
-        { text: "友情链接", link: "/api-examples" },
-        { text: "宝藏博主", link: "/api-examples" },
+        { text: "友情链接", link: "/pages/link" },
+        { text: "宝藏博主", link: "/" },
       ],
     },
     {
@@ -152,6 +152,75 @@ export const themeConfig = {
       },
     ],
   },
+  // 技能数据
+  skillsData: [
+    {
+      name: "JavaScript",
+      color: "#f1e05abd",
+      icon: "javascript",
+      link: "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    },
+    {
+      name: "HTML5",
+      color: "#e34f26",
+      icon: "html5",
+      link: "https://developer.mozilla.org/zh-CN/docs/Web/HTML",
+    },
+    {
+      name: "CSS3",
+      color: "#563d7c",
+      icon: "css3",
+      link: "https://developer.mozilla.org/zh-CN/docs/Web/CSS",
+    },
+    {
+      name: "Vue",
+      color: "#41b883",
+      icon: "vue",
+      link: "https://cn.vuejs.org/",
+    },
+    {
+      name: "React",
+      color: "#149ECA",
+      icon: "react",
+      link: "https://zh-hans.reactjs.org/",
+    },
+    {
+      name: "Node.js",
+      color: "#026E00",
+      icon: "nodejs",
+      link: "https://nodejs.org/",
+    },
+    {
+      name: "Python",
+      color: "#3776AB",
+      icon: "python",
+      link: "https://www.python.org/",
+    },
+    {
+      name: "Docker",
+      color: "#2496f2",
+      icon: "docker",
+      link: "https://www.docker.com/",
+    },
+    {
+      name: "Git",
+      color: "#F05032",
+      icon: "git",
+      link: "https://git-scm.com/",
+    },
+    {
+      name: "Photoshop",
+      color: "#31A8FF",
+      icon: "photoshop",
+      link: "https://www.adobe.com/cn/lead/creativecloud/business.html",
+    },
+    {
+      name: "ChatGPT",
+      color: "#4AA181",
+      icon: "chatgpt",
+      link: "https://chat.openai.com/",
+    },
+  ],
   // 必要数据
   postData: postData,
   tagsData: getAllType(postData),

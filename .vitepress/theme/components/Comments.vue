@@ -13,10 +13,13 @@
 </template>
 
 <script setup>
+import { watch } from "vue";
 import { ref, onMounted, onUnmounted } from "vue";
-import { useRoute } from "vitepress";
+import { useRoute, useData } from "vitepress";
 import Artalk from "artalk";
 import "artalk/dist/Artalk.css";
+
+const { page } = useData();
 
 const artalk = ref(null);
 const commentRef = ref(null);
@@ -44,6 +47,12 @@ const anonymousComments = () => {
   email.value = "anonymous@example.com";
   link.value = "https://example.com";
 };
+
+// 监听页面切换
+watch(
+  () => page.value?.relativePath,
+  () => artalk.value?.reload(),
+);
 
 onMounted(() => {
   initArtalk();

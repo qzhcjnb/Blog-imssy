@@ -17,8 +17,41 @@
       </div>
     </div>
     <div class="about-content" style="grid-template-columns: 2fr 3fr">
-      <div class="about-item"></div>
-      <div class="about-item"></div>
+      <!-- 技能 -->
+      <div class="about-item skills">
+        <span class="tip">技能</span>
+        <span class="title2">开启创造力</span>
+        <div class="skills-list">
+          <div
+            v-for="(item, index) in skillsData"
+            :key="index"
+            :style="{ '--color': item.color }"
+            class="skills-item"
+            @click="jumpLink(item.link)"
+          >
+            <div class="skills-logo">
+              <i :class="`iconfont icon-${item.icon}`"></i>
+            </div>
+            <span class="skills-name">{{ item.name }}</span>
+          </div>
+        </div>
+      </div>
+      <!-- 生涯 -->
+      <div class="about-item career">
+        <span class="tip">生涯</span>
+        <span class="title2">
+          <i>無限進步</i>
+        </span>
+        <div class="list">
+          <span class="list-item" style="--color: #357ef5">ZZRVTC · 计算机应用技术</span>
+          <span class="list-item" style="--color: #eb372a">FE · 前端开发工程师</span>
+        </div>
+        <img
+          class="career-img"
+          src="https://pic.efefee.cn/uploads/2024/02/22/65d71db18bcf9.png"
+          alt="career"
+        />
+      </div>
     </div>
     <div class="about-content" style="grid-template-columns: 3fr 2fr">
       <!-- 性格 -->
@@ -41,14 +74,37 @@
         />
       </div>
       <!-- 座右铭 -->
-      <div class="about-item" style="justify-content: center">
+      <div class="about-item">
         <span class="tip">座右铭</span>
-        <span class="title1">脚踏实地，</span>
+        <span class="title1" style="margin-top: 20px">脚踏实地，</span>
         <span class="title2">一丝不苟。</span>
+      </div>
+    </div>
+    <div class="about-content" style="display: flex">
+      <div class="about-item">
+        <span class="tip">心路历程</span>
+        <span class="title2">为什么建站？</span>
+        <p class="text">
+          创建这个站的时候，想要就是能够有一个自己能够<strong>积累知识</strong>、<strong>积累兴趣</strong>的地方。和他人分享，会让这些成为<strong>积累和沉淀</strong>。如果能够帮助到更多的人，帮助更多人解决问题，那一定是非常棒的事情。
+        </p>
+        <p class="text">
+          这里的文章会非常的繁杂，可能会有<strong>技能的教程干货</strong>、有<strong>生活上的吐槽</strong>、有<strong>关于一些话题的思考和想法</strong>。一般我研究什么、发现了什么都会分享在这里。
+        </p>
+        <p class="text">
+          这些就是创造这个小站的本意，<strong>也是我分享生活的方式</strong>。有幸能和你相遇在这里，相信我们能共同留下一段美好记忆。
+        </p>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useData } from "vitepress";
+import { jumpLink } from "@/utils/helper";
+
+const { theme } = useData();
+const { skillsData } = theme.value;
+</script>
 
 <style lang="scss" scoped>
 .about {
@@ -66,6 +122,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      width: 100%;
       padding: 1.2rem 2rem;
       border-radius: 12px;
       background-color: var(--main-card-background);
@@ -138,6 +195,76 @@
           .male {
             transform: scale(1.2);
           }
+        }
+      }
+      &.skills {
+        .skills-list {
+          margin-top: 12px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          .skills-item {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            margin-top: 10px;
+            padding: 8px 12px 8px 8px;
+            border-radius: 40px;
+            background-color: var(--main-site-background);
+            border: 1px solid var(--main-card-border);
+            box-shadow: 0 8px 12px -4px var(--main-border-shadow);
+            transition: background-color 0.3s;
+            cursor: pointer;
+            .skills-logo {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 32px;
+              height: 32px;
+              margin-right: 8px;
+              border-radius: 50%;
+              background-color: var(--color);
+            }
+            .skills-name {
+              font-weight: bold;
+            }
+            &:hover {
+              background-color: var(--main-card-background);
+            }
+          }
+        }
+      }
+      &.career {
+        .title2 {
+          letter-spacing: 0.2rem;
+          font-size: 40px;
+        }
+        .list {
+          margin-top: 12px;
+          display: flex;
+          flex-direction: column;
+          .list-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 12px;
+            color: var(--main-font-second-color);
+            &::before {
+              content: "";
+              display: block;
+              width: 16px;
+              height: 16px;
+              background-color: var(--color);
+              border-radius: 50%;
+              margin-right: 8px;
+            }
+          }
+        }
+        .career-img {
+          position: absolute;
+          bottom: 20px;
+          left: 0;
+          width: 100%;
         }
       }
     }
