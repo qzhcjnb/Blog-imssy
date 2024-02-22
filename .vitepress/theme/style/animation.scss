@@ -78,6 +78,17 @@
   }
 }
 
+// 渐变
+@keyframes gradientFlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 // fade
 .fade-enter-active,
 .fade-leave-active {

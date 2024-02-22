@@ -494,7 +494,7 @@ const { site, theme, frontmatter, page } = useData();
     border-radius: 50%;
     cursor: pointer;
     .iconfont {
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1;
       transition:
         color 0.3s,

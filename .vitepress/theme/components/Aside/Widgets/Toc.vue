@@ -29,7 +29,9 @@
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { throttle } from "@/utils/helper";
 import { mainStore } from "@/store";
+import { useData } from "vitepress";
 
+const { page } = useData();
 const store = mainStore();
 
 const tocData = ref(null);
@@ -131,6 +133,11 @@ watch(
     activeTocHeight.value = activeTocItem?.offsetTop || 4;
     tocAllDom?.scrollTo({ top: activeTocHeight.value - 80, behavior: "smooth" });
   },
+);
+
+watch(
+  () => page.value?.relativePath,
+  () => generateDirData(),
 );
 
 onMounted(() => {

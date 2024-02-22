@@ -30,6 +30,15 @@ const getPostMDFilePaths = async () => {
 const compareDate = (obj1, obj2) => {
   return obj1.date < obj2.date ? 1 : -1;
 };
+const comparePostPriority = (a, b) => {
+  if (a.top && !b.top) {
+    return -1;
+  }
+  if (!a.top && b.top) {
+    return 1;
+  }
+  return compareDate(a, b);
+};
 
 /**
  * 获取所有文章，读取其内容并解析 front matter
@@ -51,7 +60,7 @@ export const getAllPosts = async () => {
           const { birthtimeMs, mtimeMs } = stat;
           // 解析 front matter
           const { data } = matter(content);
-          const { title, date, categories, description, tags } = data;
+          const { title, date, categories, description, tags, top } = data;
           // 计算文章的过期天数
           const expired = Math.floor(
             (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24),
@@ -67,6 +76,7 @@ export const getAllPosts = async () => {
             categories,
             description,
             regularPath: `/${item.replace(".md", ".html")}`,
+            top,
           };
         } catch (error) {
           console.error(`处理文章文件 '${item}' 时出错:`, error);
@@ -75,7 +85,7 @@ export const getAllPosts = async () => {
       }),
     );
     // 根据日期排序文章
-    posts.sort(compareDate);
+    posts.sort(comparePostPriority);
     return posts;
   } catch (error) {
     console.error("获取所有文章时出错:", error);

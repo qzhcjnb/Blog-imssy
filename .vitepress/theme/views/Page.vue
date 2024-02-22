@@ -1,7 +1,12 @@
 <!-- 普通页面 -->
 <template>
   <div :class="['page', { 'show-padding': showPadding, 'has-aside': showAside }]">
-    <Content class="page-content" />
+    <div class="page-content">
+      <!-- 页面内容 -->
+      <Content id="page-content" />
+      <!-- 评论 -->
+      <Comments v-if="showComment" />
+    </div>
     <Aside v-if="showAside" />
   </div>
 </template>
@@ -9,6 +14,7 @@
 <script setup>
 import { useData } from "vitepress";
 import Aside from "@/components/Aside/index.vue";
+import Comments from "@/components/Comments.vue";
 
 const { page } = useData();
 const props = defineProps({
@@ -21,6 +27,11 @@ const props = defineProps({
   showPadding: {
     type: Boolean,
     default: true,
+  },
+  // 显示评论
+  showComment: {
+    type: Boolean,
+    default: false,
   },
 });
 

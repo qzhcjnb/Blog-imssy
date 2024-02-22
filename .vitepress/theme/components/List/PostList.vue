@@ -13,6 +13,11 @@
             <i class="iconfont icon-folder" />
             {{ cat }}
           </span>
+          <!-- 置顶 -->
+          <span v-if="item?.top" class="top">
+            <i class="iconfont icon-align-top" />
+            置顶
+          </span>
         </div>
         <span class="post-title">{{ item.title }}</span>
         <span v-if="item?.description" class="post-desc">
@@ -79,6 +84,9 @@ const props = defineProps({
             opacity: 0.8;
             margin-right: 6px;
           }
+        }
+        .top {
+          margin-left: 12px;
         }
       }
       .post-title {
