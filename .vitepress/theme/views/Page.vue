@@ -26,7 +26,7 @@ const props = defineProps({
   // 显示边距
   showPadding: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   // 显示评论
   showComment: {
@@ -81,9 +81,9 @@ console.log(page.value);
   }
   &.show-padding {
     .page-content {
-      padding: 0 1.5rem;
+      padding: 0 2rem;
       @media (max-width: 768px) {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
       }
     }
   }

@@ -154,7 +154,7 @@ const { site, theme, frontmatter, page } = useData();
     width: 100%;
     height: 100%;
     max-width: 1400px;
-    padding: 0 1rem;
+    padding: 0 2rem;
     display: grid;
     grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
     align-items: center;
@@ -474,6 +474,7 @@ const { site, theme, frontmatter, page } = useData();
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      padding: 1rem 1.5rem;
       .left-nav,
       .right-nav {
         min-width: auto;

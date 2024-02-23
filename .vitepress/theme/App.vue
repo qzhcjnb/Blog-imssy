@@ -21,7 +21,7 @@
         :type="frontmatter.layout"
         :showAside="frontmatter.aside"
         :showComment="frontmatter.comment"
-        :showPadding="frontmatter.padding"
+        :showPadding="frontmatter.padding" 
       />
     </template>
   </main>
@@ -148,7 +148,7 @@ onBeforeUnmount(() => {
   width: 100dvw;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
   // 手动实现加载动画
   animation: show 0.5s forwards;
   animation-duration: 0.5s;
@@ -157,7 +157,7 @@ onBeforeUnmount(() => {
     display: none;
   }
   @media (max-width: 768px) {
-    padding: 1rem 0;
+    padding: 1rem 1.5rem;
   }
 }
 </style>

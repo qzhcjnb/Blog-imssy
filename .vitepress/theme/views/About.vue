@@ -80,6 +80,43 @@
         <span class="title2">一丝不苟。</span>
       </div>
     </div>
+    <div class="about-content" style="grid-template-columns: 2fr 3fr">
+      <!-- 爱好游戏 -->
+      <div
+        class="about-item game image"
+        style="
+          --color: #76433c;
+          background: url(https://pic.efefee.cn/uploads/2024/02/23/65d860790bb03.webp) top/cover
+            no-repeat;
+        "
+      >
+        <div class="image-content">
+          <span class="tip">爱好游戏</span>
+          <span class="title2">原神</span>
+          <div class="image-desc">
+            <span class="left">Lv 60</span>
+            <span class="right">UID 110223613</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="about-item game image"
+        style="
+          --color: #5a4e44;
+          background: url(https://pic.efefee.cn/uploads/2024/02/23/65d8693950d3e.webp) top/cover
+            no-repeat;
+        "
+      >
+        <div class="image-content">
+          <span class="tip">爱好游戏</span>
+          <span class="title2">崩坏：星穹铁道</span>
+          <div class="image-desc">
+            <span class="left">Lv 70</span>
+            <span class="right">UID 101477712</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="about-content" style="display: flex">
       <div class="about-item">
         <span class="tip">心路历程</span>
@@ -198,11 +235,13 @@ const { skillsData } = theme.value;
         }
       }
       &.skills {
+        max-height: 480px;
         .skills-list {
           margin-top: 12px;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          overflow: hidden;
           .skills-item {
             display: flex;
             align-items: center;
@@ -262,9 +301,41 @@ const { skillsData } = theme.value;
         }
         .career-img {
           position: absolute;
-          bottom: 20px;
+          bottom: -10px;
           left: 0;
           width: 100%;
+          @media (max-width: 768px) {
+            position: static;
+          }
+        }
+      }
+      &.game {
+        min-height: 300px;
+      }
+      &.image {
+        .image-content {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          z-index: 2;
+          .image-desc {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          box-shadow: inset 0 -70px 204px 10px var(--color);
+          z-index: 0;
         }
       }
     }

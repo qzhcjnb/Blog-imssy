@@ -1,6 +1,5 @@
 ---
 title: 全部文章
-padding: false
 ---
 
 <script setup>
