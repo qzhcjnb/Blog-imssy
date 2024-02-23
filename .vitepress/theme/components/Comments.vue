@@ -51,7 +51,11 @@ const anonymousComments = () => {
 // 监听页面切换
 watch(
   () => page.value?.relativePath,
-  () => artalk.value?.reload(),
+  () => {
+    initArtalk();
+    artalk.value?.update();
+    artalk.value?.reload();
+  },
 );
 
 onMounted(() => {
@@ -113,9 +117,60 @@ onUnmounted(() => {
       }
     }
     :deep(.atk-list) {
+      .atk-list-header {
+        .atk-dropdown {
+          .atk-dropdown-item {
+            margin: 0;
+            padding: 0;
+            margin-top: 8px;
+            line-height: normal;
+            text-align: center;
+            letter-spacing: normal;
+            &:first-child {
+              margin-top: 0;
+            }
+            &::before {
+              display: none;
+            }
+            span {
+              transition: color 0.3s;
+            }
+          }
+        }
+      }
       .atk-list-comments-wrap {
         > .atk-comment-wrap {
           border-bottom: 1px dashed var(--main-card-border);
+          .atk-content {
+            img {
+              max-width: 240px;
+            }
+            pre {
+              code {
+                border-radius: 8px;
+              }
+            }
+            &.atk-height-limit {
+              .atk-height-limit-btn {
+                height: 46px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 12px 0;
+                border-radius: 16px;
+                transition:
+                  color 0.3s,
+                  background-color 0.3s;
+                &:hover {
+                  color: var(--main-card-background);
+                  background-color: var(--main-color);
+                }
+              }
+              &::after {
+                bottom: 50px;
+              }
+            }
+          }
           &:last-child {
             border-bottom: none;
           }

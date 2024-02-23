@@ -48,6 +48,26 @@ console.log(page.value);
   .page-content {
     width: 100%;
     transition: width 0.3s;
+    .comment {
+      :deep(.comment-content) {
+        .atk-list {
+          .atk-list-header {
+            margin-bottom: 8px;
+          }
+          .atk-list-comments-wrap {
+            > .atk-comment-wrap {
+              padding: 0.8rem;
+              margin-bottom: 1rem;
+              border-bottom: none;
+              border-radius: 16px;
+              background-color: var(--main-card-background);
+              border: 1px solid var(--main-card-border);
+              box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+            }
+          }
+        }
+      }
+    }
   }
   &.has-aside {
     animation: fade-up 0.6s 0.3s backwards;
