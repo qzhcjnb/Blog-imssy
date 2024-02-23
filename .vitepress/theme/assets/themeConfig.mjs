@@ -52,7 +52,7 @@ export const themeConfig = {
       text: "友链",
       items: [
         { text: "友链鱼塘", link: "/pages/about" },
-        { text: "友情链接", link: "/pages/link" },
+        { text: "友情链接", link: "/pages/link", icon: "people" },
         { text: "宝藏博主", link: "/" },
       ],
     },

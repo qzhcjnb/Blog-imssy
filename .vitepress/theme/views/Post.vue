@@ -30,7 +30,7 @@
         {{ postMetaData.title || "未命名文章" }}
       </h1>
       <div class="other-meta">
-        <span class="meta">
+        <span class="meta date">
           <i class="iconfont icon-date" />
           {{ formatTimestamp(postMetaData.date) }}
         </span>
@@ -38,9 +38,15 @@
           <i class="iconfont icon-time" />
           {{ formatTimestamp(page?.lastUpdated || postMetaData.lastModified) }}
         </span>
+        <!-- 热度 -->
         <span class="hot meta">
           <i class="iconfont icon-fire" />
           <span id="ArtalkPV">0</span>
+        </span>
+        <!-- 评论数 -->
+        <span class="chat meta hover" @click="commentRef?.scrollToComments">
+          <i class="iconfont icon-chat" />
+          <span id="ArtalkCount">0</span>
         </span>
       </div>
     </div>
@@ -79,7 +85,7 @@
           </a>
         </div>
         <!-- 评论 -->
-        <Comments />
+        <Comments ref="commentRef" />
       </article>
       <Aside showToc />
     </div>
@@ -87,8 +93,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useData } from "vitepress";
+import { computed, ref } from "vue";
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
 import Aside from "@/components/Aside/index.vue";
@@ -97,6 +103,9 @@ import Comments from "@/components/Comments.vue";
 import ArticleGPT from "@/components/Aside/Widgets/ArticleGPT.vue";
 
 const { page, theme, frontmatter } = useData();
+
+// 评论元素
+const commentRef = ref(null);
 
 // 获取对应文章数据
 const postMetaData = computed(() => {
@@ -186,11 +195,34 @@ const postMetaData = computed(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-right: 20px;
+        padding: 6px 12px;
         font-size: 14px;
+        border-radius: 8px;
         opacity: 0.8;
         .iconfont {
           margin-right: 6px;
+          transition: color 0.3s;
+        }
+        &.date {
+          padding-left: 0;
+        }
+        &.hot {
+          .iconfont {
+            font-size: 18px;
+          }
+        }
+        &.hover {
+          transition:
+            color 0.3s,
+            background-color 0.3s;
+          cursor: pointer;
+          &:hover {
+            color: var(--main-color);
+            background-color: var(--main-color-bg);
+            .iconfont {
+              color: var(--main-color);
+            }
+          }
         }
       }
     }

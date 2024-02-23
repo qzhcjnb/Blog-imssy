@@ -1,6 +1,6 @@
 <!-- 评论 -->
 <template>
-  <div id="main-comment" class="comment">
+  <div ref="mainCommentRef" id="main-comment" class="comment">
     <div class="title">
       <span class="name">
         <i class="iconfont icon-chat"></i>
@@ -13,17 +13,17 @@
 </template>
 
 <script setup>
-import { watch } from "vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
 import { useRoute, useData } from "vitepress";
 import Artalk from "artalk";
 import "artalk/dist/Artalk.css";
 
 const { page } = useData();
+const route = useRoute();
 
 const artalk = ref(null);
 const commentRef = ref(null);
-const route = useRoute();
+const mainCommentRef = ref(null);
 
 // 初始化 Artalk
 const initArtalk = () => {
@@ -48,15 +48,27 @@ const anonymousComments = () => {
   link.value = "https://example.com";
 };
 
+// 滚动至评论
+const scrollToComments = () => {
+  if (!mainCommentRef.value) return false;
+  const elementRect = mainCommentRef.value.getBoundingClientRect();
+  const elementTop = elementRect.top + window.scrollY;
+  window.scrollBy({ top: elementTop - 80, behavior: "smooth" });
+};
+
 // 监听页面切换
 watch(
   () => page.value?.relativePath,
   () => {
-    initArtalk();
-    artalk.value?.update();
-    artalk.value?.reload();
+    nextTick().then(() => {
+      initArtalk();
+      artalk.value?.update();
+      artalk.value?.reload();
+    });
   },
 );
+
+defineExpose({ scrollToComments });
 
 onMounted(() => {
   initArtalk();
@@ -143,6 +155,7 @@ onUnmounted(() => {
           border-bottom: 1px dashed var(--main-card-border);
           .atk-content {
             img {
+              width: auto;
               max-width: 240px;
             }
             pre {
@@ -153,6 +166,7 @@ onUnmounted(() => {
             &.atk-height-limit {
               .atk-height-limit-btn {
                 height: 46px;
+                width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -167,7 +181,7 @@ onUnmounted(() => {
                 }
               }
               &::after {
-                bottom: 50px;
+                height: 100px;
               }
             }
           }
