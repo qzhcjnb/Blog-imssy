@@ -29,9 +29,9 @@
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { throttle } from "@/utils/helper";
 import { mainStore } from "@/store";
-import { useData } from "vitepress";
+import { useRoute } from "vitepress";
 
-const { page } = useData();
+const route = useRoute();
 const store = mainStore();
 
 const tocData = ref(null);
@@ -136,7 +136,7 @@ watch(
 );
 
 watch(
-  () => page.value?.relativePath,
+  () => route.path,
   () => generateDirData(),
 );
 

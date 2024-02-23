@@ -14,11 +14,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
-import { useRoute, useData } from "vitepress";
+import { useRoute } from "vitepress";
 import Artalk from "artalk";
 import "artalk/dist/Artalk.css";
 
-const { page } = useData();
 const route = useRoute();
 
 const artalk = ref(null);
@@ -58,11 +57,10 @@ const scrollToComments = () => {
 
 // 监听页面切换
 watch(
-  () => page.value?.relativePath,
-  () => {
+  () => route.path,
+  (val) => {
     nextTick().then(() => {
-      initArtalk();
-      artalk.value?.update();
+      artalk.value?.update({ pageKey: val });
       artalk.value?.reload();
     });
   },
