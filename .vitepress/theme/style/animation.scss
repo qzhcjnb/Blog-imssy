@@ -113,3 +113,14 @@
   opacity: 0;
   transform: translateY(-10px);
 }
+
+// toLeft
+.toLeft-enter-active,
+.toLeft-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.toLeft-enter-from,
+.toLeft-leave-to {
+  transform: translateX(300px);
+}

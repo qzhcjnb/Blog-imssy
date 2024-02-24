@@ -59,9 +59,18 @@ onBeforeUnmount(() => {
     font-size: 44px;
   }
   .subtitle {
+    width: 80%;
     font-size: 20px;
     opacity: 0.8;
     animation: fade-up-opacity 0.6s 0.1s backwards;
+    .text {
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
   @media (max-width: 768px) {
     align-items: flex-start;
@@ -70,7 +79,12 @@ onBeforeUnmount(() => {
       font-size: 36px;
     }
     .subtitle {
+      height: 50px;
       font-size: 18px;
+      margin-left: 8px;
+      .text {
+        text-align: left;
+      }
     }
   }
 }

@@ -79,12 +79,18 @@
             </div>
           </div>
           <!-- 移动端菜单 -->
-          <div class="menu-btn nav-btn mobile" title="打开菜单">
+          <div
+            class="menu-btn nav-btn mobile"
+            title="打开菜单"
+            @click="store.changeShowStatus('mobileMenuShow')"
+          >
             <i class="iconfont icon-toc" />
           </div>
         </div>
       </div>
     </nav>
+    <!-- 移动端菜单 -->
+    <MobileMenu />
     <!-- 全局搜索 -->
     <ClientOnly>
       <Search />
@@ -97,6 +103,7 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { useData, useRouter } from "vitepress";
 import { smoothScrolling, shufflePost } from "@/utils/helper";
+import MobileMenu from "@/components/MobileMenu.vue";
 import Search from "@/components/Search.vue";
 
 const router = useRouter();

@@ -20,20 +20,26 @@ export const mainStore = defineStore("main", {
       controlShow: false,
       // 搜索框显示
       searchShow: false,
+      // 移动端菜单显示
+      mobileMenuShow: false,
       // 使用自定义右键菜单
       useRightMenu: true,
+      // 背景模糊
+      backgroundBlur: false,
     };
   },
   getters: {},
   actions: {
     // 切换应用状态
-    changeShowStatus(value) {
+    changeShowStatus(value, blur = true) {
       this[value] = !this[value];
       // 阻止滚动
       document.body.style.overflow = this[value] ? "hidden" : "";
       // 全局模糊
       const globalApp = document.getElementById("app");
-      this[value] ? globalApp.classList.add("blur") : globalApp.classList.remove("blur");
+      this[value] && this.backgroundBlur && blur
+        ? globalApp.classList.add("blur")
+        : globalApp.classList.remove("blur");
     },
   },
   // 数据持久化
