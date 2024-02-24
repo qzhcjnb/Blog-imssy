@@ -28,10 +28,34 @@
         <span class="tip">都是大佬，推荐关注</span>
       </div>
     </div>
+    <!-- 全部友链 -->
+    <div class="link-list">
+      <div class="title">
+        <h2 class="name">小伙伴们（{{ friend.length }}）</h2>
+        <span class="tip">由添加时间综合排序</span>
+      </div>
+      <div class="all-list">
+        <div
+          class="link-card s-card hover normal"
+          v-for="(item, index) in friend"
+          :key="index"
+          @click="jumpLink(item.url)"
+        >
+          <div class="cover">
+            <img :src="item.cover" class="cover-img" alt="cover" />
+          </div>
+          <div class="data">
+            <span class="name">{{ item.name }}</span>
+            <span class="desc">{{ item.desc }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { jumpLink } from "@/utils/helper";
 import linkData from "@/assets/linkData.mjs";
 
 // 友链数据
@@ -118,12 +142,55 @@ const { rec, friend } = linkData;
   .link-list {
     margin-top: 2rem;
     .title {
+      margin-bottom: 1.6rem;
       .name {
         border-bottom: none;
         margin-bottom: 4px;
       }
       .tip {
         color: var(--main-font-second-color);
+      }
+    }
+    .all-list {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      .link-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .cover {
+          width: 60px;
+          height: 60px;
+          min-width: 60px;
+          margin-right: 20px;
+          border-radius: 50%;
+          overflow: hidden;
+          .cover-img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .data {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          .name {
+            font-weight: bold;
+            font-size: 18px;
+          }
+          .desc {
+            font-size: 15px;
+            margin-top: 4px;
+            color: var(--main-font-second-color);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
       }
     }
   }
