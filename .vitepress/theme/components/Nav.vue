@@ -43,15 +43,19 @@
             <i class="iconfont icon-shuffle"></i>
           </div>
           <!-- 搜索 -->
-          <div class="menu-btn nav-btn" title="全站搜索" @click="store.changeSearchShow">
+          <div
+            class="menu-btn nav-btn"
+            title="全站搜索"
+            @click="store.changeShowStatus('searchShow')"
+          >
             <i class="iconfont icon-search"></i>
           </div>
           <!-- 中控台 -->
           <div
             id="open-control"
-            class="menu-btn nav-btn"
+            class="menu-btn nav-btn pc"
             title="打开中控台"
-            @click="store.changeControlShow"
+            @click="store.changeShowStatus('controlShow')"
           >
             <i class="iconfont icon-dashboard" />
           </div>
@@ -73,6 +77,10 @@
               </Transition>
               <i class="iconfont icon-up"></i>
             </div>
+          </div>
+          <!-- 移动端菜单 -->
+          <div class="menu-btn nav-btn mobile" title="打开菜单">
+            <i class="iconfont icon-toc" />
           </div>
         </div>
       </div>
@@ -396,6 +404,17 @@ const { site, theme, frontmatter, page } = useData();
       min-width: 200px;
       .menu-btn {
         margin-left: 0.5rem;
+        &.mobile {
+          display: none;
+        }
+        @media (max-width: 768px) {
+          &.mobile {
+            display: flex;
+          }
+          &.pc {
+            display: none;
+          }
+        }
       }
       .to-top {
         position: relative;

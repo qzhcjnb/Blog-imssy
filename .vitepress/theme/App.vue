@@ -6,7 +6,7 @@
   <!-- 导航栏 -->
   <Nav />
   <!-- 主内容 -->
-  <main :class="['mian-layout', { loading: store.loadingStatus }]">
+  <main :class="['mian-layout', { loading: store.loadingStatus, 'is-post': isPostPage }]">
     <!-- 404 -->
     <NotFound v-if="page.isNotFound" />
     <!-- 首页 -->
@@ -21,7 +21,7 @@
         :type="frontmatter.layout"
         :showAside="frontmatter.aside"
         :showComment="frontmatter.comment"
-        :showPadding="frontmatter.padding" 
+        :showPadding="frontmatter.padding"
       />
     </template>
   </main>
@@ -158,6 +158,9 @@ onBeforeUnmount(() => {
   }
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
+    &.is-post {
+      padding: 0;
+    }
   }
 }
 </style>

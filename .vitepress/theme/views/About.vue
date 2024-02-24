@@ -180,6 +180,10 @@ const { skillsData } = theme.value;
         font-size: 36px;
         font-weight: bold;
       }
+      .text {
+        font-size: 18px;
+        margin: 0.6rem 0;
+      }
       &.hello {
         justify-content: center;
         padding: 2rem;
@@ -227,6 +231,9 @@ const { skillsData } = theme.value;
           width: auto;
           transition: transform 0.5s;
           transform-origin: top center;
+          @media (max-width: 768px) {
+            height: 80%;
+          }
         }
         &:hover {
           .male {
@@ -263,6 +270,9 @@ const { skillsData } = theme.value;
               margin-right: 8px;
               border-radius: 50%;
               background-color: var(--color);
+              .iconfont {
+                color: #fff;
+              }
             }
             .skills-name {
               font-weight: bold;
@@ -311,13 +321,17 @@ const { skillsData } = theme.value;
       }
       &.game {
         min-height: 300px;
+        @media (max-width: 768px) {
+          min-height: 240px;
+        }
       }
       &.image {
         .image-content {
-          height: 100%;
+          flex-grow: 1;
           display: flex;
           flex-direction: column;
           z-index: 2;
+          color: #fff;
           .image-desc {
             width: 100%;
             display: flex;

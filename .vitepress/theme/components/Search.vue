@@ -3,7 +3,7 @@
   <Teleport to="body">
     <Transition name="fade" mode="out-in">
       <div v-show="store.searchShow" class="search">
-        <div class="search-mask" @click="store.changeSearchShow" />
+        <div class="search-mask" @click="store.changeShowStatus('searchShow')" />
         <div class="search-content s-card" @click.stop>
           <div class="all-search-content">
             <div class="title">
@@ -13,6 +13,9 @@
             <ais-instant-search
               :search-client="searchClient"
               :search-function="controlSearch"
+              :future="{
+                preserveSharedStateOnUnmount: true,
+              }"
               index-name="imsyy"
             >
               <ais-configure :hits-per-page.camel="8" />

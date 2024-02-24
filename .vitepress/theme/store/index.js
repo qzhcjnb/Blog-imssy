@@ -26,17 +26,14 @@ export const mainStore = defineStore("main", {
   },
   getters: {},
   actions: {
-    // 切换中控台显示
-    changeControlShow() {
-      this.controlShow = !this.controlShow;
+    // 切换应用状态
+    changeShowStatus(value) {
+      this[value] = !this[value];
       // 阻止滚动
-      document.body.style.overflow = this.controlShow ? "hidden" : "";
-    },
-    // 切换搜索框
-    changeSearchShow() {
-      this.searchShow = !this.searchShow;
-      // 阻止滚动
-      document.body.style.overflow = this.searchShow ? "hidden" : "";
+      document.body.style.overflow = this[value] ? "hidden" : "";
+      // 全局模糊
+      const globalApp = document.getElementById("app");
+      this[value] ? globalApp.classList.add("blur") : globalApp.classList.remove("blur");
     },
   },
   // 数据持久化

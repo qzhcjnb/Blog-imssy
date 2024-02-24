@@ -2,7 +2,7 @@
 <template>
   <Teleport to="body">
     <Transition name="fade" mode="out-in" @before-enter="changeCloseStyle">
-      <div v-if="store.controlShow" class="control" @click="store.changeControlShow">
+      <div v-if="store.controlShow" class="control" @click="store.changeShowStatus('controlShow')">
         <!-- 关闭按钮 -->
         <div ref="closeControlRef" class="close-control">
           <i class="iconfont icon-close"></i>

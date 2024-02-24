@@ -170,7 +170,7 @@ onBeforeUnmount(() => {
     z-index: 1;
     .iconfont {
       margin-right: 8px;
-      font-size: 12px;
+      font-weight: bold;
       opacity: 0.6;
     }
     .name {
