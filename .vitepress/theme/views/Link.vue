@@ -13,7 +13,7 @@
             <i class="iconfont icon-shuffle" />
             <span class="name">随机访问</span>
           </div>
-          <div class="menu-item add">
+          <div class="menu-item add" @click="smoothScrolling('#友情链接申请')">
             <i class="iconfont icon-right-round" />
             <span class="name">申请友链</span>
           </div>
@@ -21,32 +21,27 @@
       </div>
       <div class="link-group">虚位以待</div>
     </div>
-    <!-- 推荐 -->
-    <div class="link-list">
+    <!-- 友链数据 -->
+    <div v-for="(type, index) in linkData" :key="index" class="link-list">
       <div class="title">
-        <h2 class="name">推荐（{{ rec.length }}）</h2>
-        <span class="tip">都是大佬，推荐关注</span>
+        <h2 class="name">
+          {{ type?.typeName || "未知分组" }}（{{ type?.typeList?.length || 0 }}）
+        </h2>
+        <span class="tip">{{ type?.typeDesc || "分组暂无简介" }}</span>
       </div>
-    </div>
-    <!-- 全部友链 -->
-    <div class="link-list">
-      <div class="title">
-        <h2 class="name">小伙伴们（{{ friend.length }}）</h2>
-        <span class="tip">由添加时间综合排序</span>
-      </div>
-      <div class="all-list">
+      <div class="all-list" v-if="type?.typeList">
         <div
           class="link-card s-card hover normal"
-          v-for="(item, index) in friend"
+          v-for="(link, index) in type.typeList"
           :key="index"
-          @click="jumpLink(item.url)"
+          @click="jumpLink(link.url)"
         >
           <div class="cover">
-            <img :src="item.cover" class="cover-img" alt="cover" />
+            <img :src="link.avatar" class="cover-img" alt="cover" />
           </div>
           <div class="data">
-            <span class="name">{{ item.name }}</span>
-            <span class="desc">{{ item.desc }}</span>
+            <span class="name">{{ link.name }}</span>
+            <span class="desc">{{ link.desc }}</span>
           </div>
         </div>
       </div>
@@ -55,11 +50,8 @@
 </template>
 
 <script setup>
-import { jumpLink } from "@/utils/helper";
+import { jumpLink, smoothScrolling } from "@/utils/helper";
 import linkData from "@/assets/linkData.mjs";
-
-// 友链数据
-const { rec, friend } = linkData;
 </script>
 
 <style lang="scss" scoped>
@@ -142,6 +134,7 @@ const { rec, friend } = linkData;
   .link-list {
     margin-top: 2rem;
     .title {
+      margin-left: 6px;
       margin-bottom: 1.6rem;
       .name {
         border-bottom: none;
@@ -166,6 +159,7 @@ const { rec, friend } = linkData;
           margin-right: 20px;
           border-radius: 50%;
           overflow: hidden;
+          transition: all 0.6s;
           .cover-img {
             width: 100%;
             height: 100%;
@@ -183,12 +177,35 @@ const { rec, friend } = linkData;
           .desc {
             font-size: 15px;
             margin-top: 4px;
+            line-height: 1.2;
             color: var(--main-font-second-color);
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            transition:
+              color 0.3s,
+              opacity 0.3s;
+          }
+        }
+        &:hover {
+          color: var(--main-card-background);
+          background-color: var(--main-color);
+          border-color: var(--main-color);
+          box-shadow: 0 8px 16px -4px var(--main-color-bg);
+          .cover {
+            margin-right: 6px;
+            min-width: 0;
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+          .data {
+            .desc {
+              opacity: 0.7;
+              color: var(--main-card-background);
+            }
           }
         }
       }

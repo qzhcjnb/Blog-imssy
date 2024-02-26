@@ -8,7 +8,7 @@
       </span>
       <span class="tool" @click="anonymousComments"> 匿名评论 </span>
     </div>
-    <div ref="commentRef" class="comment-content" />
+    <div ref="commentRef" id="comment-dom" class="comment-content" />
   </div>
 </template>
 
@@ -27,11 +27,12 @@ const mainCommentRef = ref(null);
 // 初始化 Artalk
 const initArtalk = () => {
   artalk.value = Artalk.init({
-    el: commentRef.value,
+    el: commentRef.value || "#comment-dom",
     pageKey: route.path,
     server: "https://artalk.efefee.cn",
     site: "無名小栈",
   });
+  return artalk.value;
 };
 
 // 匿名评论
@@ -69,7 +70,7 @@ watch(
 defineExpose({ scrollToComments });
 
 onMounted(() => {
-  initArtalk();
+  window.$comment = initArtalk();
 });
 
 onUnmounted(() => {
