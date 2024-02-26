@@ -109,7 +109,7 @@ const formatSearchData = (data) => {
 
 // 跳转搜索结果
 const jumpSearch = (url) => {
-  store.changeSearchShow();
+  store.changeShowStatus('searchShow');
   router.go(url);
 };
 </script>
