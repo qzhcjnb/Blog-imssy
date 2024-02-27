@@ -43,17 +43,16 @@ export const themeConfig = {
     {
       text: "专栏",
       items: [
-        { text: "我的项目", link: "/pages/about", icon: "code" },
-        { text: "技术分享", link: "/" },
-        { text: "设计工具", link: "/" },
+        { text: "我的项目", link: "/pages/project", icon: "code" },
+        { text: "技术分享", link: "/pages/categories/技术分享", icon: "technical" },
+        { text: "效率工具", link: "/pages/tools", icon: "tools" },
       ],
     },
     {
       text: "友链",
       items: [
-        { text: "友链鱼塘", link: "/pages/about" },
+        { text: "友链鱼塘", link: "/pages/link", icon: "fish" },
         { text: "友情链接", link: "/pages/link", icon: "people" },
-        { text: "宝藏博主", link: "/" },
       ],
     },
     {

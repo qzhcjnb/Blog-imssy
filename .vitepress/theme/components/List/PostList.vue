@@ -74,7 +74,7 @@ const props = defineProps({
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        opacity: 0.6;
+        color: var(--main-font-second-color);
         font-size: 14px;
         .cat-name {
           display: flex;
@@ -83,10 +83,16 @@ const props = defineProps({
           .iconfont {
             opacity: 0.8;
             margin-right: 6px;
+            color: var(--main-font-second-color);
           }
         }
         .top {
           margin-left: 12px;
+          color: var(--main-color);
+          .iconfont {
+            opacity: 0.8;
+            color: var(--main-color);
+          }
         }
       }
       .post-title {
@@ -118,6 +124,7 @@ const props = defineProps({
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        color: var(--main-font-second-color);
         .post-tags {
           display: flex;
           flex-wrap: wrap;

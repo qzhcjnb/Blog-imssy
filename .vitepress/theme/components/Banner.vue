@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div v-if="type === 'text'" class="banner">
     <h1 class="title">你好，欢迎来到{{ theme.title }}</h1>
     <div class="subtitle">
       <Transition name="fade" mode="out-in">
@@ -7,6 +7,30 @@
           {{ hitokotoData?.hitokoto ? hitokotoData?.hitokoto : theme.description }}
         </span>
       </Transition>
+    </div>
+  </div>
+  <div
+    v-else-if="type === 'page'"
+    :class="['banner-page', 's-card', { image }]"
+    :style="{
+      backgroundImage: image ? `url(${image})` : null,
+    }"
+  >
+    <div class="top">
+      <div class="title">
+        <span class="title-small">{{ title }}</span>
+        <span class="title-big">{{ desc }}</span>
+      </div>
+      <slot name="header-slot" />
+    </div>
+    <slot />
+    <div class="footer">
+      <div class="footer-left">
+        {{ footer }}
+      </div>
+      <div class="footer-right">
+        <slot name="footer-slot" />
+      </div>
     </div>
   </div>
 </template>
@@ -17,6 +41,33 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import { getHitokoto } from "@/api/text";
 
 const { theme } = useData();
+const props = defineProps({
+  // 类型
+  type: {
+    type: String,
+    default: "text",
+  },
+  // 标题
+  title: {
+    type: String,
+    default: "这里是标题",
+  },
+  // 简介
+  desc: {
+    type: String,
+    default: "这里是简介",
+  },
+  // 注释
+  footer: {
+    type: String,
+    default: "",
+  },
+  // 背景
+  image: {
+    type: String,
+    default: "",
+  },
+});
 
 const hitokotoData = ref(null);
 const hitokotoTimeOut = ref(null);
@@ -34,9 +85,11 @@ const getHitokotoData = async () => {
 };
 
 onMounted(() => {
-  hitokotoTimeOut.value = setTimeout(() => {
-    getHitokotoData();
-  }, 2000);
+  if (props.type === "text") {
+    hitokotoTimeOut.value = setTimeout(() => {
+      getHitokotoData();
+    }, 2000);
+  }
 });
 
 onBeforeUnmount(() => {
@@ -86,6 +139,65 @@ onBeforeUnmount(() => {
         text-align: left;
       }
     }
+  }
+}
+.banner-page {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  min-height: 380px;
+  background-size: cover;
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    .title {
+      display: flex;
+      flex-direction: column;
+      .title-small {
+        color: var(--main-font-second-color);
+        font-size: 14px;
+      }
+      .title-big {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1;
+        margin-top: 12px;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    .footer-left {
+      margin-top: auto;
+      color: var(--main-font-second-color);
+      opacity: 0.8;
+    }
+  }
+  &.image {
+    .top {
+      .title-small {
+        color: var(--main-font-color);
+        opacity: 0.6;
+      }
+    }
+    .footer {
+      .footer-left {
+        color: var(--main-font-color);
+      }
+    }
+  }
+  @media (max-width: 1200px) {
+    min-height: 300px;
+  }
+  @media (max-width: 768px) {
+    min-height: 260px;
   }
 }
 </style>

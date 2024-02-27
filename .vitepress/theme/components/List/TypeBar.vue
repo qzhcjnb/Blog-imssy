@@ -2,12 +2,15 @@
 <template>
   <div v-if="type === 'categories'" class="type-bar s-card hover">
     <div class="all-type">
-      <a href="/" :class="['type-item', { choose: !currentCatName }]">首页</a>
+      <a v-if="currentTypeName" :href="`/pages/categories/${currentTypeName}`" class="type-item choose">
+        {{ currentTypeName }}
+      </a>
+      <a href="/" :class="['type-item', { choose: !currentTypeName }]">首页</a>
       <a
         v-for="(_, key, index) in theme.categoriesData"
         :key="index"
         :href="`/pages/categories/${key}`"
-        :class="['type-item', { choose: currentCatName === key }]"
+        :class="['type-item', { hidden: currentTypeName === key }]"
       >
         {{ key }}
       </a>
@@ -19,11 +22,15 @@
   </div>
   <div v-else-if="type === 'tags'" class="type-bar s-card hover">
     <div class="all-type">
+      <a v-if="currentTypeName" :href="`/pages/tags/${currentTypeName}`" class="type-item choose">
+        {{ currentTypeName }}
+        <span class="num">{{ theme.tagsData?.[currentTypeName]?.count || 0 }}</span>
+      </a>
       <a
         v-for="(item, key, index) in theme.tagsData"
         :key="index"
         :href="`/pages/tags/${key}`"
-        :class="['type-item', { choose: currentCatName === key }]"
+        :class="['type-item', { hidden: currentTypeName === key }]"
       >
         {{ key }}
         <span class="num">{{ item.count }}</span>
@@ -51,10 +58,10 @@ const props = defineProps({
 const route = useRoute();
 
 // 获取当前路由路径
-const currentCatName = computed(() => {
+const currentTypeName = computed(() => {
   const routePath = decodeURIComponent(route.path);
-  const catName = routePath.split("/").pop();
-  return catName;
+  const typeName = routePath.split("/").pop();
+  return typeName;
 });
 </script>
 
@@ -108,6 +115,9 @@ const currentCatName = computed(() => {
         .num {
           color: var(--main-color);
         }
+      }
+      &.hidden {
+        display: none;
       }
       &:hover {
         color: var(--main-card-background);

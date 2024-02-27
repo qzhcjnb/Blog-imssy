@@ -3,15 +3,13 @@
     <div class="not-found-content">
       <h1 class="title">404</h1>
       <span class="title-tip">Page not found</span>
-      <button class="to-home" @click="router.go('/')">回到主页</button>
+      <button class="to-home" @click="jumpLink('/', false)">回到主页</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from "vitepress";
-
-const router = useRouter();
+import { jumpLink } from "@/utils/helper";
 </script>
 
 <style lang="scss" scoped>
@@ -39,7 +37,9 @@ const router = useRouter();
     border-radius: 12px;
     outline: none;
     border: none;
-    transition: color 0.3s, background-color 0.3s;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
     cursor: pointer;
     &:hover {
       color: var(--main-card-background);

@@ -10,7 +10,7 @@ const linkData = [
         name: "阮一峰",
         avatar: "https://pic.efefee.cn/uploads/2024/02/26/65dc5fb729cdb.webp",
         desc: "阮老师，知名博主，大佬中的大佬",
-        url: "https://blog.zhheo.com/",
+        url: "https://www.ruanyifeng.com/blog/",
       },
       {
         name: "张洪 Heo",

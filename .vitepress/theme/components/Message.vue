@@ -6,7 +6,7 @@
         v-if="messageShow"
         :class="['message', messageType, { always: messageAlways }]"
         :style="{ '--duration': messageDuration + 'ms' }"
-        @click="messageShow = false"
+        @click="closeMessage"
       >
         <div class="message-content">
           <span class="text">{{ messageContent || "默认消息内容" }}</span>
@@ -32,7 +32,7 @@ const messageDuration = ref(0);
 const messageTimeOut = ref(null);
 
 // 消息处理
-const showMessage = (text, type = "info", options = {}) => {
+const showMessage = (text, type = "info", options = {}, func = null) => {
   // 解构配置
   const { close = false, always = false, duration = 3000 } = options;
   // 先隐藏
@@ -51,6 +51,8 @@ const showMessage = (text, type = "info", options = {}) => {
     if (!always) {
       messageTimeOut.value = setTimeout(() => {
         messageShow.value = false;
+        // 执行函数
+        if (typeof func === "function") func();
       }, duration);
     }
   });
@@ -59,21 +61,27 @@ const showMessage = (text, type = "info", options = {}) => {
 // 弹出消息
 const message = {
   // 信息
-  info: (text, options) => {
-    showMessage(text, "info", options);
+  info: (text, options, func) => {
+    showMessage(text, "info", options, func);
   },
   // 成功
-  success: (text, options) => {
-    showMessage(text, "success", options);
+  success: (text, options, func) => {
+    showMessage(text, "success", options, func);
   },
   // 警告
-  warning: (text, options) => {
-    showMessage(text, "warning", options);
+  warning: (text, options, func) => {
+    showMessage(text, "warning", options, func);
   },
   // 错误
-  error: (text, options) => {
-    showMessage(text, "error", options);
+  error: (text, options, func) => {
+    showMessage(text, "error", options, func);
   },
+};
+
+// 关闭消息
+const closeMessage = () => {
+  messageShow.value = false;
+  clearTimeout(messageTimeOut.value);
 };
 
 onMounted(() => {

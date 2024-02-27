@@ -274,8 +274,7 @@ const { site, theme, frontmatter, page } = useData();
             display: flex;
             flex-direction: row;
             align-items: center;
-            backdrop-filter: blur(20px);
-            background-color: var(--main-mask-background);
+            background-color: var(--main-card-background);
             border: 1px solid var(--main-color);
             box-shadow: 0 8px 12px -3px var(--main-color-bg);
             border-radius: 50px;
@@ -307,8 +306,8 @@ const { site, theme, frontmatter, page } = useData();
                 background-color 0.3s,
                 box-shadow 0.3s;
               .iconfont {
-                margin-right: 6px;
-                font-size: 18px;
+                margin-right: 8px;
+                font-size: 20px;
                 transition: color 0.3s;
               }
               &:hover {
@@ -363,6 +362,7 @@ const { site, theme, frontmatter, page } = useData();
         position: relative;
         display: inline-block;
         width: 100%;
+        min-width: 280px;
         height: 35px;
         font-weight: bold;
         font-size: 18px;

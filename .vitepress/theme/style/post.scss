@@ -271,6 +271,9 @@
               background-color: var(--main-card-border);
               border-radius: 6px;
             }
+            &:empty {
+              height: 17px;
+            }
           }
         }
       }
@@ -295,13 +298,14 @@
       margin: 0.5rem 0;
     }
   }
-  // 标点&
+  // 标点
   ul {
     list-style-type: none;
     padding-left: 1rem;
     li {
       position: relative;
       padding-left: 1.2rem;
+      margin: 0.6rem 0;
       &::before {
         content: "";
         position: absolute;
@@ -367,5 +371,9 @@
     height: 2px;
     border: none;
     background-color: var(--main-card-border);
+  }
+  // 其他
+  label {
+    cursor: pointer;
   }
 }

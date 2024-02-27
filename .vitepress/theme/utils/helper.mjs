@@ -98,13 +98,13 @@ export const smoothScrolling = (target = 0) => {
       window.scrollTo({ top: target, behavior: "smooth" });
     } else if (target instanceof HTMLElement) {
       // 滚动至元素
-      const top = target.getBoundingClientRect().top - 100;
+      const top = target.getBoundingClientRect().top - 80;
       window.scrollTo({ top, behavior: "smooth" });
     } else if (typeof target === "string" && target.startsWith("#")) {
       // 滚动至 ID
       const element = document.querySelector(target);
       if (element) {
-        const top = element.getBoundingClientRect().top - 100;
+        const top = element.getBoundingClientRect().top - 80;
         window.scrollTo({ top, behavior: "smooth" });
       }
     } else {

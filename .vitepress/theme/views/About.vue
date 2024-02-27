@@ -117,6 +117,40 @@
         </div>
       </div>
     </div>
+    <div class="about-content" style="grid-template-columns: 1fr 1fr">
+      <div
+        class="about-item like image"
+        style="
+          --color: #0c0e20;
+          background: url(https://pic.efefee.cn/uploads/2024/02/27/65dd812567723.webp) top/cover
+            no-repeat;
+        "
+      >
+        <div class="image-content">
+          <span class="tip">关注偏好</span>
+          <span class="title2">数码科技</span>
+          <div class="image-desc">
+            <span class="left">手机、电脑及软硬件</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="about-item like image"
+        style="
+          --color: #7b3c25;
+          background: url(https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp) top/cover
+            no-repeat;
+        "
+      >
+        <div class="image-content">
+          <span class="tip">音乐偏好</span>
+          <span class="title2">欧美、华语流行、纯音乐、ACG</span>
+          <div class="image-desc">
+            <span class="left">一起欣赏更多音乐</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="about-content" style="display: flex">
       <div class="about-item">
         <span class="tip">心路历程</span>
@@ -179,6 +213,7 @@ const { skillsData } = theme.value;
       .title2 {
         font-size: 36px;
         font-weight: bold;
+        margin-right: 4rem;
       }
       .text {
         font-size: 18px;
@@ -249,6 +284,13 @@ const { skillsData } = theme.value;
           flex-direction: row;
           flex-wrap: wrap;
           overflow: hidden;
+          mask: linear-gradient(
+            180deg,
+            #fff 0,
+            #fff 90%,
+            hsla(0, 0%, 100%, 0.6) 95%,
+            hsla(0, 0%, 100%, 0) 100%
+          );
           .skills-item {
             display: flex;
             align-items: center;
@@ -323,6 +365,12 @@ const { skillsData } = theme.value;
         min-height: 300px;
         @media (max-width: 768px) {
           min-height: 240px;
+        }
+      }
+      &.like {
+        min-height: 400px;
+        @media (max-width: 768px) {
+          min-height: 300px;
         }
       }
       &.image {

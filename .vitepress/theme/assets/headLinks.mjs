@@ -17,12 +17,12 @@ const headLinks = [
     },
   ],
   // Embed code
-  ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
+  ["link", { rel: "preconnect", href: "https://use.sevencdn.com" }],
   ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
   [
     "link",
     {
-      href: "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap",
+      href: "https://use.sevencdn.com/css2?family=Fira+Code:wght@300..700&display=swap",
       rel: "stylesheet",
     },
   ],
