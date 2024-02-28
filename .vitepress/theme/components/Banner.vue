@@ -181,15 +181,19 @@ onBeforeUnmount(() => {
     }
   }
   &.image {
+    color: #fff !important;
     .top {
       .title-small {
-        color: var(--main-font-color);
+        color: #fff;
         opacity: 0.6;
       }
     }
     .footer {
       .footer-left {
-        color: var(--main-font-color);
+        color: #fff;
+      }
+      :deep(.iconfont) {
+        color: #fff !important;
       }
     }
   }

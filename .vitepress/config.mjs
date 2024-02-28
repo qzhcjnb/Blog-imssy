@@ -2,9 +2,18 @@ import { defineConfig } from "vitepress";
 import { createRssFile } from "./theme/utils/generateRSS.mjs";
 import { themeConfig, siteBasicData } from "./theme/assets/themeConfig.mjs";
 import { withPwa } from "@vite-pwa/vitepress";
+import {
+  getAllPosts,
+  getAllType,
+  getAllCategories,
+  getAllArchives,
+} from "./theme/utils/getPostData.mjs";
 import headLinks from "./theme/assets/headLinks.mjs";
 import markdownItAttrs from "markdown-it-attrs";
 import path from "path";
+
+// 获取全局数据
+const postData = await getAllPosts();
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
@@ -25,7 +34,14 @@ export default withPwa(
       hostname: "https://blog.imsyy.top",
     },
     // 主题配置
-    themeConfig,
+    themeConfig: {
+      ...themeConfig,
+      // 必要数据
+      postData: postData,
+      tagsData: getAllType(postData),
+      categoriesData: getAllCategories(postData),
+      archivesData: getAllArchives(postData),
+    },
     // markdown
     markdown: {
       lineNumbers: true,

@@ -1,13 +1,3 @@
-import {
-  getAllPosts,
-  getAllType,
-  getAllCategories,
-  getAllArchives,
-} from "../utils/getPostData.mjs";
-
-// 获取全局数据
-const postData = await getAllPosts();
-
 // 站点基础数据
 export const siteBasicData = {
   title: "無名小栈",
@@ -51,7 +41,7 @@ export const themeConfig = {
     {
       text: "友链",
       items: [
-        { text: "友链鱼塘", link: "/pages/link", icon: "fish" },
+        { text: "友链鱼塘", link: "/pages/friends", icon: "fish" },
         { text: "友情链接", link: "/pages/link", icon: "people" },
       ],
     },
@@ -220,9 +210,9 @@ export const themeConfig = {
       link: "https://chat.openai.com/",
     },
   ],
-  // 必要数据
-  postData: postData,
-  tagsData: getAllType(postData),
-  categoriesData: getAllCategories(postData),
-  archivesData: getAllArchives(postData),
+  // 服务地址
+  serverData: {
+    // 友链朋友圈
+    circleOfFriends: "https://friends.efefee.cn",
+  },
 };
