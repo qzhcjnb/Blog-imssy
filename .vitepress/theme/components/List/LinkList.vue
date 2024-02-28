@@ -9,11 +9,12 @@
         <span class="tip">{{ type?.typeDesc || "分组暂无简介" }}</span>
       </div>
       <div class="all-link" v-if="type?.typeList">
-        <div
+        <a
           v-for="(link, index) in type.typeList"
           :class="['link-card', 's-card', { 'cf-friends-link': useFriendsLink }]"
           :key="index"
-          @click="jumpLink(link.url)"
+          :href="link.url"
+          target="_blank"
         >
           <div class="cover">
             <img
@@ -26,15 +27,13 @@
             <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
             <span class="desc">{{ link.desc }}</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { jumpLink } from "@/utils/helper";
-
 const props = defineProps({
   // 列表数据
   listData: {
