@@ -18,6 +18,12 @@ const linkData = [
         url: "https://www.midjourney.com/",
       },
       {
+        name: "Coze",
+        ico: "https://pic.efefee.cn/uploads/2024/02/27/65ddb08614656.png",
+        desc: "炒鸡好用，能白嫖 GPT4，听说是字节的",
+        url: "https://www.coze.com/",
+      },
+      {
         name: "讯飞星火",
         ico: "https://pic.efefee.cn/uploads/2024/02/27/65dd9ea2eb19b.webp",
         desc: "感觉这个算是国内最好用的了",

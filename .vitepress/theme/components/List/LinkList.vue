@@ -10,16 +10,20 @@
       </div>
       <div class="all-link" v-if="type?.typeList">
         <div
-          class="link-card s-card hover normal"
           v-for="(link, index) in type.typeList"
+          :class="['link-card', 's-card', { 'cf-friends-link': useFriendsLink }]"
           :key="index"
           @click="jumpLink(link.url)"
         >
           <div class="cover">
-            <img :src="link.avatar || link.ico" class="cover-img" alt="cover" />
+            <img
+              :src="link.avatar || link.ico"
+              :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
+              alt="cover"
+            />
           </div>
           <div class="data">
-            <span class="name">{{ link.name }}</span>
+            <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
             <span class="desc">{{ link.desc }}</span>
           </div>
         </div>
@@ -41,6 +45,11 @@ const props = defineProps({
   showCount: {
     type: Boolean,
     default: true,
+  },
+  // 友链朋友圈
+  useFriendsLink: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

@@ -18,6 +18,12 @@ const linkData = [
         desc: "产品设计师，独立开发者，设计与科技分享",
         url: "https://blog.zhheo.com/",
       },
+      {
+        name: "杜老师说",
+        avatar: "https://pic.efefee.cn/uploads/2024/02/28/65de92770fb66.webp",
+        desc: "高级网络工程师，网站技术运营总监，系统运维、架构设计以及优化专家",
+        url: "https://dusays.com/",
+      },
     ],
   },
   // 小伙伴们

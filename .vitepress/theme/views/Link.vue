@@ -18,7 +18,7 @@
       <div class="link-group">待完善</div>
     </Banner>
     <!-- 友链数据 -->
-    <LinkList :listData="linkData" />
+    <LinkList :listData="linkData" :useFriendsLink="true" />
   </div>
 </template>
 
