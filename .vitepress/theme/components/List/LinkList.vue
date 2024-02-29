@@ -20,7 +20,13 @@
             <img
               :src="link.avatar || link.ico"
               :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
+              loading="lazy"
               alt="cover"
+              @load="
+                (e) => {
+                  e.target.classList.add('loaded');
+                }
+              "
             />
           </div>
           <div class="data">
@@ -74,7 +80,7 @@ const props = defineProps({
     .all-link {
       display: grid;
       gap: 20px;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       .link-card {
         display: flex;
         flex-direction: row;
@@ -91,6 +97,15 @@ const props = defineProps({
           .cover-img {
             width: 100%;
             height: 100%;
+            opacity: 0;
+            filter: blur(10px);
+            transition:
+              filter 0.3s,
+              opacity 0.3s;
+            &.loaded {
+              opacity: 1;
+              filter: blur(0);
+            }
           }
         }
         .data {
@@ -136,9 +151,6 @@ const props = defineProps({
             }
           }
         }
-      }
-      @media (max-width: 1400px) {
-        grid-template-columns: repeat(5, 1fr);
       }
       @media (max-width: 1200px) {
         grid-template-columns: repeat(4, 1fr);

@@ -8,6 +8,11 @@
       text-align: center;
       border-bottom: 1px dashed var(--main-color-bg);
       padding-bottom: 1rem;
+      .header-anchor {
+        &::before {
+          display: none;
+        }
+      }
     }
     h2 {
       font-size: 1.6rem;
@@ -58,6 +63,9 @@
     }
   }
   // 文本
+  p {
+    font-size: 1.1rem;
+  }
   p,
   ul,
   li,

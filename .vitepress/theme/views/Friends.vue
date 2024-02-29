@@ -26,6 +26,12 @@
           </div>
         </div>
       </template>
+      <!-- 更新日期 -->
+      <template #footer-slot>
+        <span v-if="friendsStatusData?.last_updated_time" class="update">
+          更新于 {{ friendsStatusData.last_updated_time }}
+        </span>
+      </template>
     </Banner>
     <!-- 鱼塘列表 -->
     <div class="friends-list">
@@ -116,6 +122,10 @@ onMounted(() => {
       @media (max-width: 768px) {
         display: none;
       }
+    }
+    .update {
+      font-size: 14px;
+      opacity: 0.6;
     }
   }
   .friends-list {

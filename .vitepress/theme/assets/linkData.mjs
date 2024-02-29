@@ -24,6 +24,18 @@ const linkData = [
         desc: "高级网络工程师，网站技术运营总监，系统运维、架构设计以及优化专家",
         url: "https://dusays.com/",
       },
+      {
+        name: "XAOXUU",
+        avatar: "https://pic.efefee.cn/uploads/2024/02/29/65dfe0f7a945b.webp",
+        desc: "Hexo Stellar、Volantis 主题作者",
+        url: "https://xaoxuu.com/",
+      },
+      {
+        name: "风记星辰",
+        avatar: "https://pic.efefee.cn/uploads/2024/02/29/65dfe827e319c.webp",
+        desc: "有着非常优秀的设计与交互的博客",
+        url: "https://www.thyuu.com/",
+      },
     ],
   },
   // 小伙伴们
@@ -32,6 +44,12 @@ const linkData = [
     typeName: "小伙伴们",
     typeDesc: "由添加时间综合排序",
     typeList: [
+      {
+        name: "無名小栈",
+        avatar: "https://pic.efefee.cn/uploads/2024/02/02/65bc526a940e3.png",
+        desc: "前端开发工程师，开发了一些可能有用的小项目",
+        url: "https://blog.imsyy.top/",
+      },
       {
         name: "FloatSheep",
         avatar: "https://pic.efefee.cn/uploads/2024/02/24/65d9aae9a678a.webp",
