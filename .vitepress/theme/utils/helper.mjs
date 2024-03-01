@@ -125,21 +125,30 @@ export const smoothScrolling = (target = 0) => {
  * @return {string} 返回日期格式的字符串
  */
 export const formatTimestamp = (timestamp) => {
-  let now = Date.now();
-  let difference = Math.floor((now - timestamp) / (1000 * 60 * 60 * 24));
-  if (difference <= 0) {
-    return "今日内";
-  } else if (difference < 7) {
-    return `${difference}天前`;
+  let now = new Date();
+  // 获取今天0点
+  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  // 获取昨天0点
+  let yesterday = new Date(today.getTime() - 1000 * 60 * 60 * 24);
+  let targetDate = new Date(timestamp);
+  // 是否为昨天
+  if (targetDate >= yesterday && targetDate < today) {
+    return "1天前";
   } else {
-    let date = new Date(timestamp);
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    if (year === new Date(now).getFullYear()) {
-      return `${month}/${day}`;
+    let difference = Math.floor((today - targetDate) / (1000 * 60 * 60 * 24));
+    if (difference <= 0) {
+      return "今日内";
+    } else if (difference < 7) {
+      return `${difference}天前`;
     } else {
-      return `${year}/${month}/${day}`;
+      let year = targetDate.getFullYear();
+      let month = targetDate.getMonth() + 1;
+      let day = targetDate.getDate();
+      if (year === now.getFullYear()) {
+        return `${month}/${day}`;
+      } else {
+        return `${year}/${month}/${day}`;
+      }
     }
   }
 };
