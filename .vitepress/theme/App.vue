@@ -50,7 +50,6 @@ import Home from "@/views/Home.vue";
 import Page from "@/views/Page.vue";
 import Post from "@/views/Post.vue";
 import NotFound from "@/views/NotFound.vue";
-import messageSW from "@/utils/messageSW";
 
 const route = useRoute();
 const store = mainStore();
@@ -132,8 +131,6 @@ onMounted(() => {
   window.addEventListener("copy", copyTip);
   // 监听系统颜色
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", changeSiteThemeType);
-  // PWA
-  messageSW();
 });
 
 onBeforeUnmount(() => {

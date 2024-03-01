@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Allow: /
+Allow: /pages/
+Allow: /posts/
+
+Sitemap: https://blog.imsyy.top/sitemap.xml

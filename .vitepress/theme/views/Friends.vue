@@ -52,7 +52,9 @@
           >
             <span class="title">{{ item?.title || "未知文章标题" }}</span>
             <div class="desc">
-              <span class="author">{{ item?.author || "未知作者" }}</span>
+              <span class="author" @click="jumpAuthor(item.link)">
+                {{ item?.author || "未知作者" }}
+              </span>
               <span class="date">
                 <i class="iconfont icon-time" />
                 {{ item?.updated }}
@@ -88,6 +90,18 @@ const getFriendsLinkData = async () => {
   }
 };
 
+// 跳转作者博客
+const jumpAuthor = (link) => {
+  try {
+    const url = new URL(link);
+    // 提取主页链接
+    const homepageLink = `${url.protocol}//${url.hostname}/`;
+    jumpLink(homepageLink);
+  } catch (error) {
+    $message.error("跳转作者博客失败，请稍后重试");
+  }
+};
+
 onMounted(() => {
   getFriendsLinkData();
 });
@@ -118,9 +132,6 @@ onMounted(() => {
           font-size: 14px;
           opacity: 0.6;
         }
-      }
-      @media (max-width: 768px) {
-        display: none;
       }
     }
     .update {

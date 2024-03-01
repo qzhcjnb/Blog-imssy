@@ -7,7 +7,6 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "@vite-pwa/vitepress": "^0.4.0",
     "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.21.1",
     "feed": "^4.2.2",

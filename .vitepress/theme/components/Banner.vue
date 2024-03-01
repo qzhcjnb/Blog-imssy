@@ -21,7 +21,9 @@
         <span class="title-small">{{ title }}</span>
         <span class="title-big">{{ desc }}</span>
       </div>
-      <slot name="header-slot" />
+      <div class="top-right">
+        <slot name="header-slot" />
+      </div>
     </div>
     <slot />
     <div class="footer">
@@ -202,6 +204,10 @@ onBeforeUnmount(() => {
   }
   @media (max-width: 768px) {
     min-height: 260px;
+    .top-right,
+    .footer-right {
+      display: none;
+    }
   }
 }
 </style>
