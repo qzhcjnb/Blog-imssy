@@ -50,5 +50,5 @@ export const createRssFile = async (config) => {
     });
   }
   // 写入文件
-  writeFileSync(path.join(config.outDir, "feed.xml"), feed.rss2(), "utf-8");
+  writeFileSync(path.join(config.outDir, "rss.xml"), feed.rss2(), "utf-8");
 };

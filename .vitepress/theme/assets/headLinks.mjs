@@ -4,6 +4,7 @@ const headLinks = [
   [
     "link",
     {
+      crossorigin: "anonymous",
       rel: "stylesheet",
       href: "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css",
     },
@@ -12,6 +13,7 @@ const headLinks = [
   [
     "link",
     {
+      crossorigin: "anonymous",
       rel: "stylesheet",
       href: "https://cdn2.codesign.qq.com/icons/g5ZpEgx3z4VO6j2/latest/iconfont.css",
     },
@@ -22,6 +24,7 @@ const headLinks = [
   [
     "link",
     {
+      crossorigin: "anonymous",
       href: "https://use.sevencdn.com/css2?family=Fira+Code:wght@300..700&display=swap",
       rel: "stylesheet",
     },
@@ -31,6 +34,7 @@ const headLinks = [
     "link",
     {
       rel: "stylesheet",
+      crossorigin: "anonymous",
       href: "https://cdn.staticfile.net/fancyapps-ui/4.0.27/fancybox.min.css",
     },
   ],

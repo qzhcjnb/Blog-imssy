@@ -16,7 +16,7 @@
           <span class="by">Powered by</span>
           <span class="name">VitePress</span>
         </div>
-        <div class="rss link" @click="jumpLink('https://blog.imsyy.top/feed.xml')">
+        <div class="rss link" @click="jumpLink('https://blog.imsyy.top/rss.xml')">
           <i class="iconfont icon-rss" />
           <span class="name">订阅</span>
         </div>
