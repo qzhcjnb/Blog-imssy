@@ -56,6 +56,12 @@ const linkData = [
         desc: "On the other side of obstacles",
         url: "https://blog.hesiy.cn/",
       },
+      {
+        name: "Naive Koala",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/03/65e463f6d3270.png",
+        desc: "Live and learn. ✍️",
+        url: "https://www.xalaok.top/",
+      },
     ],
   },
 ];
