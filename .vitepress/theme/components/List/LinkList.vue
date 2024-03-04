@@ -17,11 +17,11 @@
           target="_blank"
         >
           <div class="cover">
-            <LazyLoader>
+            <LazyLoader :useFriendsLink="link.avatar || link.ico">
               <img
                 :src="link.avatar || link.ico"
                 :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
-                alt="cover"
+                :alt="link?.name || 'cover'"
                 @load="(e) => e.target.classList.add('loaded')"
               />
             </LazyLoader>

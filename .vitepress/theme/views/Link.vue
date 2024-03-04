@@ -15,7 +15,20 @@
           </div>
         </div>
       </template>
-      <div class="link-group">待完善</div>
+      <!-- <div class="link-group">
+        <div v-for="(link, index) in pairedLinks(allLinkData)" :key="index" class="link-group-item">
+          <a v-for="(item, i) in link" :key="i" :href="item.url" class="link-logo">
+            <LazyLoader>
+              <img
+                :src="item.avatar"
+                :alt="item.name"
+                class="link-logo-img"
+                @load="(e) => e.target.classList.add('loaded')"
+              />
+            </LazyLoader>
+          </a>
+        </div>
+      </div> -->
     </Banner>
     <!-- 友链数据 -->
     <LinkList :listData="linkData" :useFriendsLink="true" />
@@ -23,15 +36,31 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { smoothScrolling, jumpLink } from "@/utils/helper";
 import LinkList from "@/components/List/LinkList.vue";
 import Banner from "@/components/Banner.vue";
 import linkData from "@/assets/linkData.mjs";
 
+// 全部友链
+const allLinkData = computed(() => {
+  return linkData.flatMap((item) => item.typeList);
+});
+
+// 使链接两个为一组
+const pairedLinks = (data) => {
+  if (!data) return [];
+  const pairs = [];
+  for (let i = 0; i < data.length; i += 2) {
+    pairs.push(data.slice(i, i + 2));
+  }
+  return pairs;
+};
+
 // 随机跳转
 const randomJump = () => {
   try {
-    const friendList = linkData.flatMap(item => item.typeList);
+    const friendList = allLinkData.value;
     const randomList = friendList[Math.floor(Math.random() * friendList.length)];
     $message.warning(
       `您即将前往 ${randomList?.name}，请注意链接是否安全`,
@@ -54,6 +83,8 @@ const randomJump = () => {
 .link {
   margin-bottom: 4rem;
   .banner-page {
+    // min-height: 440px;
+    min-height: auto;
     .menu {
       display: flex;
       flex-direction: row;
@@ -104,7 +135,38 @@ const randomJump = () => {
           }
         }
       }
-      @media (max-width: 800px) {
+    }
+    .link-group {
+      position: absolute;
+      left: 0;
+      top: 140px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      .link-group-item {
+        display: flex;
+        flex-direction: column;
+        .link-logo {
+          margin-right: 1.2rem;
+          .link-logo-img {
+            width: 120px;
+            height: 120px;
+            min-width: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+          &:nth-of-type(2n) {
+            margin-top: 1.2rem;
+            transform: translate(-60px);
+          }
+        }
+      }
+    }
+    @media (max-width: 800px) {
+      min-height: auto;
+      .menu,
+      .link-group {
         display: none;
       }
     }

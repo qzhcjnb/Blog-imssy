@@ -144,6 +144,7 @@ onBeforeUnmount(() => {
   }
 }
 .banner-page {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 2rem;

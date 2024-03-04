@@ -91,6 +91,22 @@
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
               class="btn"
+              @click="jumpLink(`https://www.baidu.com/s?wd=${clickedTypeData}`)"
+            >
+              <i class="iconfont icon-baidu"></i>
+              <span class="name">使用百度搜索</span>
+            </div>
+            <div
+              v-if="clickedType === 'text' || clickedType === 'input'"
+              class="btn"
+              @click="jumpLink(`https://cn.bing.com/search?q=${clickedTypeData}`)"
+            >
+              <i class="iconfont icon-bing"></i>
+              <span class="name">使用必应搜索</span>
+            </div>
+            <div
+              v-if="clickedType === 'text' || clickedType === 'input'"
+              class="btn"
               @click="copyText(clickedTypeData)"
             >
               <i class="iconfont icon-copy"></i>
@@ -144,7 +160,14 @@
 import { ref, nextTick } from "vue";
 import { mainStore } from "@/store";
 import { useRouter, useData } from "vitepress";
-import { smoothScrolling, shufflePost, copyText, copyImage, downloadImage } from "@/utils/helper";
+import {
+  smoothScrolling,
+  shufflePost,
+  copyText,
+  copyImage,
+  downloadImage,
+  jumpLink,
+} from "@/utils/helper";
 
 const { theme } = useData();
 const router = useRouter();

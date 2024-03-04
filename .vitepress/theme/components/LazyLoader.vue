@@ -2,14 +2,19 @@
 <template>
   <div v-if="!load" ref="box" :style="{ height, width }" class="loading" />
   <slot v-else />
+  <div v-if="useFriendsLink" class="hidden">
+    <!-- 适配友链朋友圈 -->
+    <img :data-lazy-src="useFriendsLink" class="cf-friends-avatar" alt="cover" />
+  </div>
 </template>
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const props = defineProps({
-  loadImg: {
-    type: String,
-    default: "",
+  // 兼容友链朋友圈
+  useFriendsLink: {
+    type: [Boolean, String],
+    default: false,
   },
   width: {
     type: String,
@@ -64,5 +69,8 @@ onBeforeUnmount(() => observer && observer.unobserve(box.value));
   );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
+}
+.hidden {
+  display: none;
 }
 </style>

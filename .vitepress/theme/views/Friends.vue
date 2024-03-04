@@ -45,7 +45,7 @@
       <Transition name="fade" mode="out-in">
         <div v-if="friendsLinkData?.length" class="all-list">
           <div
-            v-for="(item, index) in friendsLinkData"
+            v-for="(item, index) in friendsLinkData.slice(0, showNum)"
             :key="index"
             class="list-item s-card hover"
             @click="jumpLink(item.link)"
@@ -65,6 +65,15 @@
         </div>
         <div v-else class="loading s-card">正在努力钓鱼中，请稍等...</div>
       </Transition>
+      <Transition name="fade" mode="out-in">
+        <div
+          v-if="friendsLinkData?.length && showNum <= friendsLinkData?.length"
+          class="loading-more s-card hover"
+          @click="showNum += 20"
+        >
+          <span class="icon">∞</span>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -78,6 +87,9 @@ import Banner from "@/components/Banner.vue";
 // 鱼塘数据
 const friendsStatusData = ref(null);
 const friendsLinkData = ref(null);
+
+// 显示数量
+const showNum = ref(20);
 
 // 获取友链朋友圈数据
 const getFriendsLinkData = async () => {
@@ -249,6 +261,22 @@ onMounted(() => {
       @media (max-width: 576px) {
         grid-template-columns: 1fr;
       }
+    }
+  }
+  .loading-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 6px 0;
+    font-weight: bold;
+    font-size: 14px;
+    &:hover {
+      width: 60%;
+      color: var(--main-card-background);
+      background-color: var(--main-color);
     }
   }
 }
