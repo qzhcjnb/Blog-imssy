@@ -14,7 +14,8 @@ export const createRssFile = async (config) => {
     description: siteBasicData.description,
     id: hostLink,
     link: hostLink,
-    language: "zh-CH",
+    language: "zh",
+    generator: "imsyy",
     favicon: "https://pic.imgdb.cn/item/65bc52b0871b83018a06699d.png",
     copyright: "Copyright © 2020-present imsyy",
   });
@@ -32,7 +33,7 @@ export const createRssFile = async (config) => {
     // 仅保留最近 10 篇文章
     if (feed.items.length >= 10) break;
     // 文章信息
-    const { title, description } = frontmatter;
+    const { title, description, date } = frontmatter;
     // 添加文章
     feed.addItem({
       title,
@@ -40,6 +41,7 @@ export const createRssFile = async (config) => {
       link: `${hostLink}${url}`,
       description,
       content: html,
+      date,
       author: [
         {
           name: siteBasicData.author.name,
