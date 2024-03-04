@@ -39,6 +39,10 @@
         <span class="left">
           <i class="iconfont icon-fish" />
           鱼塘
+          <div class="rule" @click="changeRule">
+            <span :class="['rule-name', { choose: showRule === 'updated' }]">按更新时间</span>
+            <span :class="['rule-name', { choose: showRule === 'created' }]">按发布时间</span>
+          </div>
         </span>
         <span class="right">以下内容自动生成，未经过审核</span>
       </div>
@@ -80,7 +84,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { jumpLink } from "@/utils/helper";
+import { jumpLink, debounce } from "@/utils/helper";
 import { getFriendsLink } from "@/api/link";
 import Banner from "@/components/Banner.vue";
 
@@ -91,16 +95,26 @@ const friendsLinkData = ref(null);
 // 显示数量
 const showNum = ref(20);
 
+// 显示顺序
+const showRule = ref("updated");
+
 // 获取友链朋友圈数据
 const getFriendsLinkData = async () => {
   try {
-    const result = await getFriendsLink();
+    const result = await getFriendsLink(showRule.value);
     friendsStatusData.value = result.statistical_data;
     friendsLinkData.value = result.article_data;
   } catch (error) {
     $message.error("获取友链朋友圈数据失败，请稍后重试");
   }
 };
+
+// 切换排序
+const changeRule = debounce(() => {
+  showRule.value = showRule.value === "updated" ? "created" : "updated";
+  friendsLinkData.value = null;
+  getFriendsLinkData();
+}, 300);
 
 // 跳转作者博客
 const jumpAuthor = (link) => {
@@ -170,6 +184,28 @@ onMounted(() => {
         .iconfont {
           font-size: 1.6rem;
           margin-right: 8px;
+        }
+        .rule {
+          display: flex;
+          font-size: 14px;
+          font-weight: normal;
+          margin-left: 1rem;
+          margin-top: 2px;
+          .rule-name {
+            cursor: pointer;
+            &.choose {
+              color: var(--main-color);
+              font-weight: bold;
+            }
+            &:first-child {
+              &::after {
+                content: "/";
+                margin: 0 12px;
+                opacity: 0.4;
+                color: var(--main-font-color);
+              }
+            }
+          }
         }
       }
       .right {
