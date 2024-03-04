@@ -17,17 +17,14 @@
           target="_blank"
         >
           <div class="cover">
-            <img
-              :src="link.avatar || link.ico"
-              :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
-              loading="lazy"
-              alt="cover"
-              @load="
-                (e) => {
-                  e.target.classList.add('loaded');
-                }
-              "
-            />
+            <LazyLoader>
+              <img
+                :src="link.avatar || link.ico"
+                :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
+                alt="cover"
+                @load="(e) => e.target.classList.add('loaded')"
+              />
+            </LazyLoader>
           </div>
           <div class="data">
             <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
@@ -87,16 +84,28 @@ const props = defineProps({
         align-items: center;
         height: 90px;
         .cover {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 60px;
           height: 60px;
           min-width: 60px;
           margin-right: 20px;
           border-radius: 50%;
           overflow: hidden;
+          background: linear-gradient(
+            90deg,
+            var(--main-card-border) 25%,
+            var(--main-card-background) 37%,
+            var(--main-card-border) 63%
+          );
+          background-size: 400% 100%;
+          animation: skeleton-loading 1.4s ease infinite;
           transition: all 0.6s;
           .cover-img {
             width: 100%;
             height: 100%;
+            background-color: var(--main-card-background);
             opacity: 0;
             filter: blur(10px);
             transition:

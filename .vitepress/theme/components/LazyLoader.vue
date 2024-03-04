@@ -1,17 +1,21 @@
 <!-- 懒加载 -->
 <template>
-  <slot v-if="load"></slot>
-  <div v-else ref="box" :style="{ height: h, width: w }">加载中</div>
+  <div v-if="!load" ref="box" :style="{ height, width }" class="loading" />
+  <slot v-else />
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const props = defineProps({
-  w: {
+  loadImg: {
+    type: String,
+    default: "",
+  },
+  width: {
     type: String,
     default: "100%",
   },
-  h: {
+  height: {
     type: String,
     default: "100%",
   },
@@ -39,12 +43,26 @@ onMounted(() => {
     if (entry.isIntersecting) {
       // 当内容可见
       load.value = true;
-      observer.unobserve(box.value.$el);
+      observer.unobserve(box.value);
       observer = null;
     }
   });
-  observer.observe(box.value.$el); // 观察
+  // 观察
+  observer.observe(box.value);
 });
 
-onBeforeUnmount(() => observer && observer.unobserve(box.value.$el)); // 不观察了
+onBeforeUnmount(() => observer && observer.unobserve(box.value));
 </script>
+
+<style lang="scss" scoped>
+.loading {
+  background: linear-gradient(
+    90deg,
+    var(--main-card-border) 25%,
+    var(--main-card-background) 37%,
+    var(--main-card-border) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+</style>

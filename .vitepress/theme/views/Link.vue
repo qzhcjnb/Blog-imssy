@@ -31,7 +31,7 @@ import linkData from "@/assets/linkData.mjs";
 // 随机跳转
 const randomJump = () => {
   try {
-    const friendList = linkData.filter((item) => item.type === "friend")[0].typeList;
+    const friendList = linkData.flatMap(item => item.typeList);
     const randomList = friendList[Math.floor(Math.random() * friendList.length)];
     $message.warning(
       `您即将前往 ${randomList?.name}，请注意链接是否安全`,

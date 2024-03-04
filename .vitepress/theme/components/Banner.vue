@@ -165,7 +165,7 @@ onBeforeUnmount(() => {
       .title-big {
         font-size: 36px;
         font-weight: bold;
-        line-height: 1;
+        line-height: 1.2;
         margin-top: 12px;
       }
     }

@@ -1,6 +1,7 @@
 import { h } from "vue";
 import { createPinia } from "pinia";
 import { routerTools } from "@/utils/initTools.mjs";
+import LazyLoader from "@/components/LazyLoader.vue";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 // import Theme from "vitepress/theme";
 
@@ -26,6 +27,7 @@ export default {
     // 挂载
     app.use(pinia);
     app.use(InstantSearch);
+    app.component("LazyLoader", LazyLoader);
     // 路由守卫
     router.onBeforeRouteChange = (to, from) => {
       routerTools("before", to, from);
