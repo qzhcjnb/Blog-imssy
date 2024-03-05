@@ -20,6 +20,13 @@ export const mainStore = defineStore("main", {
       controlShow: false,
       // 搜索框显示
       searchShow: false,
+      // 播放器数据
+      playState: false,
+      playerShow: true,
+      playerData: {
+        name: "未知曲目",
+        artist: "未知艺术家",
+      },
       // 移动端菜单显示
       mobileMenuShow: false,
       // 使用自定义右键菜单

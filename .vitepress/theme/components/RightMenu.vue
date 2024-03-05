@@ -131,23 +131,40 @@
             <div
               class="btn"
               @click.stop="
-                store.themeType === 'auto'
-                  ? (store.themeType = 'dark')
-                  : store.themeType === 'dark'
-                    ? (store.themeType = 'light')
-                    : (store.themeType = 'auto')
+                themeType === 'auto'
+                  ? (themeType = 'dark')
+                  : themeType === 'dark'
+                    ? (themeType = 'light')
+                    : (themeType = 'auto')
               "
             >
-              <i :class="`iconfont icon-${store.themeType}`"></i>
+              <i :class="`iconfont icon-${themeType}`"></i>
               <span class="name">
                 {{
-                  store.themeType === "auto"
-                    ? "深色模式"
-                    : store.themeType === "dark"
-                      ? "浅色模式"
-                      : "跟随系统"
+                  themeType === "auto" ? "深色模式" : themeType === "dark" ? "浅色模式" : "跟随系统"
                 }}
               </span>
+            </div>
+          </div>
+          <!-- 播放器控制 -->
+          <div v-if="playerShow" class="all-menu general player">
+            <div class="data">
+              <span class="name">{{ playerData.name }}</span>
+              <span class="artist">{{ playerData.artist }}</span>
+            </div>
+            <div class="control" @click.stop>
+              <div class="btn" title="上一曲" @click="playerControl('prev')">
+                <i class="iconfont icon-prev"></i>
+              </div>
+              <div v-if="playState" class="btn" title="暂停" @click="playerControl('toggle')">
+                <i class="iconfont icon-pause"></i>
+              </div>
+              <div v-else class="btn" title="播放" @click="playerControl('toggle')">
+                <i class="iconfont icon-play"></i>
+              </div>
+              <div class="btn" title="下一曲" @click="playerControl('next')">
+                <i class="iconfont icon-next"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -158,6 +175,7 @@
 
 <script setup>
 import { ref, nextTick } from "vue";
+import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { useRouter, useData } from "vitepress";
 import {
@@ -169,9 +187,10 @@ import {
   jumpLink,
 } from "@/utils/helper";
 
-const { theme } = useData();
 const router = useRouter();
 const store = mainStore();
+const { theme } = useData();
+const { useRightMenu, themeType, playerShow, playState, playerData } = storeToRefs(store);
 
 // 右键菜单数据
 const rightMenuX = ref(0);
@@ -184,7 +203,7 @@ const rightMenuShow = ref(false);
 // 开启右键菜单
 const openRightMenu = (e) => {
   // 检测是否可开启
-  if (e.ctrlKey || !store.useRightMenu) return true;
+  if (e.ctrlKey || !useRightMenu.value) return true;
   e.preventDefault();
   rightMenuShow.value = false;
   // 获取点击类型
@@ -312,6 +331,24 @@ const rightMenuFunc = async (type) => {
   }
 };
 
+// 播放器控制
+const playerControl = (type) => {
+  if (typeof $player !== "object" || !type) return false;
+  switch (type) {
+    case "toggle":
+      $player?.toggle();
+      break;
+    case "next":
+      $player?.skipForward();
+      break;
+    case "prev":
+      $player?.skipBack();
+      break;
+    default:
+      return false;
+  }
+};
+
 defineExpose({ openRightMenu });
 </script>
 
@@ -365,6 +402,40 @@ defineExpose({ openRightMenu });
       &.general {
         padding-top: 12px;
         border-top: 1px solid var(--main-card-border);
+      }
+    }
+    .player {
+      .data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        span {
+          width: 100%;
+          padding: 0 8px;
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .artist {
+          font-size: 14px;
+          margin-top: 4px;
+          color: var(--main-font-second-color);
+        }
+      }
+      .control {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 8px;
+        .btn {
+          padding: 6px;
+          margin-bottom: 0;
+          .iconfont {
+            font-size: 26px;
+          }
+        }
       }
     }
     .btn {

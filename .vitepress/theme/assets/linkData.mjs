@@ -71,7 +71,7 @@ const linkData = [
       {
         name: "HiPeach",
         avatar: "https://pic.efefee.cn/uploads/2024/03/05/65e674676e4bd.webp",
-        desc: "妙不可言",
+        desc: "巧不可语，妙不可言",
         url: "https://blog.opeach.cn/",
       },
     ],
