@@ -340,9 +340,11 @@ const playerControl = (type) => {
       break;
     case "next":
       $player?.skipForward();
+      $player?.play();
       break;
     case "prev":
       $player?.skipBack();
+      $player?.play();
       break;
     default:
       return false;

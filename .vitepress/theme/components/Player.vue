@@ -33,9 +33,13 @@ const playerDom = ref(null);
 
 // 获取播放列表
 const getMusicListData = async () => {
-  const musicList = await getMusicList();
-  console.log(musicList);
-  if (musicList?.length) initAPlayer(musicList);
+  try {
+    const musicList = await getMusicList();
+    console.log(musicList);
+    if (musicList?.length) initAPlayer(musicList);
+  } catch (error) {
+    $message.error("播放器加载失败，请重试");
+  }
 };
 
 // 获取当前播放歌曲信息
@@ -132,7 +136,7 @@ onBeforeUnmount(() => {
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding: 8px;
+      padding: 6px;
       padding-right: 12px;
       pointer-events: none;
       .aplayer-pic {
@@ -164,6 +168,14 @@ onBeforeUnmount(() => {
           display: flex;
           line-height: normal;
           z-index: 2;
+          .aplayer-title {
+            line-height: 1;
+            display: inline-block;
+            white-space: nowrap;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           .aplayer-author {
             display: none;
           }

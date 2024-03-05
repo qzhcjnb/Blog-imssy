@@ -1,6 +1,6 @@
 <!-- 侧边栏 - 欢迎 -->
 <template>
-  <div class="hello s-card">
+  <div class="hello s-card" @mouseleave="resetHello">
     <span class="tip" @click="changeHello">{{ helloText }}</span>
     <div class="content">
       <div class="site-logo">
@@ -41,6 +41,12 @@ const helloClick = ref(0);
 const helloTimeOut = ref(null);
 const helloText = ref(getGreetings());
 
+// 恢复问候语
+const resetHello = () => {
+  helloText.value = getGreetings();
+  helloClick.value = 0;
+};
+
 // 更改问候语
 const changeHello = () => {
   clearTimeout(helloTimeOut.value);
@@ -58,8 +64,7 @@ const changeHello = () => {
   }
   // 恢复默认
   helloTimeOut.value = setTimeout(() => {
-    helloText.value = getGreetings();
-    helloClick.value = 0;
+    resetHello();
   }, 3000);
 };
 
