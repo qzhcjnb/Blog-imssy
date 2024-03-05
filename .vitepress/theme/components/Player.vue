@@ -25,7 +25,7 @@ const getMusicListData = async () => {
 
 // 初始化播放器
 const initAPlayer = (list) => {
-  import("APlayer").then((module) => {
+  import("aplayer").then((module) => {
     const APlayer = module.default;
     player.value = new APlayer({
       container: playerDom.value,
