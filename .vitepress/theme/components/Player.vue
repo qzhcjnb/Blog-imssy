@@ -10,7 +10,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getMusicList } from "@/api/music";
-import "APlayer/dist/APlayer.min.css";
+import "aplayer/dist/APlayer.min.css";
 
 // APlayer
 const player = ref(null);
