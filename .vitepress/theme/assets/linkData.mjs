@@ -62,6 +62,18 @@ const linkData = [
         desc: "Live and learn. ✍️",
         url: "https://www.xalaok.top/",
       },
+      {
+        name: "君莫愁",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/05/65e6741e38ae2.webp",
+        desc: "莫愁前路无知己，天下谁人不识君",
+        url: "https://blog.shimail.cn/",
+      },
+      {
+        name: "HiPeach",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/05/65e674676e4bd.webp",
+        desc: "妙不可言",
+        url: "https://blog.opeach.cn/",
+      },
     ],
   },
 ];

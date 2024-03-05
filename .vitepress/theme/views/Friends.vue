@@ -212,6 +212,17 @@ onMounted(() => {
         font-size: 14px;
         color: var(--main-font-second-color);
       }
+      @media (max-width: 576px) {
+        .left {
+          width: 100%;
+          .rule {
+            margin-left: auto;
+          }
+        }
+        .right {
+          display: none;
+        }
+      }
     }
     .loading {
       padding: 1.6rem;

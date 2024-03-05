@@ -30,6 +30,8 @@
   <Footer v-show="!store.loadingStatus" />
   <!-- 右键菜单 -->
   <RightMenu ref="rightMenuRef" />
+  <!-- 全局播放器 -->
+  <!-- <Player /> -->
   <!-- 全局消息 -->
   <Message />
 </template>
@@ -46,6 +48,7 @@ import FooterLink from "@/components/FooterLink.vue";
 import Control from "@/components/Control.vue";
 import RightMenu from "@/components/RightMenu.vue";
 import Message from "@/components/Message.vue";
+import Player from "@/components/Player.vue";
 import Home from "@/views/Home.vue";
 import Page from "@/views/Page.vue";
 import Post from "@/views/Post.vue";

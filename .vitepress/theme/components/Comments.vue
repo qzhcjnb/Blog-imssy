@@ -153,6 +153,7 @@ onUnmounted(() => {
         > .atk-comment-wrap {
           border-bottom: 1px dashed var(--main-card-border);
           .atk-content {
+            user-select: text;
             img {
               width: auto;
               max-width: 240px;
