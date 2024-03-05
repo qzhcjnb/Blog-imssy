@@ -48,6 +48,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .player {
+  display: none;
   position: fixed;
   left: 0;
   bottom: 0;

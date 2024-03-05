@@ -31,7 +31,7 @@
   <!-- 右键菜单 -->
   <RightMenu ref="rightMenuRef" />
   <!-- 全局播放器 -->
-  <!-- <Player /> -->
+  <Player />
   <!-- 全局消息 -->
   <Message />
 </template>
