@@ -152,24 +152,24 @@ export default withPwa(
         background_color: "#efefef",
         icons: [
           {
-            src: "/images/logo/favicon-32x32.png",
+            src: "/images/logo/favicon-32x32.webp",
             sizes: "32x32",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/images/logo/favicon-96x96.png",
+            src: "/images/logo/favicon-96x96.webp",
             sizes: "96x96",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/images/logo/favicon-256x256.png",
+            src: "/images/logo/favicon-256x256.webp",
             sizes: "256x256",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/images/logo/favicon-512x512.png",
+            src: "/images/logo/favicon-512x512.webp",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/webp",
           },
         ],
       },

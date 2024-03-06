@@ -2,11 +2,11 @@
 export const siteBasicData = {
   title: "無名小栈",
   description: "分享技术与科技生活",
-  logo: "/images/logo/logo.png",
+  logo: "/images/logo/logo.webp",
   site: "https://blog.imsyy.top",
   author: {
     name: "無名",
-    cover: "/images/logo/logo.png",
+    cover: "/images/logo/logo.webp",
     email: "one@imsyy.top",
     link: "https://www.imsyy.top",
   },
