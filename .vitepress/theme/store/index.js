@@ -53,7 +53,7 @@ export const mainStore = defineStore("main", {
   persist: [
     {
       key: "siteData",
-      paths: ["themeType", "useRightMenu"],
+      paths: ["themeType", "useRightMenu", "playerShow", "backgroundBlur"],
     },
   ],
 });

@@ -22,6 +22,7 @@ import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { getMusicList } from "@/api/music";
+import musicLists from "@/assets/musicLists.mjs";
 import "aplayer/dist/APlayer.min.css";
 
 const store = mainStore();
@@ -36,9 +37,10 @@ const getMusicListData = async () => {
   try {
     const musicList = await getMusicList();
     console.log(musicList);
-    if (musicList?.length) initAPlayer(musicList);
+    initAPlayer(musicList?.length ? musicList : []);
   } catch (error) {
-    $message.error("播放器加载失败，请重试");
+    $message.error("获取播放列表失败，请重试");
+    initAPlayer([]);
   }
 };
 
@@ -64,6 +66,8 @@ const getMusicData = () => {
 // 初始化播放器
 const initAPlayer = async (list) => {
   try {
+    const playlist = [...list, ...musicLists];
+    if (!playlist?.length) return false;
     const module = await import("aplayer");
     const APlayer = module.default;
     player.value = new APlayer({
@@ -72,8 +76,9 @@ const initAPlayer = async (list) => {
       lrcType: 3,
       listFolded: true,
       order: "random",
-      audio: list,
+      audio: playlist,
     });
+    console.info("🎵 播放器挂载完成", player.value);
     // 播放器事件
     player.value?.on("canplay", () => {
       // 更新信息
@@ -106,7 +111,7 @@ watch(
 );
 
 onMounted(() => {
-  if (window.innerWidth >= 768) getMusicListData();
+  if (window.innerWidth >= 768 && playerShow.value) getMusicListData();
 });
 
 onBeforeUnmount(() => {
