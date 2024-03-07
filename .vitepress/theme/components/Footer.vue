@@ -16,6 +16,9 @@
           <span class="by">Powered by</span>
           <span class="name">VitePress</span>
         </div>
+        <a class="theme link" href="/pages/theme">
+          <span class="name">主题</span>
+        </a>
         <div class="rss link" @click="jumpLink('https://blog.imsyy.top/rss.xml')">
           <i class="iconfont icon-rss" />
           <span class="name">订阅</span>
@@ -107,11 +110,16 @@ const thisYear = computed(() => new Date().getFullYear());
       }
     }
     .link {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
       font-weight: bold;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
       padding: 8px;
+      margin: 0 2px;
+      height: 38px;
       border-radius: 12px;
       transition:
         color 0.3s,

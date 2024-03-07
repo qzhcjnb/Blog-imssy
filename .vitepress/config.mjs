@@ -8,8 +8,11 @@ import {
   getAllCategories,
   getAllArchives,
 } from "./theme/utils/getPostData.mjs";
+import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
+import container from "markdown-it-container";
 import headLinks from "./theme/assets/headLinks.mjs";
 import markdownItAttrs from "markdown-it-attrs";
+
 import path from "path";
 
 // 获取全局数据
@@ -44,6 +47,7 @@ export default withPwa(
     },
     // markdown
     markdown: {
+      math: true,
       lineNumbers: true,
       image: {
         lazyLoading: true,
@@ -51,6 +55,21 @@ export default withPwa(
       config: (md) => {
         // 插件
         md.use(markdownItAttrs);
+        md.use(tabsMarkdownPlugin);
+        // 时间轴
+        md.use(container, "timeline", {
+          validate: (params) => params.trim().match(/^timeline\s+(.*)$/),
+          render: (tokens, idx) => {
+            const m = tokens[idx].info.trim().match(/^timeline\s+(.*)$/);
+            if (tokens[idx].nesting === 1) {
+              return `<div class="timeline">
+                        <span class="timeline-title">${md.utils.escapeHtml(m[1])}</span>
+                        <div class="timeline-content">`;
+            } else {
+              return "</div></div>\n";
+            }
+          },
+        });
         // 表格规则
         md.renderer.rules.table_open = () => {
           return '<div class="table-container"><table>';

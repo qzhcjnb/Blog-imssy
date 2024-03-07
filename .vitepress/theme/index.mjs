@@ -1,6 +1,7 @@
 import { h } from "vue";
 import { createPinia } from "pinia";
 import { routerTools } from "@/utils/initTools.mjs";
+import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import LazyLoader from "@/components/LazyLoader.vue";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 // import Theme from "vitepress/theme";
@@ -28,6 +29,8 @@ export default {
     app.use(pinia);
     app.use(InstantSearch);
     app.component("LazyLoader", LazyLoader);
+    // 插件
+    enhanceAppWithTabs(app);
     // 路由守卫
     router.onBeforeRouteChange = (to, from) => {
       routerTools("before", to, from);

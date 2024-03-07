@@ -1,6 +1,5 @@
 // 文章内容样式
-:deep(#post-article),
-:deep(.page-content) {
+:deep(#page-content) {
   // 标题
   div > {
     h1 {
@@ -384,5 +383,143 @@
   // 其他
   label {
     cursor: pointer;
+  }
+  // mathjax
+  mjx-container {
+    overflow: auto;
+    padding-bottom: 8px;
+  }
+  // custom-block
+  .custom-block {
+    margin: 1rem 0;
+    padding: 16px;
+    padding-left: 12px;
+    border-radius: 8px;
+    background-color: var(--main-card-border);
+    border-left: 6px solid var(--main-color-gray);
+    user-select: none;
+    p {
+      margin: 0;
+      line-height: normal;
+      font-size: 0.95rem;
+      &.custom-block-title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+    }
+    &.tip {
+      background-color: var(--main-info-color-gray);
+      border-left-color: var(--main-info-color);
+      .custom-block-title {
+        color: var(--main-info-color);
+      }
+    }
+    &.warning {
+      background-color: var(--main-warning-color-gray);
+      border-left-color: var(--main-warning-color);
+      .custom-block-title {
+        color: var(--main-warning-color);
+      }
+    }
+    &.danger {
+      background-color: var(--main-error-color-gray);
+      border-left-color: var(--main-error-color);
+      .custom-block-title {
+        color: var(--main-error-color);
+      }
+    }
+  }
+  // plugin-tabs
+  .plugin-tabs {
+    margin: 1rem 0;
+    border-radius: 12px;
+    background-color: var(--main-card-background);
+    border: 1px solid var(--main-card-border);
+    overflow: hidden;
+    .plugin-tabs--tab-list {
+      padding: 0 12px;
+      background-color: var(--main-card-second-background);
+      border-bottom: 1px solid var(--main-card-border);
+      .plugin-tabs--tab {
+        padding: 12px 16px;
+        margin-right: 12px;
+        outline: none;
+        border: none;
+        line-height: normal;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: "HarmonyOS_Regular";
+        background-color: transparent;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s;
+        cursor: pointer;
+        &[aria-selected="true"] {
+          color: var(--main-color);
+          border-bottom-color: var(--main-color);
+        }
+      }
+    }
+    .plugin-tabs--content {
+      padding: 0 1rem;
+      max-height: 500px;
+      overflow: auto;
+      animation: show 0.5s forwards;
+    }
+  }
+  // timeline
+  .timeline {
+    position: relative;
+    padding: 0 0 1rem 26px;
+    cursor: pointer;
+    .timeline-title {
+      display: inline-block;
+      font-size: 14px;
+      opacity: 0.6;
+      transform: translateY(-2px);
+      transition:
+        color 0.3s,
+        opacity 0.3s;
+    }
+    .timeline-content {
+      margin-top: 12px;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      max-width: 80%;
+      background-color: var(--main-card-border);
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      width: 4px;
+      height: 100%;
+      border-radius: 4px;
+      background-color: var(--main-card-border);
+      z-index: 0;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--main-color);
+      background-color: var(--main-card-background);
+      transition: transform 0.3s;
+      z-index: 1;
+    }
+    &:hover {
+      .timeline-title {
+        opacity: 1;
+        color: var(--main-color);
+      }
+      &::before {
+        transform: scale(1.2);
+      }
+    }
   }
 }

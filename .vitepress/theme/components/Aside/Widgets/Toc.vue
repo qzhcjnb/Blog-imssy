@@ -42,7 +42,7 @@ const activeTocHeight = ref(4);
 // 获取所有目录数据
 const getAllTitle = () => {
   try {
-    postDom.value = document.getElementById("post-article");
+    postDom.value = document.getElementById("page-content");
     if (!postDom.value) return false;
     // 所有标题
     const headers = Array.from(postDom.value.querySelectorAll("h2, h3")).filter(
