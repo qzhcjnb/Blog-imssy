@@ -44,14 +44,37 @@
           </a>
         </div>
       </div>
+      <!-- 随机友链 -->
+      <div class="sitemap-item">
+        <span class="title friends">
+          友链
+          <i class="iconfont icon-refresh" @click="getRandomFriends" />
+        </span>
+        <div v-if="randomFriends?.length" class="links">
+          <a
+            v-for="(link, linkIndex) in randomFriends"
+            :key="linkIndex"
+            :href="link.url"
+            target="_blank"
+            class="link-text"
+          >
+            {{ link.name }}
+          </a>
+          <a href="/pages/link" class="link-text"> 更多 </a>
+        </div>
+        <div v-else class="links">
+          <a class="link-text"> 暂无友链 </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useData } from "vitepress";
-import { smoothScrolling } from "@/utils/helper";
+import { ref, computed, onMounted } from "vue";
+import { smoothScrolling, shuffleArray } from "@/utils/helper";
+import linkData from "@/assets/linkData.mjs";
 
 const { theme, site } = useData();
 const { footer, author } = theme.value;
@@ -63,12 +86,30 @@ const props = defineProps({
   },
 });
 
+// 随机友链
+const randomFriends = ref([]);
+
+// 获取随机友链
+const getRandomFriends = () => {
+  if (!linkData?.length) return [];
+  const allLinkData = linkData.flatMap((item) => item.typeList);
+  // 打乱所有的友链数组
+  const shuffledLinkData = shuffleArray(allLinkData);
+  // 选择前 4 个
+  const selectedFriends = shuffledLinkData.slice(0, 3);
+  randomFriends.value = selectedFriends;
+};
+
 // 社交链接数据
 const socialLinkData = computed(() => {
   const halfLength = Math.ceil(footer.social.length / 2);
   const firstHalf = footer.social.slice(0, halfLength);
   const secondHalf = footer.social.slice(halfLength);
   return { first: firstHalf, second: secondHalf };
+});
+
+onMounted(() => {
+  getRandomFriends();
 });
 </script>
 
@@ -193,6 +234,22 @@ const socialLinkData = computed(() => {
         font-weight: bold;
         margin-left: 8px;
         color: var(--main-font-second-color);
+        &.friends {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          cursor: pointer;
+          .iconfont {
+            font-weight: normal;
+            margin-left: 6px;
+            opacity: 0.8;
+            color: var(--main-font-second-color);
+            transition: color 0.3s;
+            &:hover {
+              color: var(--main-color);
+            }
+          }
+        }
       }
       .links {
         display: flex;

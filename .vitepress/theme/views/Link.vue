@@ -127,11 +127,11 @@ const randomJump = () => {
           margin-left: 20px;
         }
         &:hover {
-          color: var(--main-font-color);
+          color: #fff;
           background-color: var(--main-color);
           box-shadow: 0 8px 16px -4px var(--main-color-bg);
           .iconfont {
-            color: var(--main-font-color);
+            color: #fff;
           }
         }
       }

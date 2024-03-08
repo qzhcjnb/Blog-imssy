@@ -293,3 +293,13 @@ export const getGreetings = () => {
   }
   return hello;
 };
+
+// 打乱数组 - Fisher-Yates 洗牌算法
+export const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // 解构赋值进行元素互换
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};

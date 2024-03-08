@@ -84,59 +84,52 @@ export const themeConfig = {
     ],
     // sitemap
     sitemap: [
-      // 不要超过 8 组
+      // 不要超过 7 组
       {
         text: "博客",
         items: [
           { text: "近期文章", link: "/" },
-          { text: "全部分类", link: "/api-examples" },
-          { text: "全部标签", link: "/api-examples" },
-          { text: "文章归档", link: "https://www.imsyy.top", newTab: true },
+          { text: "全部分类", link: "/pages/categories" },
+          { text: "全部标签", link: "/pages/tags" },
+          { text: "文章归档", link: "/pages/archives", newTab: true },
         ],
       },
       {
-        text: "博客",
+        text: "项目",
         items: [
-          { text: "近期文章", link: "/" },
-          { text: "全部分类", link: "/api-examples" },
-          { text: "全部标签", link: "/api-examples" },
-          { text: "文章归档", link: "/api-examples" },
+          { text: "Home", link: "https://github.com/imsyy/home/", newTab: true },
+          { text: "SPlayer", link: "https://github.com/imsyy/SPlayer/", newTab: true },
+          { text: "DailyHotApi", link: "https://github.com/imsyy/DailyHotApi/", newTab: true },
+          { text: "Snavigation", link: "https://github.com/imsyy/Snavigation/", newTab: true },
         ],
       },
       {
-        text: "博客",
+        text: "专栏",
         items: [
-          { text: "近期文章", link: "/" },
-          { text: "全部分类", link: "/api-examples" },
-          { text: "全部标签", link: "/api-examples" },
-          { text: "文章归档", link: "/api-examples" },
+          { text: "技术分享", link: "/pages/categories/技术分享" },
+          { text: "我的项目", link: "/pages/project" },
+          { text: "效率工具", link: "/pages/tools" },
         ],
       },
       {
-        text: "博客",
+        text: "页面",
         items: [
-          { text: "近期文章", link: "/" },
-          { text: "全部分类", link: "/api-examples" },
-          { text: "全部标签", link: "/api-examples" },
-          { text: "文章归档", link: "/api-examples" },
+          { text: "畅所欲言", link: "/pages/message" },
+          { text: "关于本站", link: "/pages/about" },
+          { text: "版权协议", link: "/pages/cc" },
         ],
       },
       {
-        text: "博客",
+        text: "服务",
         items: [
-          { text: "近期文章", link: "/" },
-          { text: "全部分类", link: "/api-examples" },
-          { text: "全部标签", link: "/api-examples" },
-          { text: "文章归档", link: "/api-examples" },
-        ],
-      },
-      {
-        text: "博客",
-        items: [
-          { text: "近期文章", link: "/" },
-          { text: "全部分类", link: "/api-examples" },
-          { text: "全部标签", link: "/api-examples" },
-          { text: "文章归档", link: "/api-examples" },
+          { text: "站点状态", link: "https://status.imsyy.top/", newTab: true },
+          { text: "一个导航", link: "https://nav.imsyy.top/", newTab: true },
+          { text: "站点订阅", link: "https://blog.imsyy.top/rss.xml", newTab: true },
+          {
+            text: "反馈投诉",
+            link: "https://eqnxweimkr5.feishu.cn/share/base/form/shrcnCXCPmxCKKJYI3RKUfefJre",
+            newTab: true,
+          },
         ],
       },
     ],
