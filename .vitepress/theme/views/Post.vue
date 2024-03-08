@@ -59,7 +59,7 @@
         <!-- AI 摘要 -->
         <ArticleGPT />
         <!-- 文章内容 -->
-        <Content id="page-content" />
+        <Content id="page-content" class="markdown-main-style" />
         <!-- 版权 -->
         <Copyright v-if="frontmatter.copyright !== false" :postData="postMetaData" />
         <!-- 其他信息 -->

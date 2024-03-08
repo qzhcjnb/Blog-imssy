@@ -3,7 +3,7 @@
   <div :class="['page', { 'show-padding': showPadding, 'has-aside': showAside }]">
     <div class="page-content">
       <!-- 页面内容 -->
-      <Content id="page-content" />
+      <Content id="page-content" class="markdown-main-style" />
       <!-- 评论 -->
       <Comments v-if="showComment" />
     </div>

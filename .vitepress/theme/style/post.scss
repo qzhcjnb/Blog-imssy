@@ -1,5 +1,5 @@
 // 文章内容样式
-:deep(#page-content) {
+:deep(.markdown-main-style) {
   // 标题
   div > {
     h1 {
@@ -411,21 +411,21 @@
     &.tip {
       background-color: var(--main-info-color-gray);
       border-left-color: var(--main-info-color);
-      .custom-block-title {
+      p {
         color: var(--main-info-color);
       }
     }
     &.warning {
       background-color: var(--main-warning-color-gray);
       border-left-color: var(--main-warning-color);
-      .custom-block-title {
+      p {
         color: var(--main-warning-color);
       }
     }
     &.danger {
       background-color: var(--main-error-color-gray);
       border-left-color: var(--main-error-color);
-      .custom-block-title {
+      p {
         color: var(--main-error-color);
       }
     }
@@ -461,7 +461,7 @@
       }
     }
     .plugin-tabs--content {
-      padding: 0 1rem;
+      padding: 1rem;
       max-height: 500px;
       overflow: auto;
       animation: show 0.5s forwards;
@@ -484,9 +484,15 @@
     .timeline-content {
       margin-top: 12px;
       border-radius: 8px;
-      padding: 0.5rem 1rem;
+      padding: 1rem;
       max-width: 80%;
       background-color: var(--main-card-border);
+      > :first-child {
+        margin-top: 0;
+      }
+      > :last-child {
+        margin-bottom: 0;
+      }
     }
     &::after {
       content: "";

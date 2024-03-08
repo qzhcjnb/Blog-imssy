@@ -1,7 +1,11 @@
 <template>
   <div class="theme">
     <div class="logo">
-      <img src="https://pic.efefee.cn/uploads/2024/03/07/65e992f639dd5.webp" alt="curve-logo" />
+      <img
+        class="logo-img"
+        src="https://pic.efefee.cn/uploads/2024/03/07/65e992f639dd5.webp"
+        alt="curve-logo"
+      />
       <span class="logo-text">Curve</span>
       <span class="logo-tip">A VitePress Theme</span>
     </div>
@@ -19,6 +23,10 @@
     width: 80%;
     margin: 0 auto;
     margin-bottom: 20px;
+    overflow: hidden;
+    .logo-img {
+      width: 100%;
+    }
     .logo-text {
       margin-top: 20px;
       font-size: 50px;
