@@ -74,6 +74,12 @@ const linkData = [
         desc: "巧不可语，妙不可言",
         url: "https://blog.opeach.cn/",
       },
+      {
+        name: "LiuShen",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/08/65ea6754d2a9e.webp",
+        desc: "柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜",
+        url: "https://www.qyliu.top/",
+      },
     ],
   },
 ];
