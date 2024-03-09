@@ -39,8 +39,6 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { useData } from "vitepress";
 import { loadScript } from "@/utils/commonTools";
 import { daysFromNow } from "@/utils/helper";
 

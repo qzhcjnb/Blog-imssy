@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
-
 // 指针数据
 const hourRotate = ref(315);
 const minuteRotate = ref(45);

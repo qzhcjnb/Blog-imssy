@@ -38,8 +38,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useData } from "vitepress";
 import { jumpLink } from "@/utils/helper";
 
 const { theme } = useData();

@@ -14,15 +14,13 @@
         <i class="iconfont icon-list" />
         主题文档
       </a>
-      <a class="btn">
+      <a href="https://github.com/imsyy/vitepress-theme-curve" target="_blank" class="btn">
         <i class="iconfont icon-github" />
         GitHub
       </a>
     </div>
   </div>
 </template>
-
-<script setup></script>
 
 <style lang="scss" scoped>
 .theme {

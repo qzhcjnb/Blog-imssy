@@ -8,8 +8,6 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
-
 const props = defineProps({
   // 兼容友链朋友圈
   useFriendsLink: {

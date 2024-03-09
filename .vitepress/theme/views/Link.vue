@@ -36,10 +36,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { smoothScrolling, jumpLink } from "@/utils/helper";
-import LinkList from "@/components/List/LinkList.vue";
-import Banner from "@/components/Banner.vue";
 import linkData from "@/assets/linkData.mjs";
 
 // 全部友链

@@ -38,8 +38,6 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
-import { ref, onMounted, onBeforeUnmount } from "vue";
 import { getHitokoto } from "@/api/text";
 
 const { theme } = useData();

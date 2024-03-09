@@ -93,14 +93,8 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
-import { computed, ref } from "vue";
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
-import Aside from "@/components/Aside/index.vue";
-import Copyright from "@/components/Copyright.vue";
-import Comments from "@/components/Comments.vue";
-import ArticleGPT from "@/components/Aside/Widgets/ArticleGPT.vue";
 
 const { page, theme, frontmatter } = useData();
 

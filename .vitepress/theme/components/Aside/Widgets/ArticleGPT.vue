@@ -27,9 +27,6 @@
 </template>
 
 <script setup>
-import { useData, useRouter } from "vitepress";
-import { ref, onMounted, onBeforeUnmount } from "vue";
-
 const { frontmatter } = useData();
 const router = useRouter();
 

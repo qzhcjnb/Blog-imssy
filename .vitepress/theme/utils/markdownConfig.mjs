@@ -7,7 +7,7 @@ const markdownConfig = (md) => {
   // 插件
   md.use(markdownItAttrs);
   md.use(tabsMarkdownPlugin);
-  // 时间轴
+  // timeline
   md.use(container, "timeline", {
     validate: (params) => params.trim().match(/^timeline\s+(.*)$/),
     render: (tokens, idx) => {
@@ -18,6 +18,22 @@ const markdownConfig = (md) => {
                     <div class="timeline-content">`;
       } else {
         return "</div></div>\n";
+      }
+    },
+  });
+  // radio
+  md.use(container, "radio", {
+    render: (tokens, idx, _options, env) => {
+      const token = tokens[idx];
+      const check = token.info.trim().slice("radio".length).trim();
+      if (token.nesting === 1) {
+        const isChecked = md.renderInline(check, {
+          references: env.references,
+        });
+        return `<div class="radio">
+          <div class="radio-point ${isChecked}" />`;
+      } else {
+        return "</div>";
       }
     },
   });

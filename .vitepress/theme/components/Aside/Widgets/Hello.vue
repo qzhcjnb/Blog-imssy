@@ -29,10 +29,7 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
-import { ref, onBeforeUnmount } from "vue";
 import { getGreetings } from "@/utils/helper";
-import Clock from "@/components/Aside/Widgets/Clock.vue";
 
 const { site, theme } = useData();
 

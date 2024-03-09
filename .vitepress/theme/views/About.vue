@@ -170,7 +170,6 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
 import { jumpLink } from "@/utils/helper";
 
 const { theme } = useData();

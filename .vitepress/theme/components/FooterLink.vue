@@ -71,8 +71,6 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
-import { ref, computed, onMounted } from "vue";
 import { smoothScrolling, shuffleArray } from "@/utils/helper";
 import linkData from "@/assets/linkData.mjs";
 

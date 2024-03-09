@@ -13,8 +13,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
-import { useRoute } from "vitepress";
 import Artalk from "artalk";
 import "artalk/dist/Artalk.css";
 

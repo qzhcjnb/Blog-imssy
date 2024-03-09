@@ -83,10 +83,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
 import { jumpLink, debounce } from "@/utils/helper";
 import { getFriendsLink } from "@/api/link";
-import Banner from "@/components/Banner.vue";
 
 // 鱼塘数据
 const friendsStatusData = ref(null);

@@ -34,7 +34,6 @@
 </template>
 
 <script setup>
-import { useData, useRoute } from "vitepress";
 import { formatTimestamp, jumpLink } from "@/utils/helper";
 
 const { theme } = useData();

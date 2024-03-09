@@ -7,9 +7,10 @@
         <img v-if="icon" class="link-img" :src="icon" alt="link-img" />
         <img
           v-else-if="siteInfo?.iconUrl"
-          class="link-img"
           :src="siteInfo.iconUrl"
+          class="link-img"
           alt="link-img"
+          @error="siteInfo.iconUrl = null"
         />
         <i v-else class="iconfont icon-link"></i>
       </div>

@@ -65,9 +65,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { mainStore } from "@/store";
-import { useRouter } from "vitepress";
 import { jumpLink } from "@/utils/helper";
 import algoliasearch from "algoliasearch/lite";
 

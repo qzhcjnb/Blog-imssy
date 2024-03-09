@@ -174,10 +174,8 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { useRouter, useData } from "vitepress";
 import {
   smoothScrolling,
   shufflePost,

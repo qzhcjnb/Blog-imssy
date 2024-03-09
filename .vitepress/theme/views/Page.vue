@@ -12,10 +12,6 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
-import Aside from "@/components/Aside/index.vue";
-import Comments from "@/components/Comments.vue";
-
 const { page } = useData();
 const props = defineProps({
   // 显示侧边栏

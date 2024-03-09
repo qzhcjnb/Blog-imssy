@@ -38,8 +38,6 @@
 </template>
 
 <script setup>
-import { useData } from "vitepress";
-
 const { theme } = useData();
 const props = defineProps({
   // 页面类型

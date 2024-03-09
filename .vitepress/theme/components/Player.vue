@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { getMusicList } from "@/api/music";

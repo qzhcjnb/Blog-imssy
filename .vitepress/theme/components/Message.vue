@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
-
 // 消息数据
 const messageType = ref("info");
 const messageShow = ref(false);

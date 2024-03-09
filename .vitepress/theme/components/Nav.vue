@@ -101,10 +101,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { useData, useRouter } from "vitepress";
 import { smoothScrolling, shufflePost } from "@/utils/helper";
-import MobileMenu from "@/components/MobileMenu.vue";
-import Search from "@/components/Search.vue";
 
 const router = useRouter();
 const store = mainStore();

@@ -10,11 +10,6 @@
 </template>
 
 <script setup>
-import Hello from "@/components/Aside/Widgets/Hello.vue";
-import Toc from "@/components/Aside/Widgets/Toc.vue";
-import Tags from "@/components/Aside/Widgets/Tags.vue";
-import SiteData from "@/components/Aside/Widgets/SiteData.vue";
-
 const props = defineProps({
   // 显示目录
   showToc: {

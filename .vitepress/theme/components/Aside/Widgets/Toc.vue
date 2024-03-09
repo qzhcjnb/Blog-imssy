@@ -26,10 +26,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { throttle } from "@/utils/helper";
 import { mainStore } from "@/store";
-import { useRoute } from "vitepress";
 
 const route = useRoute();
 const store = mainStore();

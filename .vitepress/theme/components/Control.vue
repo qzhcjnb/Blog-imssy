@@ -55,7 +55,6 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
 import { mainStore } from "@/store";
 
 const store = mainStore();

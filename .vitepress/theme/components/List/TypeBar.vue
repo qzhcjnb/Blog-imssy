@@ -44,9 +44,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useData, useRoute } from "vitepress";
-
 const { theme } = useData();
 const props = defineProps({
   // 显示类别

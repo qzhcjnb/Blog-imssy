@@ -38,21 +38,7 @@
 
 <script setup>
 import { mainStore } from "@/store";
-import { useData, useRoute } from "vitepress";
 import { calculateScroll } from "@/utils/helper";
-import { ref, onMounted, computed, onBeforeUnmount, watch } from "vue";
-import Nav from "@/components/Nav.vue";
-import Loading from "@/components/Loading.vue";
-import Footer from "@/components/Footer.vue";
-import FooterLink from "@/components/FooterLink.vue";
-import Control from "@/components/Control.vue";
-import RightMenu from "@/components/RightMenu.vue";
-import Message from "@/components/Message.vue";
-import Player from "@/components/Player.vue";
-import Home from "@/views/Home.vue";
-import Page from "@/views/Page.vue";
-import Post from "@/views/Post.vue";
-import NotFound from "@/views/NotFound.vue";
 
 const route = useRoute();
 const store = mainStore();

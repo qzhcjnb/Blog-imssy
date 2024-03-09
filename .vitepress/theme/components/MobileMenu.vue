@@ -51,7 +51,6 @@
 </template>
 
 <script setup>
-import { useData, useRouter } from "vitepress";
 import { mainStore } from "@/store";
 
 const store = mainStore();

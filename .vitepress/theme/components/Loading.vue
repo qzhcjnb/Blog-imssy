@@ -11,7 +11,6 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { useData } from "vitepress";
 
 const store = mainStore();
 const { theme } = useData();

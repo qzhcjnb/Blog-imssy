@@ -62,11 +62,11 @@ export default withPwa(
     vite: {
       plugins: [
         AutoImport({
-          imports: ["vue"],
+          imports: ["vue", "vitepress"],
           dts: ".vitepress/auto-imports.d.ts",
         }),
         Components({
-          dirs: [".vitepress/theme/components"],
+          dirs: [".vitepress/theme/components", ".vitepress/theme/views"],
           extensions: ["vue", "md"],
           include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
           dts: ".vitepress/components.d.ts",

@@ -43,7 +43,6 @@
 </template>
 
 <script setup>
-import { useRouter } from "vitepress";
 import { formatTimestamp } from "@/utils/helper";
 
 const router = useRouter();

@@ -18,13 +18,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useData } from "vitepress";
-import Banner from "@/components/Banner.vue";
-import PostList from "@/components/List/PostList.vue";
-import TypeBar from "@/components/List/TypeBar.vue";
-import Aside from "@/components/Aside/index.vue";
-
 const { theme } = useData();
 const props = defineProps({
   // 显示首页头部
