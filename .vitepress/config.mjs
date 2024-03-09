@@ -10,6 +10,8 @@ import {
 } from "./theme/utils/getPostData.mjs";
 import headLinks from "./theme/assets/headLinks.mjs";
 import markdownConfig from "./theme/utils/markdownConfig.mjs";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
 
 import path from "path";
 
@@ -58,7 +60,18 @@ export default withPwa(
     buildEnd: createRssFile,
     // vite
     vite: {
-      plugins: [],
+      plugins: [
+        AutoImport({
+          imports: ["vue"],
+          dts: ".vitepress/auto-imports.d.ts",
+        }),
+        Components({
+          dirs: [".vitepress/theme/components"],
+          extensions: ["vue", "md"],
+          include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+          dts: ".vitepress/components.d.ts",
+        }),
+      ],
       resolve: {
         // 配置路径别名
         alias: {
