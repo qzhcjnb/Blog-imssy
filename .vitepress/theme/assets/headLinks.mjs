@@ -1,5 +1,12 @@
-// 外部资源引入
+// Head
 const headLinks = [
+  [
+    "link",
+    {
+      rel: "canonical",
+      href: "https://blog.imsyy.top/",
+    },
+  ],
   // HarmonyOS font
   [
     "link",

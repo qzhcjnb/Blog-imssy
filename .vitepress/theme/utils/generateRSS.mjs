@@ -40,7 +40,7 @@ export const createRssFile = async (config) => {
       id: `${hostLink}${url}`,
       link: `${hostLink}${url}`,
       description,
-      content: html,
+      // content: html,
       date,
       author: [
         {

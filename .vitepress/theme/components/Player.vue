@@ -173,7 +173,7 @@ onBeforeUnmount(() => {
           line-height: normal;
           z-index: 2;
           .aplayer-title {
-            line-height: 1;
+            line-height: normal;
             display: inline-block;
             white-space: nowrap;
             max-width: 120px;
@@ -200,7 +200,7 @@ onBeforeUnmount(() => {
           .aplayer-lrc-contents {
             p {
               text-align: center;
-              color: #efefef;
+              color: var(--main-card-background);
               filter: blur(0.8px);
               transition:
                 filter 0.3s,
@@ -277,7 +277,7 @@ onBeforeUnmount(() => {
   }
   &.playing {
     .player-content {
-      color: #efefef;
+      color: var(--main-card-background);
       background-color: var(--main-color);
       border: 1px solid var(--main-color);
       :deep(.aplayer-body) {
