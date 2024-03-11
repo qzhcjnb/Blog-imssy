@@ -1,7 +1,7 @@
 <!-- 链接卡片 -->
 <template>
-  <div class="link-card s-card hover" @click="jumpLink(url)">
-    <span class="link-tip">引用站外地址，请注意甄别链接安全性</span>
+  <div class="link-card s-card hover" @click="jumpLink(url, isOutLink)">
+    <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
     <div class="link-data">
       <div class="link-icon">
         <img v-if="icon" class="link-img" :src="icon" alt="link-img" />
@@ -57,6 +57,14 @@ const props = defineProps({
 // 站点数据
 const siteInfo = ref(null);
 
+// 是否为站内链接
+const isOutLink = computed(() => {
+  const link = props.url;
+  if (!link) return false;
+  // 是否为站内链接
+  return !link.startsWith("/") && (link.startsWith("http://") || link.startsWith("https://"));
+});
+
 // 获取站点数据
 const getSiteInfoData = async () => {
   const url = props.url;
@@ -83,11 +91,11 @@ onMounted(() => {
     font-size: 14px;
     opacity: 0.6;
     padding-bottom: 0.8rem;
+    margin-bottom: 0.8rem;
     border-bottom: 2px dashed var(--main-card-border);
   }
   .link-data {
     height: 100%;
-    margin-top: 0.8rem;
     display: flex;
     flex-direction: row;
     align-items: center;
