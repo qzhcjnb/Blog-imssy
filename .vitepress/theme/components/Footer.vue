@@ -10,6 +10,13 @@
           <i class="iconfont icon-safe" />
           {{ theme.icp }}
         </span>
+        <span
+          class="upyun link"
+          @click="jumpLink('https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral')"
+        >
+          <i class="iconfont icon-upyun" />
+          又拍云
+        </span>
       </div>
       <div class="meta">
         <div class="power link" @click="jumpLink('https://vitepress.dev/')">
@@ -76,8 +83,13 @@ const thisYear = computed(() => new Date().getFullYear());
       .icp {
         .iconfont {
           font-size: 20px;
-          margin-right: 4px;
           opacity: 0.6;
+        }
+      }
+      .upyun {
+        .iconfont {
+          font-size: 20px;
+          font-weight: normal;
         }
       }
     }
@@ -125,6 +137,7 @@ const thisYear = computed(() => new Date().getFullYear());
       cursor: pointer;
       .iconfont {
         font-size: 22px;
+        margin-right: 4px;
         transition: color 0.3s;
       }
       &:hover {
