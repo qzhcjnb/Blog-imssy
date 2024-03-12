@@ -50,7 +50,6 @@ const route = useRoute();
 <style lang="scss" scoped>
 .copyright {
   position: relative;
-  border-radius: 8px;
   background-color: var(--main-card-second-background);
   padding: 18px;
   margin-top: 2rem;
@@ -101,7 +100,7 @@ const route = useRoute();
   &::after {
     content: "\e021";
     position: absolute;
-    top: -3rem;
+    top: -4rem;
     right: -4rem;
     font-family: "iconfont";
     opacity: 0.1;

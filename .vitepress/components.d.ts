@@ -37,6 +37,7 @@ declare module 'vue' {
     Post: typeof import('./theme/views/Post.vue')['default']
     PostList: typeof import('./theme/components/List/PostList.vue')['default']
     Project: typeof import('./theme/views/Project.vue')['default']
+    References: typeof import('./theme/components/References.vue')['default']
     RightMenu: typeof import('./theme/components/RightMenu.vue')['default']
     Search: typeof import('./theme/components/Search.vue')['default']
     SiteData: typeof import('./theme/components/Aside/Widgets/SiteData.vue')['default']

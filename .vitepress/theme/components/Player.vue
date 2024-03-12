@@ -34,7 +34,7 @@ const playerDom = ref(null);
 // 获取播放列表
 const getMusicListData = async () => {
   try {
-    const musicList = await getMusicList();
+    const musicList = await getMusicList(9379831714);
     console.log(musicList);
     initAPlayer(musicList?.length ? musicList : []);
   } catch (error) {
