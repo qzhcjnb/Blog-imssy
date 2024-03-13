@@ -3,7 +3,7 @@ import { getAllPosts, getAllType } from "../../.vitepress/theme/utils/getPostDat
 const postData = await getAllPosts();
 const tagsData = getAllType(postData);
 
-// 文章分页动态路由
+// 标签动态路由
 export default {
   paths() {
     const pages = [];

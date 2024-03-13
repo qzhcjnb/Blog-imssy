@@ -48,6 +48,8 @@ const references = frontmatter.value?.references;
     }
   }
   .list {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     list-style-type: none;
     padding-left: 0.4rem;
@@ -56,6 +58,7 @@ const references = frontmatter.value?.references;
       flex-direction: row;
       align-items: center;
       position: relative;
+      width: max-content;
       padding-left: 1rem;
       margin-bottom: 0.4rem;
       overflow: auto;
@@ -72,6 +75,7 @@ const references = frontmatter.value?.references;
         left: 0;
         width: 8px;
         height: 8px;
+        opacity: 0.6;
         background-color: var(--main-font-color);
         border-radius: 50%;
         transition: background-color 0.3s;

@@ -43,9 +43,10 @@ const router = useRouter();
   padding: 2rem;
   .title {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     .name {
       margin: 0;
+      border-bottom: none;
     }
     .num {
       margin-left: 8px;

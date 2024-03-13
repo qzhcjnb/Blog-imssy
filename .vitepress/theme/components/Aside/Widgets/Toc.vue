@@ -110,13 +110,13 @@ const scrollToHeader = (id) => {
 watch(
   () => store.scrollData.percentage,
   (val) => {
-    if (val === 0) {
+    if (val === 0 && tocData.value) {
       console.log("回到顶部");
       // 所有标题
       const headers = getAllTitle();
       if (!headers) return false;
       activeTocHeight.value = 4;
-      activeHeader.value = headers[0].id;
+      activeHeader.value = headers[0]?.id;
     }
   },
 );

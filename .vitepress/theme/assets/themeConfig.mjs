@@ -20,6 +20,8 @@ export const themeConfig = {
   icp: "豫ICP备2022018134号-1",
   // 建站日期
   since: "2020-07-28",
+  // 每页文章数据
+  postSize: 8,
   // 导航栏菜单
   nav: [
     {

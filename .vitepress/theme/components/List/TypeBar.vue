@@ -2,7 +2,11 @@
 <template>
   <div v-if="type === 'categories'" class="type-bar s-card hover">
     <div class="all-type">
-      <a v-if="currentTypeName" :href="`/pages/categories/${currentTypeName}`" class="type-item choose">
+      <a
+        v-if="currentTypeName"
+        :href="`/pages/categories/${currentTypeName}`"
+        class="type-item choose"
+      >
         {{ currentTypeName }}
       </a>
       <a href="/" :class="['type-item', { choose: !currentTypeName }]">首页</a>
@@ -44,7 +48,7 @@
 </template>
 
 <script setup>
-const { theme } = useData();
+const { theme, params } = useData();
 const props = defineProps({
   // 显示类别
   type: {
@@ -55,10 +59,17 @@ const props = defineProps({
 const route = useRoute();
 
 // 获取当前路由路径
+// const currentTypeName = computed(() => {
+//   const routePath = decodeURIComponent(route.path);
+//   const typeName = routePath.split("/").pop();
+//   // 检查路径中是否存在 /page/
+//   if (routePath.includes("/page/")) {
+//     return null;
+//   }
+//   return typeName;
+// });
 const currentTypeName = computed(() => {
-  const routePath = decodeURIComponent(route.path);
-  const typeName = routePath.split("/").pop();
-  return typeName;
+  return params.value?.name || null;
 });
 </script>
 

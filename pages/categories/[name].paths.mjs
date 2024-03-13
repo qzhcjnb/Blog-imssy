@@ -3,7 +3,7 @@ import { getAllPosts, getAllCategories } from "../../.vitepress/theme/utils/getP
 const postData = await getAllPosts();
 const categoriesData = getAllCategories(postData);
 
-// 文章分页动态路由
+// 分类动态路由
 export default {
   paths() {
     const pages = [];

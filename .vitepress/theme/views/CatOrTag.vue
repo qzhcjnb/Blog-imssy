@@ -81,11 +81,13 @@ const props = defineProps({
       margin: 0.5em;
       .name {
         font-weight: bold;
+        transition: color 0.3s;
       }
       .iconfont {
         margin-right: 8px;
         font-size: 20px;
         opacity: 0.6;
+        transition: color 0.3s;
       }
       .num {
         display: flex;

@@ -77,6 +77,7 @@
         >
           <span class="icon">∞</span>
         </div>
+        <span v-else class="not-more"> 共 {{ friendsLinkData?.length }} 篇，最多显示 500 篇 </span>
       </Transition>
     </div>
   </div>
@@ -323,6 +324,16 @@ onMounted(() => {
       color: var(--main-card-background);
       background-color: var(--main-color);
     }
+  }
+  .not-more {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    font-size: 14px;
+    opacity: 0.6;
+    color: var(--main-font-second-color);
   }
 }
 </style>

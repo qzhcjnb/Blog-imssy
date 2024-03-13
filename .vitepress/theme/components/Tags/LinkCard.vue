@@ -1,6 +1,6 @@
 <!-- 链接卡片 -->
 <template>
-  <div class="link-card s-card hover" @click="jumpLink(url, isOutLink)">
+  <div class="link-card s-card hover" @click="isOutLink ? jumpLink(url) : router.go(url)">
     <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
     <div class="link-data">
       <div class="link-icon">
@@ -31,6 +31,7 @@
 import { getSiteInfo } from "@/api/link";
 import { jumpLink } from "@/utils/helper";
 
+const router = useRouter();
 const props = defineProps({
   // 地址
   url: {

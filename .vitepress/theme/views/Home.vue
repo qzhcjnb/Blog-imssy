@@ -7,9 +7,20 @@
         <!-- 分类总览 -->
         <TypeBar :type="showTags ? 'tags' : 'categories'" />
         <!-- 文章列表 -->
-        <PostList v-if="showCategories" :listData="theme.categoriesData[showCategories].articles" />
-        <PostList v-else-if="showTags" :listData="theme.tagsData[showTags].articles" />
-        <PostList v-else :listData="postData" />
+        <PostList :listData="postData" />
+        <!-- 分页 -->
+        <Pagination
+          :total="allListTotal"
+          :page="Number(page)"
+          :limit="postSize"
+          :routePath="
+            showCategories
+              ? `/pages/categories/${showCategories}`
+              : showTags
+                ? `/pages/tags/${showTags}`
+                : ''
+          "
+        />
       </div>
       <!-- 侧边栏 -->
       <Aside />
@@ -27,8 +38,8 @@ const props = defineProps({
   },
   // 当前页数
   page: {
-    type: [null, Number],
-    default: null,
+    type: Number,
+    default: 1,
   },
   // 显示分类
   showCategories: {
@@ -42,10 +53,38 @@ const props = defineProps({
   },
 });
 
-// 根据页数计算文章数据
+// 每页文章数
+const postSize = theme.value.postSize;
+
+// 列表总数量
+const allListTotal = computed(() => {
+  const data = props.showCategories
+    ? theme.value.categoriesData[props.showCategories]?.articles
+    : props.showTags
+      ? theme.value.tagsData[props.showTags]?.articles
+      : theme.value.postData;
+  // 返回数量
+  return data ? data.length : 0;
+});
+
+// 根据页数计算列表数据
 const postData = computed(() => {
   const page = props.page ? props.page - 1 : 0;
-  return theme.value.postData?.slice(page * 10, page * 10 + 10);
+  let data = null;
+  // 分类数据
+  if (props.showCategories) {
+    data = theme.value.categoriesData[props.showCategories]?.articles;
+  }
+  // 标签数据
+  else if (props.showTags) {
+    data = theme.value.tagsData[props.showTags]?.articles;
+  }
+  // 文章数据
+  else {
+    data = theme.value.postData;
+  }
+  // 返回列表
+  return data ? data.slice(page * postSize, page * postSize + postSize) : [];
 });
 </script>
 

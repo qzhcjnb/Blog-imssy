@@ -33,6 +33,7 @@ declare module 'vue' {
     Nav: typeof import('./theme/components/Nav.vue')['default']
     NotFound: typeof import('./theme/views/NotFound.vue')['default']
     Page: typeof import('./theme/views/Page.vue')['default']
+    Pagination: typeof import('./theme/components/Pagination.vue')['default']
     Player: typeof import('./theme/components/Player.vue')['default']
     Post: typeof import('./theme/views/Post.vue')['default']
     PostList: typeof import('./theme/components/List/PostList.vue')['default']
