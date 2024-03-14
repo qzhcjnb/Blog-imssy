@@ -7,12 +7,12 @@
         'player',
         {
           playing: playState,
-          hidden: scrollData?.percentage >= 90,
+          hidden: footerIsShow,
         },
       ]"
       @click="player?.toggle()"
     >
-      <div ref="playerDom" class="player-content"></div>
+      <div ref="playerDom" class="player-content" />
     </div>
   </Teleport>
 </template>
@@ -25,7 +25,7 @@ import musicLists from "@/assets/musicLists.mjs";
 import "aplayer/dist/APlayer.min.css";
 
 const store = mainStore();
-const { playerShow, playState, playerData, scrollData } = storeToRefs(store);
+const { playerShow, playState, playerData, footerIsShow } = storeToRefs(store);
 
 // APlayer
 const player = ref(null);

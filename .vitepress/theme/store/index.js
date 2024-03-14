@@ -16,6 +16,8 @@ export const mainStore = defineStore("main", {
         // 滚动方向
         direction: "down",
       },
+      // 页脚可见性
+      footerIsShow: false,
       // 中控台显示
       controlShow: false,
       // 搜索框显示

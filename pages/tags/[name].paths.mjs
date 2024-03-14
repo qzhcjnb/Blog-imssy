@@ -8,9 +8,9 @@ export default {
   paths() {
     const pages = [];
     // 生成每一页的路由参数
-    for (const key in tagsData) {
+    Object.keys(tagsData).forEach((key) => {
       pages.push({ params: { name: key.toString() } });
-    }
+    });
     console.info("标签动态路由：", pages);
     return pages;
   },

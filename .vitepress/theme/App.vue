@@ -38,7 +38,7 @@
 
 <script setup>
 import { mainStore } from "@/store";
-import { calculateScroll } from "@/utils/helper";
+import { calculateScroll, specialDayGray } from "@/utils/helper";
 
 const route = useRoute();
 const store = mainStore();
@@ -110,6 +110,8 @@ watch(
 
 onMounted(() => {
   console.log(frontmatter.value, page.value, theme.value);
+  // 全站置灰
+  specialDayGray();
   // 更改主题类别
   changeSiteThemeType();
   // 滚动监听

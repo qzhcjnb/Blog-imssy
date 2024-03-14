@@ -1,5 +1,5 @@
 <template>
-  <footer class="main-footer">
+  <footer id="main-footer" class="main-footer">
     <div class="footer-content">
       <div class="copyright">
         <span class="time">@ 2019 - {{ thisYear }} By </span>
@@ -45,12 +45,41 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
+import { mainStore } from "@/store";
 import { jumpLink } from "@/utils/helper";
 
+const store = mainStore();
 const { theme } = useData();
+const { footerIsShow } = storeToRefs(store);
+
+// 视窗监听器
+const observer = ref(null);
 
 // 实时年份
 const thisYear = computed(() => new Date().getFullYear());
+
+// 监听页脚视窗
+const isShowFooter = () => {
+  const footerDom = document.getElementById("main-footer");
+  if (!footerDom) return false;
+  if (observer.value) observer.value?.disconnect();
+  observer.value = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      footerIsShow.value = entry.isIntersecting ? true : false;
+    });
+  });
+  // 添加监视器
+  observer.value?.observe(footerDom);
+};
+
+onMounted(() => {
+  isShowFooter();
+});
+
+onBeforeUnmount(() => {
+  if (observer.value) observer.value?.disconnect();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -61,7 +90,6 @@ const thisYear = computed(() => new Date().getFullYear());
   background-color: var(--main-card-second-background);
   border-top: 1px solid var(--main-card-border);
   overflow: hidden;
-  z-index: 1000;
   animation: show 0.3s backwards;
   transition:
     color 0.3s,

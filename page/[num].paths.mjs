@@ -14,7 +14,7 @@ export default {
   paths() {
     const pages = [];
     // 生成每一页的路由参数
-    for (let pageNum = 2; pageNum <= totalPages; pageNum++) {
+    for (let pageNum = 2; pageNum <= totalPages; pageNum += 1) {
       pages.push({ params: { num: pageNum.toString() } });
     }
     console.info("文章分页动态路由：", pages);

@@ -8,7 +8,9 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-vue": "^9.23.0",
     "feed": "^4.2.2",
     "fs-extra": "^11.2.0",
     "globby": "^14.0.1",

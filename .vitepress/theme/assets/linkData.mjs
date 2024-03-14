@@ -36,6 +36,12 @@ const linkData = [
         desc: "有着非常优秀的设计与交互的博客",
         url: "https://www.thyuu.com/",
       },
+      {
+        name: "DIYgod",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/14/65f2c2bb8c17c.gif",
+        desc: "写代码是热爱，写到世界充满爱！",
+        url: "https://diygod.cc/",
+      },
     ],
   },
   // 小伙伴们

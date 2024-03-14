@@ -86,6 +86,8 @@
             反馈与投诉
           </a>
         </div>
+        <!-- 下一篇 -->
+        <NextPost />
         <!-- 评论 -->
         <Comments ref="commentRef" />
       </article>
