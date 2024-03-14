@@ -71,6 +71,7 @@ const allListTotal = computed(() => {
 // 获得当前页数
 const getCurrentPage = () => {
   if (props.showCategories || props.showTags) {
+    if (typeof window === "undefined") return 0;
     const params = new URLSearchParams(window.location.search);
     const page = params.get("page");
     if (!page) return 0;
