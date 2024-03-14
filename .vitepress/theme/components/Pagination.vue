@@ -2,9 +2,14 @@
 <template>
   <div v-if="total > 0" class="pagination">
     <div
-      v-if="page > 1"
+      v-if="currentPage > 1"
       class="page-item prev"
-      @click="router.go(page === 2 ? `${routePath}` : `${routePath}/page/${page - 1}`)"
+      @click="
+        jumpPage(
+          currentPage === 2 ? `${routePath}` : `${routePath}/page/${currentPage - 1}`,
+          currentPage === 2 ? 1 : currentPage - 1,
+        )
+      "
     >
       <i class="iconfont icon-page-right" />
       <span class="page-text">上页</span>
@@ -13,8 +18,8 @@
       <div
         v-for="(item, index) in pageNumber"
         :key="index"
-        :class="[item === '...' ? 'point' : 'page-item', { choose: item === page }]"
-        @click="router.go(item === 1 ? `${routePath}` : `${routePath}/page/${item}`)"
+        :class="[item === '...' ? 'point' : 'page-item', { choose: item === currentPage }]"
+        @click="jumpPage(item === 1 ? `${routePath}` : `${routePath}/page/${item}`, item)"
       >
         <span class="page-num">{{ item }}</span>
       </div>
@@ -25,17 +30,17 @@
           :min="1"
           :max="totalPages"
           @focus="inputFocus = true"
-          @blur="(jumpInput = null), (inputFocus = false)"
+          @blur="fastJump"
           @input="validateInput"
-          @keydown.enter="jumpPage"
+          @keydown.enter="fastJump"
         />
-        <i :class="['iconfont icon-arrow-right', { click: jumpInput }]" @click="jumpPage" />
+        <i :class="['iconfont icon-arrow-right', { click: jumpInput }]" @click.stop="fastJump" />
       </div>
     </div>
     <div
-      v-if="page * limit < total"
+      v-if="currentPage * limit < total"
       class="page-item next"
-      @click="router.go(`${routePath}/page/${page + 1}`)"
+      @click="jumpPage(`${routePath}/page/${currentPage + 1}`, currentPage + 1)"
     >
       <span class="page-text">下页</span>
       <i class="iconfont icon-page-right" />
@@ -68,19 +73,25 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  // 使用参数
+  useParams: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // 快速跳转数据
 const jumpInput = ref(null);
 const inputFocus = ref(false);
 
-// 总页数
+// 页数数据
+const currentPage = ref(props.page);
 const totalPages = computed(() => Math.ceil(props.total / props.limit));
 
 // 分页指示器数据
 const pageNumber = computed(() => {
   let pages = [];
-  const current = props.page;
+  const current = currentPage.value;
   const total = totalPages.value;
   const wingSize = 2; // 当前页前后要显示的页码数
   let startPage = Math.max(current - wingSize, 2);
@@ -103,14 +114,10 @@ const pageNumber = computed(() => {
     pages.push("...");
   } else {
     // 如果 endPage 是 totalPages-1，不需要省略号，直接显示倒数第二页
-    if (endPage === total - 1) {
-      endPage = total - 1;
-    }
+    if (endPage === total - 1) endPage = total - 1;
   }
   // 总是显示最后一页，除非只有一页
-  if (total > 1) {
-    pages.push(total);
-  }
+  if (total > 1) pages.push(total);
   return pages;
 });
 
@@ -126,15 +133,44 @@ const validateInput = () => {
   }
 };
 
-// 快速跳转
-const jumpPage = () => {
-  if (!jumpInput.value) return false;
-  if (jumpInput.value === 1) {
-    router.go(`${props.routePath}`);
-  } else {
-    router.go(`${props.routePath}/page/${jumpInput.value}`);
+// 跳转页面
+const jumpPage = (url, page) => {
+  // 使用参数跳转
+  if (props.useParams) {
+    if (page === 1) {
+      router.go(`${props.routePath}`);
+    } else {
+      router.go(`${props.routePath}?page=${page}`);
+    }
+  }
+  // 正常跳转
+  else {
+    router.go(url);
   }
 };
+
+// 快速跳转
+const fastJump = () => {
+  inputFocus.value = false;
+  if (!jumpInput.value) return false;
+  jumpPage(
+    jumpInput.value === 1 ? `${props.routePath}` : `${props.routePath}/page/${jumpInput.value}`,
+    jumpInput.value,
+  );
+};
+
+// 检查当前路径参数
+const checkCurrentPage = () => {
+  const params = new URLSearchParams(window.location.search);
+  const page = params.get("page");
+  if (page && props.useParams) {
+    currentPage.value = Number(page);
+  }
+};
+
+onMounted(() => {
+  checkCurrentPage();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -299,11 +335,6 @@ const jumpPage = () => {
       display: none;
     }
     .page-item {
-      &.prev,
-      &.next {
-        position: static;
-        width: 100%;
-      }
       &:first-child {
         margin-right: 10px;
       }

@@ -13,6 +13,7 @@
           :total="allListTotal"
           :page="Number(page)"
           :limit="postSize"
+          :useParams="showCategories || showTags ? true : false"
           :routePath="
             showCategories
               ? `/pages/categories/${showCategories}`
@@ -67,9 +68,22 @@ const allListTotal = computed(() => {
   return data ? data.length : 0;
 });
 
+// 获得当前页数
+const getCurrentPage = () => {
+  if (props.showCategories || props.showTags) {
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get("page");
+    if (!page) return 0;
+    const currentPage = Number(page);
+    return currentPage ? currentPage - 1 : 0;
+  }
+  return props.page ? props.page - 1 : 0;
+};
+
 // 根据页数计算列表数据
 const postData = computed(() => {
-  const page = props.page ? props.page - 1 : 0;
+  const page = getCurrentPage();
+  console.log("当前页数：", page);
   let data = null;
   // 分类数据
   if (props.showCategories) {

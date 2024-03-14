@@ -131,6 +131,13 @@ const props = defineProps({
           opacity: 0.8;
           margin-right: 20px;
           overflow: hidden;
+          mask: linear-gradient(
+            90deg,
+            #fff 0,
+            #fff 90%,
+            hsla(0, 0%, 100%, 0.6) 95%,
+            hsla(0, 0%, 100%, 0) 100%
+          );
           .tags-name {
             display: flex;
             flex-direction: row;

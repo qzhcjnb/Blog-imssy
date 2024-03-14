@@ -185,6 +185,9 @@ const { site, theme, frontmatter, page } = useData();
       min-width: 200px;
       .more-menu {
         margin-right: 4px;
+        @media (max-width: 512px) {
+          display: none;
+        }
       }
       .site-name {
         position: relative;
@@ -195,6 +198,9 @@ const { site, theme, frontmatter, page } = useData();
         font-weight: bold;
         height: 34px;
         padding: 0 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         transition: transform 0.3s;
         cursor: pointer;
         &::after {
