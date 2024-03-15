@@ -142,13 +142,13 @@ const props = defineProps({
             display: flex;
             flex-direction: row;
             align-items: center;
-            margin-right: 8px;
+            margin-right: 12px;
             white-space: nowrap;
             transition: color 0.3s;
             .iconfont {
               font-weight: normal;
               opacity: 0.6;
-              margin-right: 6px;
+              margin-right: 4px;
               transition: color 0.3s;
             }
             &:hover {

@@ -1,5 +1,7 @@
 // Head
 const headLinks = [
+  // favicon
+  ["link", { rel: "icon", href: "favicon.ico" }],
   [
     "link",
     {
