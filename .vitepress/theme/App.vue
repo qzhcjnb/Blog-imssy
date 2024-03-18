@@ -28,10 +28,17 @@
   <!-- 页脚 -->
   <FooterLink v-show="!store.loadingStatus" :showBar="isPostPage && !page.isNotFound" />
   <Footer v-show="!store.loadingStatus" />
+  <!-- 左侧菜单 -->
+  <Teleport to="body">
+    <div :class="['left-menu', { hidden: store.footerIsShow }]">
+      <!-- 全局设置 -->
+      <Settings />
+      <!-- 全局播放器 -->
+      <Player />
+    </div>
+  </Teleport>
   <!-- 右键菜单 -->
   <RightMenu ref="rightMenuRef" />
-  <!-- 全局播放器 -->
-  <Player />
   <!-- 全局消息 -->
   <Message />
 </template>
@@ -94,7 +101,19 @@ const changeSiteThemeType = () => {
   }
 };
 
-// 监听主题类型变化
+// 切换系统字体样式
+const changeSiteFont = () => {
+  try {
+    const htmlElement = document.documentElement;
+    htmlElement.classList.remove("lxgw", "hmos");
+    htmlElement.classList.add(store.fontFamily);
+    htmlElement.style.fontSize = store.fontSize + "px";
+  } catch (error) {
+    console.error("切换系统字体样式失败", error);
+  }
+};
+
+// 监听设置变化
 watch(
   () => store.themeType,
   (val) => {
@@ -107,6 +126,10 @@ watch(
     }
   },
 );
+watch(
+  () => store.fontFamily,
+  () => changeSiteFont(),
+);
 
 onMounted(() => {
   console.log(frontmatter.value, page.value, theme.value);
@@ -114,6 +137,8 @@ onMounted(() => {
   specialDayGray();
   // 更改主题类别
   changeSiteThemeType();
+  // 切换系统字体样式
+  changeSiteFont();
   // 滚动监听
   window.addEventListener("scroll", calculateScroll);
   // 右键监听
@@ -149,6 +174,19 @@ onBeforeUnmount(() => {
     &.is-post {
       padding: 0;
     }
+  }
+}
+.left-menu {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1002;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+  &.hidden {
+    opacity: 0;
+    transform: translateY(100px);
   }
 }
 </style>

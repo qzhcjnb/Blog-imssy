@@ -1,20 +1,8 @@
 <!-- 全局播放器 -->
 <template>
-  <Teleport to="body">
-    <div
-      v-if="playerShow"
-      :class="[
-        'player',
-        {
-          playing: playState,
-          hidden: footerIsShow,
-        },
-      ]"
-      @click="player?.toggle()"
-    >
-      <div ref="playerDom" class="player-content" />
-    </div>
-  </Teleport>
+  <div v-if="playerShow" :class="['player', { playing: playState }]" @click="player?.toggle()">
+    <div ref="playerDom" class="player-content" />
+  </div>
 </template>
 
 <script setup>
@@ -25,7 +13,7 @@ import musicLists from "@/assets/musicLists.mjs";
 import "aplayer/dist/APlayer.min.css";
 
 const store = mainStore();
-const { playerShow, playState, playerData, footerIsShow } = storeToRefs(store);
+const { playerShow, playState, playerData } = storeToRefs(store);
 
 // APlayer
 const player = ref(null);
@@ -143,18 +131,16 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .player {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  z-index: 100;
-  transition: transform 0.3s;
+  height: 42px;
+  margin-top: 12px;
   cursor: pointer;
   .player-content {
     margin: 0;
+    width: fit-content;
     border-radius: 50px;
     overflow: hidden;
     color: var(--main-font-color);
-    font-family: "HarmonyOS_Regular", sans-serif;
+    font-family: var(--main-font-family);
     background-color: var(--main-card-background);
     border: 1px solid var(--main-card-border);
     box-shadow: 0 8px 16px -4px var(--main-dark-shadow);
@@ -172,7 +158,7 @@ onBeforeUnmount(() => {
         min-width: 30px;
         border-radius: 50%;
         margin-right: 8px;
-        border: 1px solid var(--main-card-border);
+        outline: 1px solid var(--main-card-border);
         animation: rotate 20s linear infinite;
         animation-play-state: paused;
         z-index: 2;
@@ -323,9 +309,6 @@ onBeforeUnmount(() => {
         opacity: 0;
       }
     }
-  }
-  &.hidden {
-    transform: translateY(100px);
   }
   &:active {
     transform: scale(0.98);

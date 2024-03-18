@@ -88,6 +88,13 @@ const linkData = [
       },
     ],
   },
+  // 失联
+  {
+    type: "loss",
+    typeName: "失联",
+    typeDesc: "持续超过一周无法访问的站点会出现在此处",
+    typeList: [],
+  },
 ];
 
 export default linkData;

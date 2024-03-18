@@ -9,6 +9,23 @@ const headLinks = [
       href: "https://blog.imsyy.top/",
     },
   ],
+  // 预载 CDN
+  [
+    "link",
+    {
+      crossorigin: "",
+      rel: "preconnect",
+      href: "https://s1.hdslb.com",
+    },
+  ],
+  [
+    "link",
+    {
+      crossorigin: "",
+      rel: "preconnect",
+      href: "https://cdn.staticfile.org",
+    },
+  ],
   // HarmonyOS font
   [
     "link",
@@ -16,6 +33,14 @@ const headLinks = [
       crossorigin: "anonymous",
       rel: "stylesheet",
       href: "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css",
+    },
+  ],
+  [
+    "link",
+    {
+      crossorigin: "anonymous",
+      rel: "stylesheet",
+      href: "https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.css",
     },
   ],
   // iconfont

@@ -80,7 +80,7 @@
       padding: 0 6px;
       border-radius: 6px;
       background-color: var(--main-card-border);
-      font-family: "Fira Code", monospace;
+      font-family: "Fira Code",var(--main-font-family), monospace;
       font-optical-sizing: auto;
       white-space: nowrap;
       transform: translateY(-2px);
@@ -266,7 +266,7 @@
         user-select: text;
         border-left: 1px solid var(--main-card-border);
         code {
-          font-family: "Fira Code", monospace;
+          font-family: "Fira Code",var(--main-font-family), monospace;
           font-optical-sizing: auto;
           .line {
             display: inline-block;
@@ -390,6 +390,7 @@
   mjx-container {
     overflow: auto;
     padding-bottom: 8px;
+    font-family: auto;
   }
   // custom-block
   .custom-block {
@@ -520,7 +521,7 @@
         line-height: normal;
         font-size: 16px;
         font-weight: bold;
-        font-family: "HarmonyOS_Regular";
+        font-family: var(--main-font-family);
         background-color: transparent;
         border-bottom: 2px solid transparent;
         transition: all 0.3s;

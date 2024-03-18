@@ -98,6 +98,7 @@ onBeforeUnmount(() => {
   width: 300px;
   padding: 20px;
   background-color: var(--main-site-background);
+  opacity: 0;
   transform: translateY(180px);
   .post-tip {
     font-size: 14px;
@@ -115,6 +116,7 @@ onBeforeUnmount(() => {
     -webkit-box-orient: vertical;
   }
   &.show {
+    opacity: 1;
     transform: translateY(0);
   }
   &:hover {

@@ -30,7 +30,7 @@ const { loadingStatus } = storeToRefs(store);
   height: 100vh;
   height: 100dvh;
   background-color: var(--main-card-background);
-  z-index: 1200;
+  z-index: 9999;
   .logo {
     width: 100px;
     height: 100px;

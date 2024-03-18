@@ -178,6 +178,7 @@ const jumpSearch = (url) => {
       font-size: 16px;
       padding: 0.6rem 1rem;
       color: var(--main-font-color);
+      font-family: var(--main-font-family);
       border: 1px solid var(--main-card-border);
       background-color: var(--main-card-second-background);
       transition:

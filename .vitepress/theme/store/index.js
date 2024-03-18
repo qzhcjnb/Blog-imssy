@@ -22,6 +22,8 @@ export const mainStore = defineStore("main", {
       controlShow: false,
       // 搜索框显示
       searchShow: false,
+      // 个性化配置显示
+      showSeetings: false,
       // 播放器数据
       playState: false,
       playerShow: true,
@@ -35,6 +37,10 @@ export const mainStore = defineStore("main", {
       useRightMenu: true,
       // 背景模糊
       backgroundBlur: false,
+      // 全站字体
+      fontFamily: "hmos",
+      // 全站字体大小
+      fontSize: 16,
     };
   },
   getters: {},
@@ -43,19 +49,40 @@ export const mainStore = defineStore("main", {
     changeShowStatus(value, blur = true) {
       this[value] = !this[value];
       // 阻止滚动
-      document.body.style.overflow = this[value] ? "hidden" : "";
+      document.body.style.overflowY = this[value] ? "hidden" : "";
       // 全局模糊
       const globalApp = document.getElementById("app");
       this[value] && this.backgroundBlur && blur
         ? globalApp.classList.add("blur")
         : globalApp.classList.remove("blur");
     },
+    // 更改字体大小
+    changeFontSize(isAdd = false) {
+      if (isAdd) {
+        if (this.fontSize < 20) {
+          this.fontSize++;
+        }
+      } else {
+        if (this.fontSize > 14) {
+          this.fontSize--;
+        }
+      }
+      const htmlElement = document.documentElement;
+      htmlElement.style.fontSize = this.fontSize + "px";
+    },
   },
   // 数据持久化
   persist: [
     {
       key: "siteData",
-      paths: ["themeType", "useRightMenu", "playerShow", "backgroundBlur"],
+      paths: [
+        "themeType",
+        "useRightMenu",
+        "playerShow",
+        "backgroundBlur",
+        "fontFamily",
+        "fontSize",
+      ],
     },
   ],
 });

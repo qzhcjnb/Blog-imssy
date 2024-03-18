@@ -42,6 +42,7 @@ declare module 'vue' {
     References: typeof import('./theme/components/References.vue')['default']
     RightMenu: typeof import('./theme/components/RightMenu.vue')['default']
     Search: typeof import('./theme/components/Search.vue')['default']
+    Settings: typeof import('./theme/components/Settings.vue')['default']
     SiteData: typeof import('./theme/components/Aside/Widgets/SiteData.vue')['default']
     Tags: typeof import('./theme/components/Aside/Widgets/Tags.vue')['default']
     Theme: typeof import('./theme/views/Theme.vue')['default']
