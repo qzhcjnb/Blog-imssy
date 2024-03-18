@@ -1,6 +1,6 @@
 <!-- 普通页面 -->
 <template>
-  <div :class="['page', { 'show-padding': showPadding, 'has-aside': showAside }]">
+  <div :class="['page', { 'has-aside': showAside }]">
     <div class="page-content">
       <!-- 页面内容 -->
       <Content id="page-content" class="markdown-main-style" />
@@ -18,11 +18,6 @@ const props = defineProps({
   showAside: {
     type: Boolean,
     default: true,
-  },
-  // 显示边距
-  showPadding: {
-    type: Boolean,
-    default: false,
   },
   // 显示评论
   showComment: {
@@ -73,14 +68,6 @@ console.log(page.value);
     .main-aside {
       width: 300px;
       padding-left: 1rem;
-    }
-  }
-  &.show-padding {
-    .page-content {
-      padding: 0 2rem;
-      @media (max-width: 768px) {
-        padding: 0 1.5rem;
-      }
     }
   }
   @media (max-width: 1200px) {

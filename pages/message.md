@@ -2,7 +2,6 @@
 title: 畅所欲言
 aside: false
 comment: true
-padding: true
 ---
 
 # 留言板

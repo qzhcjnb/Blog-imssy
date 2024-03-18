@@ -1,7 +1,6 @@
 ---
 title: 版权协议
 aside: false
-padding: true
 ---
 
 # 版权协议

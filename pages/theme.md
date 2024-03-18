@@ -1,7 +1,6 @@
 ---
 title: 本站主题
 aside: false
-padding: true
 ---
 
 <script setup>

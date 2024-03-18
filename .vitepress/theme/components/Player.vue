@@ -43,25 +43,6 @@ const getMusicListData = async () => {
   }
 };
 
-// 获取当前播放歌曲信息
-const getMusicData = () => {
-  try {
-    if (!playerDom.value) return false;
-    const songInfo = playerDom.value.querySelector(".aplayer-info");
-    // 歌曲信息
-    const songName = songInfo.querySelector(".aplayer-title").innerText;
-    const songArtist = songInfo.querySelector(".aplayer-author").innerText.replace(" - ", "");
-    console.log(songName, songArtist);
-    // 更新信息
-    playerData.value = {
-      name: songName || "未知曲目",
-      artist: songArtist || "未知艺术家",
-    };
-  } catch (error) {
-    console.error("获取播放信息出错：", error);
-  }
-};
-
 // 初始化播放器
 const initAPlayer = async (list) => {
   try {
@@ -96,6 +77,48 @@ const initAPlayer = async (list) => {
     window.$player = player.value;
   } catch (error) {
     console.error("初始化播放器出错：", error);
+  }
+};
+
+// 获取当前播放歌曲信息
+const getMusicData = () => {
+  try {
+    if (!playerDom.value) return false;
+    const songInfo = playerDom.value.querySelector(".aplayer-info");
+    // 歌曲信息
+    const songName = songInfo.querySelector(".aplayer-title").innerText;
+    const songArtist = songInfo.querySelector(".aplayer-author").innerText.replace(" - ", "");
+    console.log(songName, songArtist);
+    // 更新信息
+    playerData.value = {
+      name: songName || "未知曲目",
+      artist: songArtist || "未知艺术家",
+    };
+    // 更新媒体信息
+    initMediaSession(playerData.value?.name, playerData.value?.artist);
+  } catch (error) {
+    console.error("获取播放信息出错：", error);
+  }
+};
+
+// 初始化媒体会话控制
+const initMediaSession = (title, artist) => {
+  if ("mediaSession" in navigator) {
+    // 歌曲信息
+    navigator.mediaSession.metadata = new MediaMetadata({ title, artist });
+    // 按键关联
+    navigator.mediaSession.setActionHandler("play", () => {
+      player.value?.play();
+    });
+    navigator.mediaSession.setActionHandler("pause", () => {
+      player.value?.pause();
+    });
+    navigator.mediaSession.setActionHandler("previoustrack", () => {
+      player.value?.skipBack();
+    });
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+      player.value?.skipForward();
+    });
   }
 };
 
