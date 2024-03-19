@@ -1,67 +1,58 @@
 <!-- 全局搜索 -->
 <template>
-  <Teleport to="body">
-    <Transition name="fade" mode="out-in">
-      <div v-show="store.searchShow" class="search">
-        <div class="search-mask" @click="store.changeShowStatus('searchShow')" />
-        <div class="search-content s-card" @click.stop>
-          <div class="all-search-content">
-            <div class="title">
-              <i class="iconfont icon-search" />
-              <span class="text">全局搜索</span>
+  <Modal
+    :show="store.searchShow"
+    title="全局搜索"
+    titleIcon="search"
+    @mask-click="store.changeShowStatus('searchShow')"
+    @mask-close="store.changeShowStatus('searchShow')"
+  >
+    <ais-instant-search
+      :search-client="searchClient"
+      :future="{
+        preserveSharedStateOnUnmount: true,
+      }"
+      index-name="imsyy"
+      @state-change="searchChange"
+    >
+      <ais-configure :hits-per-page.camel="8" />
+      <ais-search-box placeholder="想要搜点什么" autofocus />
+      <ais-hits v-if="hasSearchValue">
+        <template v-slot="{ items }">
+          <Transition name="fade" mode="out-in">
+            <div v-if="formatSearchData(items)?.length" class="search-list">
+              <div
+                v-for="(item, index) in formatSearchData(items)"
+                :key="index"
+                class="search-item s-card hover"
+                @click="jumpSearch(item.url)"
+              >
+                <p class="title" v-html="item.title" />
+                <p v-if="item?.anchor" class="anchor" v-html="item.anchor" />
+                <p v-if="item?.content" class="content s-card" v-html="item.content" />
+              </div>
             </div>
-            <ais-instant-search
-              :search-client="searchClient"
-              :search-function="controlSearch"
-              :future="{
-                preserveSharedStateOnUnmount: true,
-              }"
-              index-name="imsyy"
-            >
-              <ais-configure :hits-per-page.camel="8" />
-              <ais-search-box placeholder="想要搜点什么" autofocus />
-              <ais-hits v-if="hasSearchValue">
-                <template v-slot="{ items }">
-                  <Transition name="fade" mode="out-in">
-                    <div v-if="formatSearchData(items)?.length" class="search-list">
-                      <div
-                        v-for="(item, index) in formatSearchData(items)"
-                        :key="index"
-                        class="search-item s-card hover"
-                        @click="jumpSearch(item.url)"
-                      >
-                        <p class="title" v-html="item.title" />
-                        <p v-if="item?.anchor" class="anchor" v-html="item.anchor" />
-                        <p v-if="item?.content" class="content s-card" v-html="item.content" />
-                      </div>
-                    </div>
-                    <div v-else class="no-result">
-                      <i class="iconfont icon-search-empty" />
-                      <span class="text">搜索结果为空</span>
-                    </div>
-                  </Transition>
-                </template>
-              </ais-hits>
-              <ais-pagination v-if="hasSearchValue" />
-              <ais-stats>
-                <template v-slot="{ processingTimeMS }">
-                  <div class="information">
-                    <span v-if="hasSearchValue" class="text">
-                      本次用时 {{ processingTimeMS }} 毫秒
-                    </span>
-                  </div>
-                  <div class="power" @click="jumpLink('https://www.algolia.com/')">
-                    <i class="iconfont icon-algolia" />
-                    <span class="name">Algolia</span>
-                  </div>
-                </template>
-              </ais-stats>
-            </ais-instant-search>
+            <div v-else class="no-result">
+              <i class="iconfont icon-search-empty" />
+              <span class="text">搜索结果为空</span>
+            </div>
+          </Transition>
+        </template>
+      </ais-hits>
+      <ais-pagination v-if="hasSearchValue" />
+      <ais-stats>
+        <template v-slot="{ processingTimeMS }">
+          <div class="information">
+            <span v-if="hasSearchValue" class="text"> 本次用时 {{ processingTimeMS }} 毫秒 </span>
           </div>
-        </div>
-      </div>
-    </Transition>
-  </Teleport>
+          <div class="power" @click="jumpLink('https://www.algolia.com/')">
+            <i class="iconfont icon-algolia" />
+            <span class="name">Algolia</span>
+          </div>
+        </template>
+      </ais-stats>
+    </ais-instant-search>
+  </Modal>
 </template>
 
 <script setup>
@@ -77,10 +68,11 @@ const searchClient = algoliasearch("X5EBEZB53I", "2e0df36271ff9e727de7e27612600e
 // 是否具有搜索词
 const hasSearchValue = ref(false);
 
-// 控制搜索行为
-const controlSearch = (helper) => {
-  hasSearchValue.value = helper?.state?.query ? true : false;
-  helper.search();
+// 搜索变化
+const searchChange = ({ uiState, setUiState }) => {
+  const searchData = Object.values(uiState);
+  hasSearchValue.value = searchData.length > 0 && searchData[0].query?.length > 0;
+  setUiState(uiState);
 };
 
 // 处理搜索结果
@@ -90,7 +82,7 @@ const formatSearchData = (data) => {
   for (let i = 0; i < data.length; i++) {
     const search = data[i];
     // 若无 anchor
-    if (search.anchor === "" || search.anchor === "app") continue;
+    // if (search.anchor === "" || search.anchor === "app") continue;
     // 获取数据
     const url = search?.url;
     const type = search.type === "lvl1" ? "post" : "content";
@@ -107,62 +99,14 @@ const formatSearchData = (data) => {
 
 // 跳转搜索结果
 const jumpSearch = (url) => {
-  store.changeShowStatus('searchShow');
+  store.changeShowStatus("searchShow");
   router.go(url);
 };
-</script>
 
-<style lang="scss" scoped>
-.search {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  width: 100dvw;
-  height: 100vh;
-  height: 100dvh;
-  z-index: 1300;
-  .search-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: var(--main-mask-background);
-  }
-  .search-content {
-    position: absolute;
-    animation: fade-up 0.5s forwards;
-    width: calc(100% - 40px);
-    max-width: 800px;
-    max-height: 80vh;
-    padding: 0;
-    overflow: hidden;
-    .all-search-content {
-      padding: 20px;
-      max-height: 80vh;
-      overflow: auto;
-      .title {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-size: 18px;
-        font-weight: bold;
-        height: 28px;
-        .iconfont {
-          margin-right: 6px;
-          font-size: 20px;
-          font-weight: normal;
-        }
-      }
-    }
-  }
-}
-</style>
+onBeforeUnmount(() => {
+  hasSearchValue.value = false;
+});
+</script>
 
 <style lang="scss">
 .ais-InstantSearch {
@@ -316,12 +260,23 @@ const jumpSearch = (url) => {
       align-items: center;
       font-size: 16px;
       opacity: 0.6;
+      transition:
+        color 0.3s,
+        opacity 0.3s;
       .iconfont {
         margin-right: 4px;
         font-size: 20px;
+        transition: color 0.3s;
       }
       .name {
         font-weight: bold;
+      }
+      &:hover {
+        opacity: 1;
+        color: var(--main-color);
+        .iconfont {
+          color: var(--main-color);
+        }
       }
     }
     @media (max-width: 512px) {

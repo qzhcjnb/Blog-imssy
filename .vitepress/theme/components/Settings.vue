@@ -6,44 +6,41 @@
       <span class="set-text">个性化配置</span>
     </div>
     <!-- 设置面板 -->
-    <Transition name="fade" mode="out-in">
-      <div v-if="store.showSeetings" class="set-card">
-        <div class="set-mask" @click="store.changeShowStatus('showSeetings')" />
-        <div class="set-content s-card" @click.stop>
-          <div class="title">
-            <i class="iconfont icon-style"></i>
-            <span class="title-text">个性化配置</span>
+    <Modal
+      :show="store.showSeetings"
+      title="个性化配置"
+      titleIcon="style"
+      @mask-click="store.changeShowStatus('showSeetings')"
+      @mask-close="store.changeShowStatus('showSeetings')"
+    >
+      <div class="set-list">
+        <div class="set-item">
+          <span class="set-label">全站字体</span>
+          <div class="set-options">
+            <span
+              :class="['options', { choose: store.fontFamily === 'hmos' }]"
+              @click="store.fontFamily = 'hmos'"
+            >
+              HarmonyOS Sans
+            </span>
+            <span
+              :class="['options', { choose: store.fontFamily === 'lxgw' }]"
+              @click="store.fontFamily = 'lxgw'"
+            >
+              霞鹜文楷
+            </span>
           </div>
-          <div class="set-list">
-            <div class="set-item">
-              <span class="set-label">全站字体</span>
-              <div class="set-options">
-                <span
-                  :class="['options', { choose: store.fontFamily === 'hmos' }]"
-                  @click="store.fontFamily = 'hmos'"
-                >
-                  HarmonyOS Sans
-                </span>
-                <span
-                  :class="['options', { choose: store.fontFamily === 'lxgw' }]"
-                  @click="store.fontFamily = 'lxgw'"
-                >
-                  霞鹜文楷
-                </span>
-              </div>
-            </div>
-            <div class="set-item">
-              <span class="set-label">全站字体大小</span>
-              <div class="set-options">
-                <span class="options" @click="store.changeFontSize(false)"> - </span>
-                <span class="num">{{ store.fontSize }}</span>
-                <span class="options" @click="store.changeFontSize(true)"> + </span>
-              </div>
-            </div>
+        </div>
+        <div class="set-item">
+          <span class="set-label">全站字体大小</span>
+          <div class="set-options">
+            <span class="options" @click="store.changeFontSize(false)"> - </span>
+            <span class="num">{{ store.fontSize }}</span>
+            <span class="options" @click="store.changeFontSize(true)"> + </span>
           </div>
         </div>
       </div>
-    </Transition>
+    </Modal>
   </div>
 </template>
 
@@ -55,7 +52,6 @@ const store = mainStore();
 
 <style lang="scss" scoped>
 .settings {
-  cursor: pointer;
   .set-btn {
     display: flex;
     flex-direction: row;
@@ -64,6 +60,7 @@ const store = mainStore();
     height: 42px;
     padding: 0;
     border-radius: 25px;
+    box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
     .iconfont {
       font-size: 22px;
       margin-left: 10px;
@@ -91,93 +88,49 @@ const store = mainStore();
       }
     }
   }
-  .set-card {
-    position: fixed;
-    top: 0;
-    left: 0;
+}
+.set-list {
+  .set-item {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: 100vw;
-    width: 100dvw;
-    height: 100vh;
-    height: 100dvh;
-    z-index: 100;
-    .set-mask {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-color: var(--main-mask-background);
-    }
-    .set-content {
-      position: absolute;
-      animation: fade-up 0.5s forwards;
-      width: calc(100% - 40px);
-      max-width: 600px;
-      max-height: 80vh;
-      overflow: hidden;
-      padding: 20px;
-      .title {
+    justify-content: space-between;
+    margin-bottom: 12px;
+    .set-options {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 40px;
+      border-radius: 8px;
+      .options {
         display: flex;
-        flex-direction: row;
         align-items: center;
-        font-size: 18px;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        border-bottom: 1px solid var(--main-card-border);
-        .iconfont {
-          font-size: 20px;
-          margin-right: 8px;
+        justify-content: center;
+        font-size: 0.9375rem;
+        border-radius: 8px;
+        margin: 4px 8px;
+        padding: 6px 8px;
+        min-width: 30px;
+        background-color: var(--main-card-border);
+        transition:
+          color 0.3s,
+          background-color 0.3s;
+        &.choose,
+        &:hover {
+          color: var(--main-card-background);
+          background-color: var(--main-color);
+          box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+        }
+        &:last-child {
+          margin-right: 0;
         }
       }
-      .set-list {
-        .set-item {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 12px;
-          .set-options {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            height: 40px;
-            border-radius: 8px;
-            .options {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 15px;
-              border-radius: 8px;
-              margin: 4px 8px;
-              padding: 6px 8px;
-              min-width: 30px;
-              background-color: var(--main-card-border);
-              transition:
-                color 0.3s,
-                background-color 0.3s;
-              &.choose,
-              &:hover {
-                color: var(--main-card-background);
-                background-color: var(--main-color);
-                box-shadow: 0 8px 16px -4px var(--main-border-shadow);
-              }
-              &:last-child {
-                margin-right: 0;
-              }
-            }
-            .num {
-              margin: 0 4px;
-            }
-          }
-          &:last-child {
-            margin-bottom: 0;
-          }
-        }
+      .num {
+        margin: 0 4px;
       }
+    }
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

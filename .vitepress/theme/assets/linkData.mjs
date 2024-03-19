@@ -86,6 +86,12 @@ const linkData = [
         desc: "柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜",
         url: "https://www.qyliu.top/",
       },
+      {
+        name: "别亦难",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/19/65f9396e66055.webp",
+        desc: "准时不定期更新",
+        url: "https://lazyingman.com/",
+      },
     ],
   },
   // 失联

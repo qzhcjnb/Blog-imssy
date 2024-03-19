@@ -109,11 +109,11 @@ onBeforeUnmount(() => {
   .title {
     font-family: "Site Title";
     font-weight: bold;
-    font-size: 44px;
+    font-size: 2.75rem;
   }
   .subtitle {
     width: 80%;
-    font-size: 20px;
+    font-size: 1.25rem;
     opacity: 0.8;
     animation: fade-up-opacity 0.6s 0.1s backwards;
     .text {
@@ -129,11 +129,11 @@ onBeforeUnmount(() => {
     align-items: flex-start;
     height: 240px;
     .title {
-      font-size: 36px;
+      font-size: 2.25rem;
     }
     .subtitle {
       height: 50px;
-      font-size: 18px;
+      font-size: 1.125rem;
       margin-left: 8px;
       .text {
         text-align: left;
@@ -159,10 +159,10 @@ onBeforeUnmount(() => {
       flex-direction: column;
       .title-small {
         color: var(--main-font-second-color);
-        font-size: 14px;
+        font-size: 0.875rem;
       }
       .title-big {
-        font-size: 36px;
+        font-size: 2.25rem;
         font-weight: bold;
         line-height: 1.2;
         margin-top: 12px;

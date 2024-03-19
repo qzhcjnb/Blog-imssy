@@ -56,18 +56,8 @@ const props = defineProps({
     default: "categories",
   },
 });
-const route = useRoute();
 
 // 获取当前路由路径
-// const currentTypeName = computed(() => {
-//   const routePath = decodeURIComponent(route.path);
-//   const typeName = routePath.split("/").pop();
-//   // 检查路径中是否存在 /page/
-//   if (routePath.includes("/page/")) {
-//     return null;
-//   }
-//   return typeName;
-// });
 const currentTypeName = computed(() => {
   return params.value?.name || null;
 });
@@ -112,7 +102,7 @@ const currentTypeName = computed(() => {
         margin-left: 4px;
         font-weight: normal;
         padding: 2px 6px;
-        font-size: 12px;
+        font-size: 0.75rem;
         color: var(--main-font-color);
         background-color: var(--main-card-border);
         border-radius: 8px;
@@ -141,7 +131,7 @@ const currentTypeName = computed(() => {
     margin-right: 4px;
     margin-left: 8px;
     .iconfont {
-      font-size: 15px;
+      font-size: 0.9375rem;
       margin-right: 8px;
     }
     &:hover {

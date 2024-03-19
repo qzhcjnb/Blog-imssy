@@ -83,6 +83,7 @@ const props = defineProps({
         flex-direction: row;
         align-items: center;
         height: 90px;
+        padding: 12px;
         .cover {
           display: flex;
           align-items: center;

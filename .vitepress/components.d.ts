@@ -30,6 +30,7 @@ declare module 'vue' {
     Loading: typeof import('./theme/components/Loading.vue')['default']
     Message: typeof import('./theme/components/Message.vue')['default']
     MobileMenu: typeof import('./theme/components/MobileMenu.vue')['default']
+    Modal: typeof import('./theme/components/Modal.vue')['default']
     Nav: typeof import('./theme/components/Nav.vue')['default']
     NextPost: typeof import('./theme/components/NextPost.vue')['default']
     NotFound: typeof import('./theme/views/NotFound.vue')['default']

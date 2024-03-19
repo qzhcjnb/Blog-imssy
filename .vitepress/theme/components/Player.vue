@@ -133,6 +133,7 @@ onBeforeUnmount(() => {
 .player {
   height: 42px;
   margin-top: 12px;
+  transition: transform 0.3s;
   cursor: pointer;
   .player-content {
     margin: 0;
@@ -143,7 +144,7 @@ onBeforeUnmount(() => {
     font-family: var(--main-font-family);
     background-color: var(--main-card-background);
     border: 1px solid var(--main-card-border);
-    box-shadow: 0 8px 16px -4px var(--main-dark-shadow);
+    box-shadow: 0 6px 10px -4px var(--main-dark-shadow);
     transition: all 0.3s;
     :deep(.aplayer-body) {
       display: flex;

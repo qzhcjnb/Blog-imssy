@@ -57,12 +57,12 @@ const props = defineProps({
     flex-direction: column;
     align-items: center;
     .title-name {
-      font-size: 30px;
+      font-size: 1.875rem;
       margin-bottom: 0;
     }
     .title-num {
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 1.125rem;
       opacity: 0.6;
     }
   }
@@ -74,7 +74,7 @@ const props = defineProps({
     flex-direction: row;
     align-items: center;
     .type-item {
-      font-size: 20px;
+      font-size: 1.25rem;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -85,7 +85,7 @@ const props = defineProps({
       }
       .iconfont {
         margin-right: 8px;
-        font-size: 20px;
+        font-size: 1.25rem;
         opacity: 0.6;
         transition: color 0.3s;
       }
