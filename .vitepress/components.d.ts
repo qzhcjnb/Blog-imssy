@@ -41,6 +41,7 @@ declare module 'vue' {
     PostList: typeof import('./theme/components/List/PostList.vue')['default']
     Project: typeof import('./theme/views/Project.vue')['default']
     References: typeof import('./theme/components/References.vue')['default']
+    RelatedPost: typeof import('./theme/components/RelatedPost.vue')['default']
     RightMenu: typeof import('./theme/components/RightMenu.vue')['default']
     Search: typeof import('./theme/components/Search.vue')['default']
     Settings: typeof import('./theme/components/Settings.vue')['default']

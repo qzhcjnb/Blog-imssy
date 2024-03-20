@@ -50,6 +50,19 @@ const linkData = [
       },
     ],
   },
+  {
+    type: "sp-tools",
+    typeName: "好东西",
+    typeDesc: "指不定哪天就没了",
+    typeList: [
+      {
+        name: "Design Software",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/20/65fa9dce5ff89.webp",
+        desc: "Adobe 全家桶",
+        url: "https://design.zhuye.xyz/",
+      },
+    ],
+  },
 ];
 
 export default linkData;

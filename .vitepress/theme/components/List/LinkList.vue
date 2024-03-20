@@ -83,6 +83,7 @@ const props = defineProps({
         flex-direction: row;
         align-items: center;
         height: 90px;
+        width: 100%;
         padding: 12px;
         .cover {
           display: flex;
@@ -120,12 +121,18 @@ const props = defineProps({
         }
         .data {
           height: 100%;
+          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           .name {
             font-weight: bold;
             font-size: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
           }
           .desc {
             font-size: 15px;

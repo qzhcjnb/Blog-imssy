@@ -88,6 +88,8 @@
         </div>
         <!-- 下一篇 -->
         <NextPost />
+        <!-- 相关文章 -->
+        <RelatedPost />
         <!-- 评论 -->
         <Comments ref="commentRef" />
       </article>

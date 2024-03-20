@@ -69,12 +69,6 @@ const linkData = [
         url: "https://www.xalaok.top/",
       },
       {
-        name: "君莫愁",
-        avatar: "https://pic.efefee.cn/uploads/2024/03/05/65e6741e38ae2.webp",
-        desc: "莫愁前路无知己，天下谁人不识君",
-        url: "https://blog.shimail.cn/",
-      },
-      {
         name: "HiPeach",
         avatar: "https://pic.efefee.cn/uploads/2024/03/05/65e674676e4bd.webp",
         desc: "巧不可语，妙不可言",
@@ -99,7 +93,14 @@ const linkData = [
     type: "loss",
     typeName: "失联",
     typeDesc: "持续超过一周无法访问的站点会出现在此处",
-    typeList: [],
+    typeList: [
+      {
+        name: "君莫愁",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/05/65e6741e38ae2.webp",
+        desc: "莫愁前路无知己，天下谁人不识君",
+        url: "https://blog.shimail.cn/",
+      },
+    ],
   },
 ];
 

@@ -47,6 +47,7 @@ const props = defineProps({
     position: sticky;
     top: calc(60px + 1rem);
     .weidgets {
+      animation: fade-up 0.6s 0.4s backwards;
       &:last-child {
         margin-bottom: 0;
       }

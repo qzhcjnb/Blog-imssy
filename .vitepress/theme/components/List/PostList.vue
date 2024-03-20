@@ -4,11 +4,12 @@
     <div
       v-for="(item, index) in listData"
       :key="index"
-      :class="['post-item', 's-card', 'hover', { cover: item.cover }]"
+      :class="['post-item', 's-card', 'hover', { simple, cover: item.cover }]"
+      :style="{ animationDelay: `${0.4 + index / 10}s` }"
       @click="router.go(item.regularPath)"
     >
       <div class="post-content">
-        <div v-if="item?.categories" class="post-category">
+        <div v-if="!simple && item?.categories" class="post-category">
           <span v-for="cat in item?.categories" :key="cat" class="cat-name">
             <i class="iconfont icon-folder" />
             {{ cat }}
@@ -23,7 +24,7 @@
         <span v-if="item?.description" class="post-desc">
           {{ item.description }}
         </span>
-        <div class="post-meta">
+        <div v-if="!simple" class="post-meta">
           <div v-if="item?.tags" class="post-tags">
             <span
               v-for="tags in item?.tags"
@@ -52,6 +53,11 @@ const props = defineProps({
   listData: {
     type: [Array, String],
     default: () => [],
+  },
+  // 简洁模式
+  simple: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
@@ -168,6 +174,11 @@ const props = defineProps({
           white-space: nowrap;
         }
       }
+    }
+    &.simple {
+      animation: none;
+      padding: 0.5rem 1.4rem;
+      background-color: var(--main-card-second-background);
     }
     &:last-child {
       margin-bottom: 0;
