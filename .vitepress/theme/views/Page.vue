@@ -39,8 +39,9 @@ console.log(page.value);
   .page-content {
     width: 100%;
     transition: width 0.3s;
-    .comment {
-      :deep(.comment-content) {
+    :deep(#main-comment) {
+      width: 100%;
+      .comment-content {
         .atk-list {
           .atk-list-header {
             margin-bottom: 8px;

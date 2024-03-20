@@ -156,10 +156,21 @@ onUnmounted(() => {
               width: auto;
               max-width: 240px;
             }
+            code {
+              margin: 4px;
+              vertical-align: inherit;
+              border-radius: 6px;
+              font-family: "Fira Code", var(--main-font-family), monospace;
+            }
             pre {
               code {
                 border-radius: 8px;
               }
+            }
+            blockquote {
+              border-left: 8px solid var(--main-card-border);
+              background-color: var(--main-card-second-background);
+              border-radius: 4px 8px 8px 4px;
             }
             &.atk-height-limit {
               .atk-height-limit-btn {
