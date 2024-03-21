@@ -120,6 +120,11 @@
               <i class="iconfont icon-accessible"></i>
               <span class="name">版权协议</span>
             </div>
+            <!-- 隐私政策 -->
+            <div class="btn" @click="router.go('/pages/privacy')">
+              <i class="iconfont icon-privacy"></i>
+              <span class="name">隐私政策</span>
+            </div>
           </div>
           <div class="all-menu general">
             <!-- 复制地址 -->

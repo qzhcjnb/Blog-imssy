@@ -23,7 +23,7 @@ const headLinks = [
     {
       crossorigin: "",
       rel: "preconnect",
-      href: "https://cdn.staticfile.org",
+      href: "https://cdn.staticfile.net",
     },
   ],
   // HarmonyOS font
@@ -40,7 +40,7 @@ const headLinks = [
     {
       crossorigin: "anonymous",
       rel: "stylesheet",
-      href: "https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.7.0/style.css",
+      href: "https://cdn.staticfile.net/lxgw-wenkai-screen-webfont/1.7.0/style.css",
     },
   ],
   // iconfont

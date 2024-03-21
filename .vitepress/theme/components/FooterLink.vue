@@ -258,6 +258,7 @@ onMounted(() => {
           color: var(--main-font-color);
           display: inline-block;
           max-width: 120px;
+          width: max-content;
           margin: 4px 0;
           overflow: hidden;
           text-overflow: ellipsis;

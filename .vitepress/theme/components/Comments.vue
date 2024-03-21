@@ -26,6 +26,7 @@ const mainCommentRef = ref(null);
 const initArtalk = () => {
   artalk.value = Artalk.init({
     el: commentRef.value || "#comment-dom",
+    locale: "auto",
     pageKey: route.path,
     server: "https://artalk.efefee.cn",
     site: "無名小栈",

@@ -60,7 +60,7 @@ const linkData = [
         name: "FloatSheep",
         avatar: "https://pic.efefee.cn/uploads/2024/02/24/65d9aae9a678a.webp",
         desc: "On the other side of obstacles",
-        url: "https://blog.hesiy.cn/",
+        url: "https://blog.hesiy.cn/posts/",
       },
       {
         name: "Naive Koala",
@@ -92,7 +92,7 @@ const linkData = [
   {
     type: "loss",
     typeName: "失联",
-    typeDesc: "持续超过一周无法访问的站点会出现在此处",
+    typeDesc: "持续超过 3 天无法访问的站点会出现在此处",
     typeList: [
       {
         name: "君莫愁",
