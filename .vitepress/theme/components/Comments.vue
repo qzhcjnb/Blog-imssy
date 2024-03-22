@@ -13,6 +13,7 @@
 </template>
 
 <script setup>
+import { jumpRedirect } from "@/utils/helper";
 import Artalk from "artalk";
 import "artalk/dist/Artalk.css";
 
@@ -24,14 +25,27 @@ const mainCommentRef = ref(null);
 
 // 初始化 Artalk
 const initArtalk = () => {
-  artalk.value = Artalk.init({
-    el: commentRef.value || "#comment-dom",
-    locale: "auto",
-    pageKey: route.path,
-    server: "https://artalk.efefee.cn",
-    site: "無名小栈",
-  });
-  return artalk.value;
+  try {
+    artalk.value = Artalk.init({
+      el: commentRef.value || "#comment-dom",
+      locale: "auto",
+      pageKey: route.path,
+      server: "https://artalk.efefee.cn",
+      site: "無名小栈",
+    });
+    // Event
+    artalk.value?.on("list-loaded", () => {
+      console.log("评论已加载完毕");
+      jumpRedirect();
+    });
+    artalk.value?.on("comment-updated", () => {
+      console.log("评论已更新完毕");
+      jumpRedirect();
+    });
+    return artalk.value;
+  } catch (error) {
+    console.error("初始化评论出错：", error);
+  }
 };
 
 // 匿名评论
