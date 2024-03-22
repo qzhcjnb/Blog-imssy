@@ -57,7 +57,13 @@
               <i class="iconfont icon-window"></i>
               <span class="name">新标签页打开</span>
             </div>
-            <div v-if="clickedType === 'link'" class="btn" @click="copyText(clickedTypeData?.href)">
+            <div
+              v-if="clickedType === 'link'"
+              class="btn"
+              @click="
+                copyText(clickedTypeData?.getAttribute('original-href') || clickedTypeData?.href)
+              "
+            >
               <i class="iconfont icon-link"></i>
               <span class="name">复制链接地址</span>
             </div>

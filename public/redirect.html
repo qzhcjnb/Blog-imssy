@@ -73,7 +73,8 @@
         margin: 30px 20px 60px;
         border-radius: 16px;
         padding: 30px;
-        max-width: 680px;
+        max-width: 768px;
+        min-width: 380px;
         background-color: var(--main-card-background);
         border: 1px solid var(--main-card-border);
       }
@@ -245,7 +246,7 @@
         } catch (error) {
           console.error(error);
           jumpContent.remove();
-          urlDom.innerHTML = "无法解密网址";
+          urlDom.innerHTML = "获取跳转链接失败";
         }
       };
       // 跟随系统主题

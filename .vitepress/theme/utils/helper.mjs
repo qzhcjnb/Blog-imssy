@@ -349,6 +349,8 @@ export const jumpRedirect = () => {
         // Base64
         const encodedHref = btoa(linkHref);
         const redirectLink = `/redirect.html?url=${encodedHref}`;
+        // 保存原始链接
+        link.setAttribute("original-href", linkHref);
         // 覆盖 href
         link.setAttribute("href", redirectLink);
       }
