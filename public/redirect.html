@@ -175,6 +175,7 @@
     <script>
       // 跳转网址
       let jumpLink;
+      let interval;
       // 获取元素
       const urlDom = document.getElementById("url");
       const urlTip = document.getElementById("site-info");
@@ -187,7 +188,7 @@
       // 提示文本
       const tipText = {
         safe: "✅ 该网址为信任网址，即将跳转",
-        danger: "⛔ 该网址为危险网址，禁止跳转",
+        danger: "⛔ 该网址处于黑名单",
       };
       // 自动跳转
       const autoJump = () => {
@@ -203,7 +204,7 @@
         };
         // 每秒更新一次
         updateContent();
-        const interval = setInterval(updateContent, 1000);
+        interval = setInterval(updateContent, 1000);
       };
       // 获取跳转网址
       const getJumpUrl = () => {
@@ -274,6 +275,8 @@
         }
       });
       jumpButton.addEventListener("click", () => {
+        clearInterval(interval);
+        jumpButton.innerHTML = "正在跳转";
         if (jumpLink) window.location.replace(jumpLink);
       });
       window.addEventListener("DOMContentLoaded", () => {

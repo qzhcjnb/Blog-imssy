@@ -282,7 +282,7 @@ const { site, theme, frontmatter, page } = useData();
             position: absolute;
             top: 35px;
             margin-top: 8px;
-            padding: 6px 4px;
+            padding: 6px 2px;
             display: flex;
             flex-direction: row;
             align-items: center;
