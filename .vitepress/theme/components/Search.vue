@@ -45,10 +45,10 @@
           <div class="information">
             <span v-if="hasSearchValue" class="text"> 本次用时 {{ processingTimeMS }} 毫秒 </span>
           </div>
-          <div class="power" @click="jumpLink('https://www.algolia.com/')">
+          <a class="power" href="https://www.algolia.com/" target="_blank">
             <i class="iconfont icon-algolia" />
             <span class="name">Algolia</span>
-          </div>
+          </a>
         </template>
       </ais-stats>
     </ais-instant-search>
@@ -57,7 +57,6 @@
 
 <script setup>
 import { mainStore } from "@/store";
-import { jumpLink } from "@/utils/helper";
 import algoliasearch from "algoliasearch/lite";
 
 const store = mainStore();

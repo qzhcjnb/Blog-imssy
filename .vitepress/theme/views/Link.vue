@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { smoothScrolling, jumpLink } from "@/utils/helper";
+import { smoothScrolling } from "@/utils/helper";
 import linkData from "@/assets/linkData.mjs";
 
 // 全部友链
@@ -66,7 +66,7 @@ const randomJump = () => {
         duration: 2000,
       },
       () => {
-        jumpLink(randomList?.url);
+        if (randomList?.url) window.open(randomList.url, "_blank");
       },
     );
   } catch (error) {

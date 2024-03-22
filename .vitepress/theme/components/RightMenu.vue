@@ -88,22 +88,24 @@
               <span class="name">粘贴文本</span>
             </div>
             <!-- 选中文本 -->
-            <div
+            <a
               v-if="clickedType === 'text' || clickedType === 'input'"
+              :href="`https://www.baidu.com/s?wd=${clickedTypeData}`"
               class="btn"
-              @click="jumpLink(`https://www.baidu.com/s?wd=${clickedTypeData}`)"
+              target="_blank"
             >
               <i class="iconfont icon-baidu"></i>
               <span class="name">使用百度搜索</span>
-            </div>
-            <div
+            </a>
+            <a
               v-if="clickedType === 'text' || clickedType === 'input'"
+              :href="`https://cn.bing.com/search?q=${clickedTypeData}`"
               class="btn"
-              @click="jumpLink(`https://cn.bing.com/search?q=${clickedTypeData}`)"
+              target="_blank"
             >
               <i class="iconfont icon-bing"></i>
               <span class="name">使用必应搜索</span>
-            </div>
+            </a>
             <div
               v-if="clickedType === 'text' || clickedType === 'input'"
               class="btn"
@@ -181,14 +183,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import {
-  smoothScrolling,
-  shufflePost,
-  copyText,
-  copyImage,
-  downloadImage,
-  jumpLink,
-} from "@/utils/helper";
+import { smoothScrolling, shufflePost, copyText, copyImage, downloadImage } from "@/utils/helper";
 
 const router = useRouter();
 const store = mainStore();

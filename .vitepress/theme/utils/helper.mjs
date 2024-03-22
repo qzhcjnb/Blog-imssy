@@ -1,21 +1,6 @@
 import { mainStore } from "@/store";
 
 /**
- * 跳转链接
- * @param {string} url - 要跳转的链接地址
- * @param {boolean} [newTab=false] - 是否在新标签页中打开，默认为 true
- */
-export const jumpLink = (url, newTab = true) => {
-  try {
-    if (typeof window === "undefined" || !url) return false;
-    // 区分跳转
-    newTab ? window.open(url, "_blank") : (window.location.href = url);
-  } catch (error) {
-    console.error("跳转出错：", error);
-  }
-};
-
-/**
  * 防抖函数
  * @param {Function} func - 要进行防抖处理的函数
  * @param {number} delay - 延迟时间，单位毫秒
@@ -329,4 +314,43 @@ export const specialDayGray = () => {
       });
     }
   }
+};
+
+// 跳转至中转页
+export const jumpRedirect = () => {
+  // 排除 class
+  const excludeClass = [
+    "cf-friends-link",
+    "upyun",
+    "icp",
+    "author",
+    "rss",
+    "cc",
+    "power",
+    "social-link",
+    "link-text",
+    "travellings",
+    "post-link",
+    "report",
+  ];
+  // 所有链接
+  const allLinks = [...document.getElementsByTagName("a")];
+  if (allLinks?.length === 0) return false;
+  allLinks.forEach((link) => {
+    // 检查链接是否包含 target="_blank" 属性
+    if (link.getAttribute("target") === "_blank") {
+      // 检查链接是否包含排除的类
+      if (excludeClass.some((className) => link.classList.contains(className))) {
+        return false;
+      }
+      const linkHref = link.getAttribute("href");
+      if (linkHref) {
+        // Base64
+        const encodedHref = btoa(linkHref);
+        const redirectLink = `/redirect.html?url=${encodedHref}`;
+        // 覆盖 href
+        link.setAttribute("href", redirectLink);
+      }
+    }
+  });
 };

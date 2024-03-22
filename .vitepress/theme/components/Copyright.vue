@@ -21,12 +21,13 @@
       </div>
       <div class="meta-item cc">
         <span class="tip">许可协议</span>
-        <span
+        <a
           class="name"
-          @click="jumpLink('https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans')"
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
+          target="_blank"
         >
           CC BY-NC-SA 4.0
-        </span>
+        </a>
       </div>
     </div>
     <span class="meta-tip">署名-非商业性使用-相同方式共享 4.0 国际</span>
@@ -34,7 +35,7 @@
 </template>
 
 <script setup>
-import { formatTimestamp, jumpLink } from "@/utils/helper";
+import { formatTimestamp } from "@/utils/helper";
 
 const { theme } = useData();
 const props = defineProps({

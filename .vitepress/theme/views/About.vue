@@ -22,18 +22,19 @@
         <span class="tip">技能</span>
         <span class="title2">开启创造力</span>
         <div class="skills-list">
-          <div
+          <a
             v-for="(item, index) in skillsData"
             :key="index"
             :style="{ '--color': item.color }"
+            :href="item.link"
             class="skills-item"
-            @click="jumpLink(item.link)"
+            target="_blank"
           >
             <div class="skills-logo">
               <i :class="`iconfont icon-${item.icon}`"></i>
             </div>
             <span class="skills-name">{{ item.name }}</span>
-          </div>
+          </a>
         </div>
       </div>
       <!-- 生涯 -->
@@ -170,8 +171,6 @@
 </template>
 
 <script setup>
-import { jumpLink } from "@/utils/helper";
-
 const { theme } = useData();
 const { skillsData } = theme.value;
 </script>
@@ -317,6 +316,7 @@ const { skillsData } = theme.value;
             }
             .skills-name {
               font-weight: bold;
+              transition: color 0.3s;
             }
             &:hover {
               background-color: var(--main-card-background);

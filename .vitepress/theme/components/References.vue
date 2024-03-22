@@ -6,21 +6,20 @@
       <span class="title-text">参考资料</span>
     </div>
     <ul class="list">
-      <li
+      <a
         v-for="(item, index) in references"
         :key="index"
+        :href="item.url"
         class="list-item"
-        @click="jumpLink(item.url)"
+        target="_blank"
       >
         <span class="item-title">{{ item.title }}</span>
-      </li>
+    </a>
     </ul>
   </div>
 </template>
 
 <script setup>
-import { jumpLink } from "@/utils/helper";
-
 const { frontmatter } = useData();
 
 // 参考资料

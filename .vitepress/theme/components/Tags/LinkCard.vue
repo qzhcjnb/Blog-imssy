@@ -1,6 +1,6 @@
 <!-- 链接卡片 -->
 <template>
-  <div class="link-card s-card hover" @click="isOutLink ? jumpLink(url) : router.go(url)">
+  <a :href="url" :target="isOutLink ? '_blank' : null" class="link-card s-card hover">
     <span v-if="isOutLink" class="link-tip">引用站外地址，请注意甄别链接安全性</span>
     <div class="link-data">
       <div class="link-icon">
@@ -24,12 +24,11 @@
       </div>
       <i class="link-go iconfont icon-up"></i>
     </div>
-  </div>
+  </a>
 </template>
 
 <script setup>
 import { getSiteInfo } from "@/api/link";
-import { jumpLink } from "@/utils/helper";
 
 const router = useRouter();
 const props = defineProps({
@@ -82,6 +81,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .link-card {
+  display: block;
   width: 100%;
   margin: 1rem 0;
   padding: 1rem;

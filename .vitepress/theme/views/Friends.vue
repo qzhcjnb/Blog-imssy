@@ -48,24 +48,25 @@
       </div>
       <Transition name="fade" mode="out-in">
         <div v-if="friendsLinkData?.length" class="all-list">
-          <div
+          <a
             v-for="(item, index) in friendsLinkData.slice(0, showNum)"
             :key="index"
+            :href="item.link"
             class="list-item s-card hover"
-            @click="jumpLink(item.link)"
+            target="_blank"
           >
             <span class="title">{{ item?.title || "未知文章标题" }}</span>
             <div class="desc">
-              <span class="author" @click="jumpAuthor(item.link)">
+              <a :href="getAuthorUrl(item.link)" class="author" target="_blank">
                 {{ item?.author || "未知作者" }}
-              </span>
+              </a>
               <span class="date">
                 <i class="iconfont icon-time" />
                 {{ item?.updated }}
               </span>
             </div>
             <img :src="item.avatar" alt="avatar" class="avatar" />
-          </div>
+          </a>
         </div>
         <div v-else class="loading s-card">正在努力钓鱼中，请稍等...</div>
       </Transition>
@@ -84,7 +85,7 @@
 </template>
 
 <script setup>
-import { jumpLink, debounce } from "@/utils/helper";
+import { debounce } from "@/utils/helper";
 import { getFriendsLink } from "@/api/link";
 
 // 鱼塘数据
@@ -115,15 +116,16 @@ const changeRule = debounce(() => {
   getFriendsLinkData();
 }, 300);
 
-// 跳转作者博客
-const jumpAuthor = (link) => {
+// 获取作者博客
+const getAuthorUrl = (link) => {
   try {
     const url = new URL(link);
     // 提取主页链接
     const homepageLink = `${url.protocol}//${url.hostname}/`;
-    jumpLink(homepageLink);
+    return homepageLink;
   } catch (error) {
     $message.error("跳转作者博客失败，请稍后重试");
+    return null;
   }
 };
 
@@ -238,6 +240,7 @@ onMounted(() => {
         padding: 1rem;
         height: 160px;
         overflow: hidden;
+        transition: border 0.3s;
         .avatar {
           position: absolute;
           right: -20px;

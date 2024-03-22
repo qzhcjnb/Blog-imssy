@@ -35,13 +35,14 @@
         </div>
         <div class="right-nav">
           <!-- 开往 -->
-          <div
-            class="menu-btn nav-btn"
+          <a
+            class="menu-btn nav-btn travellings"
             title="开往-友链接力"
-            @click="jumpLink('https://www.travellings.cn/go.html')"
+            href="https://www.travellings.cn/go.html"
+            target="_blank"
           >
             <i class="iconfont icon-subway"></i>
-          </div>
+          </a>
           <!-- 随机文章 -->
           <div
             class="menu-btn nav-btn"
@@ -109,7 +110,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { smoothScrolling, shufflePost, jumpLink } from "@/utils/helper";
+import { smoothScrolling, shufflePost } from "@/utils/helper";
 
 const router = useRouter();
 const store = mainStore();

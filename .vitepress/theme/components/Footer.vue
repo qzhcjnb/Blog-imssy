@@ -3,42 +3,44 @@
     <div class="footer-content">
       <div class="copyright">
         <span class="time">@ 2019 - {{ thisYear }} By </span>
-        <span class="author link" @click="jumpLink(theme.author.link)">
+        <a :href="theme.author.link" class="author link" target="_blank">
           {{ theme.author.name }}
-        </span>
-        <span class="icp link" @click="jumpLink('https://beian.miit.gov.cn/')">
+        </a>
+        <a class="icp link" href="https://beian.miit.gov.cn/" target="_blank">
           <i class="iconfont icon-safe" />
           {{ theme.icp }}
-        </span>
-        <span
+        </a>
+        <a
           class="upyun link"
-          @click="jumpLink('https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral')"
+          href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
+          target="_blank"
         >
           <i class="iconfont icon-upyun" />
           又拍云
-        </span>
+        </a>
       </div>
       <div class="meta">
-        <div class="power link" @click="jumpLink('https://vitepress.dev/')">
+        <a class="power link" href="https://vitepress.dev/" target="_blank">
           <span class="by">Powered by</span>
           <span class="name">VitePress</span>
-        </div>
+        </a>
         <a class="theme link" href="/pages/theme">
           <span class="name">主题</span>
         </a>
-        <div class="rss link" @click="jumpLink('https://blog.imsyy.top/rss.xml')">
+        <a class="rss link" href="https://blog.imsyy.top/rss.xml" target="_blank">
           <i class="iconfont icon-rss" />
           <span class="name">订阅</span>
-        </div>
-        <div
+        </a>
+        <a
           class="cc link"
-          @click="jumpLink('https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans')"
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans"
+          target="_blank"
         >
           <i class="iconfont icon-line" />
           <i class="iconfont icon-by-line" />
           <i class="iconfont icon-nc-line" />
           <i class="iconfont icon-nd-line" />
-        </div>
+        </a>
       </div>
     </div>
   </footer>
@@ -47,7 +49,6 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { jumpLink } from "@/utils/helper";
 
 const store = mainStore();
 const { theme } = useData();
