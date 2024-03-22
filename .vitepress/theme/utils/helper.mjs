@@ -318,6 +318,7 @@ export const specialDayGray = () => {
 
 // 跳转至中转页
 export const jumpRedirect = () => {
+  if (typeof window === "undefined" || typeof document === "undefined") return false;
   // 排除 class
   const excludeClass = [
     "cf-friends-link",
