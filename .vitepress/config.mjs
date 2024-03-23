@@ -62,7 +62,7 @@ export default withPwa(
       // canonical URL
       const canonicalUrl = `${siteBasicData.site}/${pageData.relativePath}`
         .replace(/index\.md$/, "")
-        .replace(/\.md$/, ".html");
+        .replace(/\.md$/, "");
       pageData.frontmatter.head ??= [];
       pageData.frontmatter.head.push(["link", { rel: "canonical", href: canonicalUrl }]);
     },
