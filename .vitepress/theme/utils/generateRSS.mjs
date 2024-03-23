@@ -18,6 +18,7 @@ export const createRssFile = async (config) => {
     generator: "imsyy",
     favicon: "https://pic.imgdb.cn/item/65bc52b0871b83018a06699d.png",
     copyright: "Copyright © 2020-present imsyy",
+    updated: new Date(),
   });
   // 加载文章
   let posts = await createContentLoader("posts/**/*.md", {
@@ -29,7 +30,7 @@ export const createRssFile = async (config) => {
     const dateB = new Date(b.frontmatter.date);
     return dateB - dateA;
   });
-  for (const { url, html, frontmatter } of posts) {
+  for (const { url, frontmatter } of posts) {
     // 仅保留最近 10 篇文章
     if (feed.items.length >= 10) break;
     // 文章信息
@@ -40,8 +41,8 @@ export const createRssFile = async (config) => {
       id: `${hostLink}${url}`,
       link: `${hostLink}${url}`,
       description,
-      // content: html,
       date,
+      // updated,
       author: [
         {
           name: siteBasicData.author.name,

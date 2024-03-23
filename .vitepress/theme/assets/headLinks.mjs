@@ -2,13 +2,6 @@
 const headLinks = [
   // favicon
   ["link", { rel: "icon", href: "/favicon.ico" }],
-  [
-    "link",
-    {
-      rel: "canonical",
-      href: "https://blog.imsyy.top/",
-    },
-  ],
   // 预载 CDN
   [
     "link",

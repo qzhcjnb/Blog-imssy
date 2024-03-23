@@ -34,7 +34,7 @@ export default withPwa(
     head: headLinks,
     // sitemap
     sitemap: {
-      hostname: "https://blog.imsyy.top",
+      hostname: siteBasicData.site,
     },
     // 主题配置
     themeConfig: {
@@ -57,8 +57,19 @@ export default withPwa(
     },
     // 构建排除
     srcExclude: ["**/README.md", "**/TODO.md"],
+    // transformHead
+    transformPageData: async (pageData) => {
+      // canonical URL
+      const canonicalUrl = `${siteBasicData.site}/${pageData.relativePath}`
+        .replace(/index\.md$/, "")
+        .replace(/\.md$/, ".html");
+      pageData.frontmatter.head ??= [];
+      pageData.frontmatter.head.push(["link", { rel: "canonical", href: canonicalUrl }]);
+    },
     // buildEnd
-    buildEnd: createRssFile,
+    buildEnd: async (config) => {
+      await createRssFile(config);
+    },
     // vite
     vite: {
       plugins: [
