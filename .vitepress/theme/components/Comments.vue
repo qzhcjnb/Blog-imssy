@@ -165,6 +165,12 @@ onUnmounted(() => {
       .atk-list-comments-wrap {
         > .atk-comment-wrap {
           border-bottom: 1px dashed var(--main-card-border);
+          .atk-header {
+            .atk-badge {
+              color: var(--at-color-bg);
+              background-color: var(--at-color-main) !important;
+            }
+          }
           .atk-content {
             user-select: text;
             img {

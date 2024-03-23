@@ -2,7 +2,14 @@
 <template>
   <div
     v-if="nextPostData"
-    :class="['next-post', 's-card', { show: nextPostShow && !footerIsShow }]"
+    :class="[
+      'next-post',
+      's-card',
+      {
+        fixed: infoPosition === 'fixed',
+        show: infoPosition === 'fixed' && nextPostShow && !footerIsShow,
+      },
+    ]"
     @click="router.go(nextPostData?.regularPath)"
   >
     <span class="post-tip">
@@ -22,7 +29,7 @@ import { generateId } from "@/utils/commonTools";
 const router = useRouter();
 const store = mainStore();
 const { theme, page } = useData();
-const { footerIsShow } = storeToRefs(store);
+const { footerIsShow, infoPosition } = storeToRefs(store);
 
 // 文章信息
 const observer = ref(null);
@@ -89,17 +96,11 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .next-post {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 100;
-  width: 300px;
   padding: 20px;
   background-color: var(--main-site-background);
-  opacity: 0;
-  transform: translateY(180px);
   .post-tip {
     font-size: 14px;
     color: var(--main-font-second-color);
@@ -114,6 +115,15 @@ onBeforeUnmount(() => {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+  &.fixed {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    opacity: 0;
+    z-index: 100;
+    width: 300px;
+    transform: translateY(180px);
   }
   &.show {
     opacity: 1;

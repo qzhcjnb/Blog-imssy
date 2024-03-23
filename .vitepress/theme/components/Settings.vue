@@ -39,6 +39,23 @@
             <span class="options" @click="store.changeFontSize(true)"> + </span>
           </div>
         </div>
+        <div class="set-item">
+          <span class="set-label">额外信息显示位置</span>
+          <div class="set-options">
+            <span
+              :class="['options', { choose: store.infoPosition === 'normal' }]"
+              @click="store.infoPosition = 'normal'"
+            >
+              默认位置
+            </span>
+            <span
+              :class="['options', { choose: store.infoPosition === 'fixed' }]"
+              @click="store.infoPosition = 'fixed'"
+            >
+              右下角
+            </span>
+          </div>
+        </div>
       </div>
     </Modal>
   </div>
@@ -79,6 +96,7 @@ const store = mainStore();
     &:hover {
       width: 140px;
       color: var(--main-card-background);
+      border-color: var(--main-color);
       background-color: var(--main-color);
       .iconfont {
         color: var(--main-card-background);

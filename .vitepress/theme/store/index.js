@@ -41,6 +41,8 @@ export const mainStore = defineStore("main", {
       fontFamily: "hmos",
       // 全站字体大小
       fontSize: 16,
+      // 信息显示位置
+      infoPosition: "fixed",
     };
   },
   getters: {},
@@ -82,6 +84,7 @@ export const mainStore = defineStore("main", {
         "backgroundBlur",
         "fontFamily",
         "fontSize",
+        "infoPosition",
       ],
     },
   ],
