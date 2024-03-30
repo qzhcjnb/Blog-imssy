@@ -80,7 +80,7 @@
       padding: 0 6px;
       border-radius: 6px;
       background-color: var(--main-card-border);
-      font-family: "Fira Code",var(--main-font-family), monospace;
+      font-family: "Fira Code", var(--main-font-family), monospace;
       font-optical-sizing: auto;
       white-space: nowrap;
       transform: translateY(-2px);
@@ -266,7 +266,7 @@
         user-select: text;
         border-left: 1px solid var(--main-card-border);
         code {
-          font-family: "Fira Code",var(--main-font-family), monospace;
+          font-family: "Fira Code", var(--main-font-family), monospace;
           font-optical-sizing: auto;
           .line {
             display: inline-block;
@@ -555,10 +555,11 @@
     }
     .timeline-content {
       margin-top: 12px;
-      border-radius: 8px;
+      border-radius: 2px 12px 12px 12px;
       padding: 1rem;
       max-width: 80%;
-      background-color: var(--main-card-border);
+      border: 1px solid var(--main-card-border);
+      background-color: var(--main-card-second-background);
       > :first-child {
         margin-top: 0;
       }

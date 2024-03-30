@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
   display: flex;
   margin-top: 1rem;
   padding: 1rem 0;
-  background-color: var(--main-card-second-background);
+  background-color: var(--main-card-background);
   border-top: 1px solid var(--main-card-border);
   overflow: hidden;
   animation: show 0.3s backwards;

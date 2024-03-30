@@ -18,11 +18,13 @@
         --main-card-background: #fff;
         --main-font-color: #363636;
       }
-      html.dark-mode {
-        --main-site-background: #18171d;
-        --main-card-border: #3d3d3f;
-        --main-card-background: #1b1c20;
-        --main-font-color: #f7f7fa;
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --main-site-background: #18171d;
+          --main-card-border: #3d3d3f;
+          --main-card-background: #1b1c20;
+          --main-font-color: #f7f7fa;
+        }
       }
       a {
         text-decoration: none;
@@ -249,17 +251,6 @@
           urlDom.innerHTML = "获取跳转链接失败";
         }
       };
-      // 跟随系统主题
-      const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const toggleDarkMode = (darkModeMediaQuery) => {
-        if (darkModeMediaQuery.matches) {
-          document.documentElement.classList.add("dark-mode");
-        } else {
-          document.documentElement.classList.remove("dark-mode");
-        }
-      };
-      darkModeMediaQuery.addListener(toggleDarkMode);
-      toggleDarkMode(darkModeMediaQuery);
       document.addEventListener("contextmenu", function (event) {
         event.preventDefault();
       });
