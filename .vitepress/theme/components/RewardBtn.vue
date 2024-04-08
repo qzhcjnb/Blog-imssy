@@ -47,10 +47,11 @@ const { rewardData } = theme.value;
     justify-content: center;
     height: 40px;
     width: 120px;
-    font-weight: bold;
     border-radius: 8px;
+    color: #fff;
     background-color: var(--main-color-red);
     .iconfont {
+      color: #fff;
       font-weight: normal;
       margin-right: 6px;
     }
@@ -96,7 +97,7 @@ const { rewardData } = theme.value;
         }
       }
     }
-    &::after{
+    &::after {
       content: "";
       position: absolute;
       bottom: -20px;
