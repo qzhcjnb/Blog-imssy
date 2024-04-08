@@ -42,6 +42,7 @@ declare module 'vue' {
     Project: typeof import('./theme/views/Project.vue')['default']
     References: typeof import('./theme/components/References.vue')['default']
     RelatedPost: typeof import('./theme/components/RelatedPost.vue')['default']
+    RewardBtn: typeof import('./theme/components/RewardBtn.vue')['default']
     RightMenu: typeof import('./theme/components/RightMenu.vue')['default']
     Search: typeof import('./theme/components/Search.vue')['default']
     Settings: typeof import('./theme/components/Settings.vue')['default']

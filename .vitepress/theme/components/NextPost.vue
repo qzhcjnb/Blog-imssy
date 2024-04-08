@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: var(--main-site-background);
+  background-color: var(--main-card-background);
   .post-tip {
     font-size: 14px;
     color: var(--main-font-second-color);

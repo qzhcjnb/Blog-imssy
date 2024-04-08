@@ -54,7 +54,7 @@ screenshot: https://pic.imgdb.cn/item/65dc47009f345e8d030b65ba.png
 ---
 
 <Checkbox v-model="addLinkChecked">
-  我已认真确认阅读上方要求，并希望添加友链
+  我确认已认真阅读上方要求，并希望添加友链
 </Checkbox>
 
 <Transition name="fade" mode="out-in">

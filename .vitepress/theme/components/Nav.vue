@@ -5,7 +5,24 @@
         <!-- 导航栏左侧 -->
         <div class="left-nav">
           <div class="more-menu nav-btn" title="更多内容">
-            <i class="iconfont icon-menu"></i>
+            <i class="iconfont icon-menu" />
+            <div class="more-card s-card">
+              <div v-for="(item, index) in theme.navMore" :key="index" class="more-item">
+                <span class="more-name">{{ item.name }}</span>
+                <div class="more-list">
+                  <a
+                    v-for="(link, i) in item.list"
+                    :key="i"
+                    :href="link.url"
+                    class="more-link"
+                    target="_blank"
+                  >
+                    <img class="link-icon" :src="link.icon" :alt="link.name" />
+                    <span class="link-name">{{ link.name }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="site-name" @click="router.go('/')">
             {{ site.title }}
@@ -185,9 +202,72 @@ const { site, theme, frontmatter, page } = useData();
       align-items: center;
       min-width: 200px;
       .more-menu {
+        position: relative;
         margin-right: 4px;
         @media (max-width: 512px) {
           display: none;
+        }
+        .more-card {
+          position: absolute;
+          left: 0;
+          top: 46px;
+          opacity: 0;
+          visibility: hidden;
+          transform-origin: left top;
+          transform: scale(0.8) translateY(-5px);
+          .more-item {
+            margin-top: 0.8rem;
+            &:first-child {
+              margin-top: 0;
+            }
+            .more-name {
+              font-size: 14px;
+              display: inline-block;
+              color: var(--main-font-second-color);
+              margin-bottom: 0.6rem;
+            }
+            .more-list {
+              display: grid;
+              gap: 0.8rem;
+              grid-template-columns: 1fr 1fr;
+              .more-link {
+                display: flex;
+                align-items: center;
+                width: 150px;
+                padding: 6px 8px;
+                border-radius: 8px;
+                .link-icon {
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 50%;
+                  margin-right: 8px;
+                }
+                &:hover {
+                  color: var(--main-card-background);
+                  background-color: var(--main-color);
+                }
+              }
+            }
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            z-index: 1;
+          }
+          &:hover {
+            border-color: var(--main-color);
+          }
+        }
+        &:hover {
+          .more-card {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            visibility: visible;
+          }
         }
       }
       .site-name {

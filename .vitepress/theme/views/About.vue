@@ -95,7 +95,7 @@
           <span class="tip">爱好游戏</span>
           <span class="title2">原神</span>
           <div class="image-desc">
-            <span class="left">Lv 60</span>
+            <span class="left">Lv 60 - 摆烂中</span>
             <span class="right">UID 110223613</span>
           </div>
         </div>
@@ -275,20 +275,11 @@ const { skillsData } = theme.value;
         }
       }
       &.skills {
-        max-height: 480px;
         .skills-list {
           margin-top: 12px;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          overflow: hidden;
-          mask: linear-gradient(
-            180deg,
-            #fff 0,
-            #fff 90%,
-            hsla(0, 0%, 100%, 0.6) 95%,
-            hsla(0, 0%, 100%, 0) 100%
-          );
           .skills-item {
             display: flex;
             align-items: center;

@@ -336,6 +336,7 @@ export const jumpRedirect = () => {
       "travellings",
       "post-link",
       "report",
+      "more-link",
     ];
     // 所有链接
     const allLinks = [...document.getElementsByTagName("a")];
