@@ -22,7 +22,7 @@ const getPostMDFilePaths = async () => {
 };
 
 /**
- * 用于基于 frontMatter 日期降序排序文章的比较函数
+ * 基于 frontMatter 日期降序排序文章
  * @param {Object} obj1 - 第一篇文章对象
  * @param {Object} obj2 - 第二篇文章对象
  * @returns {number} - 比较结果

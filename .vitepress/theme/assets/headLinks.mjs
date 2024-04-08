@@ -2,6 +2,16 @@
 const headLinks = [
   // favicon
   ["link", { rel: "icon", href: "/favicon.ico" }],
+  // RSS
+  [
+    "link",
+    {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: "RSS",
+      href: "https://blog.imsyy.top/rss.xml",
+    },
+  ],
   // 预载 CDN
   [
     "link",
