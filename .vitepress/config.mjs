@@ -8,6 +8,7 @@ import {
   getAllCategories,
   getAllArchives,
 } from "./theme/utils/getPostData.mjs";
+import { jumpRedirect } from "./theme/utils/commonTools.mjs";
 import headLinks from "./theme/assets/headLinks.mjs";
 import markdownConfig from "./theme/utils/markdownConfig.mjs";
 import AutoImport from "unplugin-auto-import/vite";
@@ -66,6 +67,10 @@ export default withPwa(
       pageData.frontmatter.head ??= [];
       pageData.frontmatter.head.push(["link", { rel: "canonical", href: canonicalUrl }]);
     },
+    // transformHtml
+    transformHtml: (html) => {
+      return jumpRedirect(html);
+    },
     // buildEnd
     buildEnd: async (config) => {
       await createRssFile(config);
@@ -93,7 +98,7 @@ export default withPwa(
       },
       // 服务器
       server: {
-        port: 9877,
+        port: 1024,
       },
       // 构建
       build: {

@@ -1,3 +1,6 @@
+import { themeConfig } from "../assets/themeConfig.mjs";
+import { load } from "cheerio";
+
 /**
  * 从文件名生成数字 ID
  * @param {string} fileName - 文件名
@@ -15,9 +18,8 @@ export const generateId = (fileName) => {
 };
 
 /**
- * 创建一个新的script标签，或者刷新一个已存在的脚本标签
- * @param {string} src - 脚本的URL
- * @returns {Promise} 一个代表脚本加载状态的Promise对象。如果成功则resolve，否则reject
+ * 创建或者刷新脚本标签
+ * @param {string} src - 脚本 URL
  */
 export const loadScript = (src, async = false) => {
   if (typeof document === "undefined" || !src) return false;
@@ -33,4 +35,72 @@ export const loadScript = (src, async = false) => {
     script.onerror = reject;
     document.head.append(script);
   });
+};
+
+/**
+ * 跳转中转页
+ * @param {string} html - 页面内容
+ * @param {boolean} isDom - 是否为 DOM 对象
+ */
+export const jumpRedirect = (html, isDom = false) => {
+  try {
+    // 是否启用
+    if (!themeConfig.jumpRedirect.enable) return html;
+    // 中转页地址
+    const redirectPage = "/redirect.html?url=";
+    // 排除的 className
+    const excludeClass = themeConfig.jumpRedirect.exclude;
+    if (isDom) {
+      if (typeof window === "undefined" || typeof document === "undefined") return false;
+      // 所有链接
+      const allLinks = [...document.getElementsByTagName("a")];
+      if (allLinks?.length === 0) return false;
+      allLinks.forEach((link) => {
+        // 检查链接是否包含 target="_blank" 属性
+        if (link.getAttribute("target") === "_blank") {
+          // 检查链接是否包含排除的类
+          if (excludeClass.some((className) => link.classList.contains(className))) {
+            return false;
+          }
+          const linkHref = link.getAttribute("href");
+          // 存在链接且非中转页
+          if (linkHref && !linkHref.includes(redirectPage)) {
+            // Base64
+            const encodedHref = btoa(linkHref);
+            const redirectLink = `${redirectPage}${encodedHref}`;
+            // 保存原始链接
+            link.setAttribute("original-href", linkHref);
+            // 覆盖 href
+            link.setAttribute("href", redirectLink);
+          }
+        }
+      });
+    } else {
+      const $ = load(html);
+      // 替换符合条件的标签
+      $("a[target='_blank']").each((_, el) => {
+        const $a = $(el);
+        const href = $a.attr("href");
+        const classesStr = $a.attr("class");
+        const innerText = $a.text();
+        // 检查是否包含排除的类
+        const classes = classesStr ? classesStr.trim().split(" ") : [];
+        if (excludeClass.some((className) => classes.includes(className))) {
+          return;
+        }
+        // 存在链接且非中转页
+        if (href && !href.includes(redirectPage)) {
+          // Base64 编码 href
+          const encodedHref = Buffer.from(href, "utf-8").toString("base64");
+          // 构造新标签，包含 original-href 属性
+          const newLink = `<a ref="noreferrer noopener nofollow" href="${redirectPage}${encodedHref}" original-href="${href}" target="_blank"${classesStr ? ` class="${classesStr}"` : ""}>${innerText}</a>`;
+          // 替换原有标签
+          $a.replaceWith(newLink);
+        }
+      });
+      return $.html();
+    }
+  } catch (error) {
+    console.error("处理链接时出错：", error);
+  }
 };

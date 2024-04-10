@@ -31,6 +31,7 @@ const addLinkChecked = ref(false);
 - 地址：`https://blog.imsyy.top/`
 - 头像：`https://pic.imgdb.cn/item/65bc52b0871b83018a06699d.png`
 - 站点图片：`https://pic.imgdb.cn/item/65dc47009f345e8d030b65ba.png`
+- 订阅：`https://blog.imsyy.top/rss.xml`
 
 ```yml
 name: 無名小栈
@@ -38,6 +39,7 @@ desc: 分享技术与科技生活
 url: https://blog.imsyy.top/
 avatar: https://pic.imgdb.cn/item/65bc52b0871b83018a06699d.png
 screenshot: https://pic.imgdb.cn/item/65dc47009f345e8d030b65ba.png
+rss: https://blog.imsyy.top/rss.xml
 ```
 
 ### 申请友链

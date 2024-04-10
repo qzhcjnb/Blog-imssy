@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { jumpRedirect } from "@/utils/helper";
+import { jumpRedirect } from "@/utils/commonTools";
 import Artalk from "artalk";
 import "artalk/dist/Artalk.css";
 
@@ -36,11 +36,11 @@ const initArtalk = () => {
     // Event
     artalk.value?.on("list-loaded", () => {
       console.log("评论已加载完毕");
-      jumpRedirect();
+      jumpRedirect(null, true);
     });
     artalk.value?.on("comment-updated", () => {
       console.log("评论已更新完毕");
-      jumpRedirect();
+      jumpRedirect(null, true);
     });
     return artalk.value;
   } catch (error) {

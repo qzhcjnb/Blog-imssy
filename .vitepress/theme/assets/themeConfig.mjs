@@ -286,6 +286,26 @@ export const themeConfig = {
     // 支付宝二维码
     alipay: "https://pic.efefee.cn/uploads/2024/04/07/661206631d3b5.webp",
   },
+  // 外链中转
+  jumpRedirect: {
+    enable: true,
+    // 排除类名
+    exclude: [
+      "cf-friends-link",
+      "upyun",
+      "icp",
+      "author",
+      "rss",
+      "cc",
+      "power",
+      "social-link",
+      "link-text",
+      "travellings",
+      "post-link",
+      "report",
+      "more-link",
+    ],
+  },
   // 服务地址
   serverData: {
     // 友链朋友圈
