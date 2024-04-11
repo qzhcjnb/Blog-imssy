@@ -1,4 +1,5 @@
 import { mainStore } from "@/store";
+import { jumpRedirect } from "./commonTools.mjs";
 
 // 必要数据
 let loadingTimer = null;
@@ -24,6 +25,8 @@ export const routerTools = (type, to, from) => {
         () => {
           console.log("加载动画延时结束");
           store.loadingStatus = false;
+          // 替换链接
+          jumpRedirect(null, true);
         },
         Math.floor(Math.random() * (800 - 260 + 1)) + 260,
       );

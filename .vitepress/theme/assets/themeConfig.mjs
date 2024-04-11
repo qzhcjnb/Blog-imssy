@@ -304,6 +304,7 @@ export const themeConfig = {
       "post-link",
       "report",
       "more-link",
+      "skills-item",
     ],
   },
   // 服务地址

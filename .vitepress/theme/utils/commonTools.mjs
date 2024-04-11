@@ -92,8 +92,17 @@ export const jumpRedirect = (html, isDom = false) => {
         if (href && !href.includes(redirectPage)) {
           // Base64 编码 href
           const encodedHref = Buffer.from(href, "utf-8").toString("base64");
-          // 构造新标签，包含 original-href 属性
-          const newLink = `<a ref="noreferrer noopener nofollow" href="${redirectPage}${encodedHref}" original-href="${href}" target="_blank"${classesStr ? ` class="${classesStr}"` : ""}>${innerText}</a>`;
+          // 获取所有属性
+          const attributes = el.attribs;
+          // 重构属性字符串，保留原有属性
+          let attributesStr = "";
+          for (let attr in attributes) {
+            if (Object.prototype.hasOwnProperty.call(attributes, attr)) {
+              attributesStr += ` ${attr}="${attributes[attr]}"`;
+            }
+          }
+          // 构造新标签
+          const newLink = `<a href="${redirectPage}${encodedHref}" original-href="${href}" ${attributesStr}>${innerText}</a>`;
           // 替换原有标签
           $a.replaceWith(newLink);
         }
