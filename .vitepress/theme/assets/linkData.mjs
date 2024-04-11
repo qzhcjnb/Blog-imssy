@@ -87,16 +87,16 @@ const linkData = [
         url: "https://blog.qyliu.top/",
       },
       {
-        name: "别亦难",
-        avatar: "https://pic.efefee.cn/uploads/2024/03/19/65f9396e66055.webp",
-        desc: "准时不定期更新",
-        url: "https://lazyingman.com/",
-      },
-      {
         name: "百里飞洋",
         avatar: "https://pic.efefee.cn/uploads/2024/04/06/661102ce070d5.webp",
         desc: "星河滚烫，无问西东",
         url: "https://blog.meta-code.top/",
+      },
+      {
+        name: "皮普的数字花园",
+        avatar: "https://pic.efefee.cn/uploads/2024/04/11/661737050266d.webp",
+        desc: "AIGC / 设计 / 摄影 / 代码",
+        url: "https://pipuwong.com/",
       },
     ],
   },
@@ -105,7 +105,14 @@ const linkData = [
     type: "loss",
     typeName: "失联",
     typeDesc: "持续超过 3 天无法访问的站点会出现在此处",
-    typeList: [],
+    typeList: [
+      {
+        name: "别亦难",
+        avatar: "https://pic.efefee.cn/uploads/2024/03/19/65f9396e66055.webp",
+        desc: "准时不定期更新",
+        url: "https://lazyingman.com/",
+      },
+    ],
   },
 ];
 

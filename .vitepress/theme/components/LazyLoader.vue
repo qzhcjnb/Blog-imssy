@@ -7,6 +7,7 @@
     <img :data-lazy-src="useFriendsLink" class="cf-friends-avatar" alt="cover" />
   </div>
 </template>
+
 <script setup>
 const props = defineProps({
   // 兼容友链朋友圈

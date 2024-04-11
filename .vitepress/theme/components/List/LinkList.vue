@@ -11,9 +11,16 @@
       <div class="all-link" v-if="type?.typeList">
         <a
           v-for="(link, index) in type.typeList"
-          :class="['link-card', 's-card', { 'cf-friends-link': useFriendsLink }]"
+          :class="[
+            'link-card',
+            's-card',
+            {
+              loss: type?.type === 'loss',
+              'cf-friends-link': type?.type !== 'loss' && useFriendsLink,
+            },
+          ]"
           :key="index"
-          :href="link.url"
+          :href="type?.type !== 'loss' ? link.url : null"
           target="_blank"
         >
           <div class="cover">
@@ -85,6 +92,9 @@ const props = defineProps({
         height: 90px;
         width: 100%;
         padding: 12px;
+        &.loss {
+          pointer-events: none;
+        }
         .cover {
           display: flex;
           align-items: center;
