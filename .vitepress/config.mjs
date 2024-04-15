@@ -13,7 +13,6 @@ import headLinks from "./theme/assets/headLinks.mjs";
 import markdownConfig from "./theme/utils/markdownConfig.mjs";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-
 import path from "path";
 
 // 获取全局数据
@@ -98,7 +97,7 @@ export default withPwa(
       },
       // 服务器
       server: {
-        port: 1024,
+        port: 9877,
       },
       // 构建
       build: {

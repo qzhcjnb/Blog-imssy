@@ -86,7 +86,7 @@
 
 <script setup>
 import { debounce } from "@/utils/helper";
-import { getFriendsLink } from "@/api/link";
+import { getFriendsLink } from "@/api";
 
 // 鱼塘数据
 const friendsStatusData = ref(null);

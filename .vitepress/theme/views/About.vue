@@ -87,8 +87,7 @@
         class="about-item game image"
         style="
           --color: #76433c;
-          background: url(https://pic.efefee.cn/uploads/2024/02/23/65d860790bb03.webp) top/cover
-            no-repeat;
+          background-image: url(https://pic.efefee.cn/uploads/2024/02/23/65d860790bb03.webp);
         "
       >
         <div class="image-content">
@@ -104,8 +103,7 @@
         class="about-item game image"
         style="
           --color: #5a4e44;
-          background: url(https://pic.efefee.cn/uploads/2024/02/23/65d8693950d3e.webp) top/cover
-            no-repeat;
+          background-image: url(https://pic.efefee.cn/uploads/2024/02/23/65d8693950d3e.webp);
         "
       >
         <div class="image-content">
@@ -123,8 +121,7 @@
         class="about-item like image"
         style="
           --color: #0c0e20;
-          background: url(https://pic.efefee.cn/uploads/2024/02/27/65dd812567723.webp) top/cover
-            no-repeat;
+          background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd812567723.webp);
         "
       >
         <div class="image-content">
@@ -139,8 +136,7 @@
         class="about-item like image"
         style="
           --color: #7b3c25;
-          background: url(https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp) top/cover
-            no-repeat;
+          background-image: url(https://pic.efefee.cn/uploads/2024/02/27/65dd836099d16.webp);
         "
       >
         <div class="image-content">
@@ -152,6 +148,52 @@
         </div>
       </div>
     </div>
+    <div class="about-content" style="grid-template-columns: 2fr 3fr">
+      <!-- 数据 -->
+      <div
+        class="about-item static image"
+        style="
+          --color: #0f1114;
+          background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661c8fbf226d3.webp);
+        "
+      >
+        <div class="image-content">
+          <span class="tip">数据</span>
+          <span class="title2">访问统计</span>
+          <div class="static-data">
+            <div v-for="(item, key, index) in statisticsData" :key="index" class="static-item">
+              <span class="static-name">{{ key }}</span>
+              <span class="static-num">{{ item }}</span>
+            </div>
+          </div>
+          <div class="image-desc opacity">
+            <span class="left">
+              统计信息来自 <a href="https://v6.51.la/" target="_blank">51la</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- 信息 -->
+      <div class="about-item child">
+        <div
+          class="about-item map image"
+          style="background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661cbccc56af5.webp)"
+        >
+          <span class="position">我现在住在 <strong>中国，河南省</strong></span>
+        </div>
+        <div class="about-item info">
+          <div class="info-item">
+            <span class="info-name">生于</span>
+            <span class="info-num" style="--color: #43a6c6">2001</span>
+          </div>
+          <div class="info-item">
+            <span class="info-name">现在职业</span>
+            <span class="info-num" style="--color: #dfac46">前端开发工程师</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 心路历程 -->
     <div class="about-content" style="display: flex">
       <div class="about-item">
         <span class="tip">心路历程</span>
@@ -171,8 +213,23 @@
 </template>
 
 <script setup>
+import { getStatistics } from "@/api";
+
 const { theme } = useData();
 const { skillsData } = theme.value;
+
+// 站点统计数据
+const statisticsData = ref(null);
+
+// 获取站点统计数据
+const getStatisticsData = async () => {
+  const result = await getStatistics();
+  statisticsData.value = result;
+};
+
+onMounted(() => {
+  getStatisticsData();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -216,6 +273,16 @@ const { skillsData } = theme.value;
       .text {
         font-size: 18px;
         margin: 0.6rem 0;
+      }
+      &.child {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        gap: 20px;
+        .about-item {
+          height: 100%;
+        }
       }
       &.hello {
         justify-content: center;
@@ -364,6 +431,9 @@ const { skillsData } = theme.value;
         }
       }
       &.image {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
         .image-content {
           flex-grow: 1;
           display: flex;
@@ -377,6 +447,16 @@ const { skillsData } = theme.value;
             align-items: center;
             justify-content: space-between;
             margin-top: auto;
+            &.opacity {
+              font-size: 14px;
+              color: var(--main-font-second-color);
+            }
+            a {
+              color: var(--main-font-second-color);
+              &:hover {
+                color: var(--main-color);
+              }
+            }
           }
         }
         &::after {
@@ -388,6 +468,76 @@ const { skillsData } = theme.value;
           left: 0;
           box-shadow: inset 0 -70px 204px 10px var(--color);
           z-index: 0;
+        }
+      }
+      &.static {
+        .static-data {
+          display: grid;
+          gap: 12px;
+          grid-template-columns: 1fr 1fr;
+          margin: 20px 0;
+          .static-item {
+            display: flex;
+            flex-direction: column;
+            .static-name {
+              font-size: 15px;
+              opacity: 0.8;
+            }
+            .static-num {
+              font-size: 34px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      &.map {
+        min-height: 170px;
+        background-size: 100%;
+        transition: background 1.5s ease-in-out;
+        cursor: pointer;
+        @media (max-width: 768px) {
+          background-size: cover;
+          pointer-events: none;
+        }
+        .position {
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          padding: 20px 30px;
+          color: #fff;
+          background-color: #636352;
+          font-size: 20px;
+          transition: bottom 1s;
+        }
+        &:hover {
+          background-size: 120%;
+          background-position-x: 0;
+          background-position-y: 36%;
+          .position {
+            bottom: -80px;
+          }
+        }
+      }
+      &.info {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        .info-item {
+          display: flex;
+          flex-direction: column;
+          margin-right: 32px;
+          .info-name {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--main-font-second-color);
+          }
+          .info-num {
+            font-size: 34px;
+            font-weight: bold;
+            color: var(--color);
+          }
         }
       }
     }

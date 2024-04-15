@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { getHitokoto } from "@/api/text";
+import { getHitokoto } from "@/api";
 
 const { theme } = useData();
 const props = defineProps({

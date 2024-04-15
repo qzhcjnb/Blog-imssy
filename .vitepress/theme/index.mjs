@@ -4,7 +4,6 @@ import { routerTools } from "@/utils/initTools.mjs";
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import LazyLoader from "@/components/LazyLoader.vue";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-// import Theme from "vitepress/theme";
 
 // 根组件
 import App from "@/App.vue";
@@ -18,8 +17,8 @@ pinia.use(piniaPluginPersistedstate);
 // InstantSearch
 import InstantSearch from "vue-instantsearch/vue3/es";
 
-/** @type {import('vitepress').Theme} */
-export default {
+// Theme
+const Theme = {
   // extends: Theme,
   Layout: () => {
     return h(App);
@@ -40,3 +39,5 @@ export default {
     };
   },
 };
+
+export default Theme;

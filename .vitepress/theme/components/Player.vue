@@ -8,7 +8,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
-import { getMusicList } from "@/api/music";
+import { getMusicList } from "@/api";
 import musicLists from "@/assets/musicLists.mjs";
 import "aplayer/dist/APlayer.min.css";
 

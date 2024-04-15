@@ -307,6 +307,10 @@ export const themeConfig = {
       "skills-item",
     ],
   },
+  // 站点统计
+  tongji: {
+    "51la": "KKMqCI5RC3srS4kX",
+  },
   // 服务地址
   serverData: {
     // 友链朋友圈

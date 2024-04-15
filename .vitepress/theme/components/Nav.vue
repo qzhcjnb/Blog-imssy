@@ -185,6 +185,11 @@ const { site, theme, frontmatter, page } = useData();
           opacity: 0;
         }
       }
+      @media (max-width: 768px) {
+        .nav-center {
+          top: -80px;
+        }
+      }
     }
   }
   .nav-all {
@@ -322,6 +327,7 @@ const { site, theme, frontmatter, page } = useData();
       width: 100%;
       height: 60px;
       overflow: hidden;
+      transition: top 0.3s;
       .site-menu {
         position: absolute;
         width: fit-content;
@@ -598,7 +604,17 @@ const { site, theme, frontmatter, page } = useData();
         min-width: auto;
       }
       .nav-center {
-        display: none;
+        // display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--main-card-background);
+        border-bottom: 1px solid var(--main-card-border);
+        z-index: 100;
+        .site-title {
+          font-size: 15px;
+          height: auto;
+        }
       }
     }
   }

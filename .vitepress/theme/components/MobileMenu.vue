@@ -94,7 +94,7 @@ const pageJump = (url) => {
     height: 100%;
     width: 100%;
     max-width: 300px;
-    border-radius: 0;
+    border-radius: 12px 0 0 12px;
     padding: 20px;
     overflow: auto;
     .close-control {

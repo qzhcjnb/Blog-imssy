@@ -344,6 +344,7 @@ const postMetaData = computed(() => {
     }
     .post-content {
       .post-article {
+        border: none;
         padding: 20px 30px;
         .other-meta {
           margin: 1rem 0 2rem 0;

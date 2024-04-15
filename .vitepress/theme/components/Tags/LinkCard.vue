@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { getSiteInfo } from "@/api/link";
+import { getSiteInfo } from "@/api";
 
 const router = useRouter();
 const props = defineProps({
