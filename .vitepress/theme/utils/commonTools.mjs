@@ -47,7 +47,7 @@ export const jumpRedirect = (html, isDom = false) => {
     // 是否启用
     if (!themeConfig.jumpRedirect.enable) return html;
     // 中转页地址
-    const redirectPage = "/redirect.html?url=";
+    const redirectPage = "/redirect";
     // 排除的 className
     const excludeClass = themeConfig.jumpRedirect.exclude;
     if (isDom) {
@@ -67,7 +67,7 @@ export const jumpRedirect = (html, isDom = false) => {
           if (linkHref && !linkHref.includes(redirectPage)) {
             // Base64
             const encodedHref = btoa(linkHref);
-            const redirectLink = `${redirectPage}${encodedHref}`;
+            const redirectLink = `${redirectPage}?url=${encodedHref}`;
             // 保存原始链接
             link.setAttribute("original-href", linkHref);
             // 覆盖 href
@@ -102,7 +102,7 @@ export const jumpRedirect = (html, isDom = false) => {
             }
           }
           // 构造新标签
-          const newLink = `<a href="${redirectPage}${encodedHref}" original-href="${href}" ${attributesStr}>${innerText}</a>`;
+          const newLink = `<a href="${redirectPage}?url=${encodedHref}" original-href="${href}" ${attributesStr}>${innerText}</a>`;
           // 替换原有标签
           $a.replaceWith(newLink);
         }
