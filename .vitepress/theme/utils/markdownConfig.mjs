@@ -37,6 +37,17 @@ const markdownConfig = (md) => {
       }
     },
   });
+  // card
+  md.use(container, "card", {
+    render: (tokens, idx, _options) => {
+      const token = tokens[idx];
+      if (token.nesting === 1) {
+        return `<div class="card">`;
+      } else {
+        return "</div>";
+      }
+    },
+  });
   // 表格
   md.renderer.rules.table_open = () => {
     return '<div class="table-container"><table>';

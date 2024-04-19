@@ -44,6 +44,9 @@ export const loadScript = (src, async = false) => {
  */
 export const jumpRedirect = (html, isDom = false) => {
   try {
+    // 是否为开发环境
+    const isDev = process.env.NODE_ENV === "development";
+    if (isDev) return false;
     // 是否启用
     if (!themeConfig.jumpRedirect.enable) return html;
     // 中转页地址
