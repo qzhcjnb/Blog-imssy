@@ -43,6 +43,8 @@ export const mainStore = defineStore("main", {
       fontSize: 16,
       // 信息显示位置
       infoPosition: "fixed",
+      // 上次滚动位置
+      lastScrollY: 0,
     };
   },
   getters: {},

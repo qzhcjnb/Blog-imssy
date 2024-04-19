@@ -12,7 +12,7 @@
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-vue": "^9.24.1",
+    "eslint-plugin-vue": "^9.25.0",
     "feed": "^4.2.2",
     "fs-extra": "^11.2.0",
     "globby": "^14.0.1",
@@ -32,11 +32,11 @@
     "@vite-pwa/vitepress": "^0.4.0",
     "algoliasearch": "^4.23.3",
     "aplayer": "^1.10.1",
-    "artalk": "^2.8.4",
-    "instantsearch.js": "^4.66.1",
+    "artalk": "2.8.3",
+    "instantsearch.js": "^4.67.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
-    "vue": "^3.4.21",
-    "vue-instantsearch": "^4.15.0"
+    "vue": "^3.4.23",
+    "vue-instantsearch": "^4.16.0"
   }
 }

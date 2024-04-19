@@ -30,7 +30,11 @@
 </template>
 
 <script setup>
+import { mainStore } from "@/store";
+import { nextTick } from "vue";
+
 const { theme } = useData();
+const store = mainStore();
 const props = defineProps({
   // 显示首页头部
   showHeader: {
@@ -101,6 +105,28 @@ const postData = computed(() => {
   // 返回列表
   return data ? data.slice(page * postSize, page * postSize + postSize) : [];
 });
+
+// 恢复滚动位置
+const restoreScrollY = (val) => {
+  if (typeof window === "undefined" || val) return false;
+  const scrollY = store.lastScrollY;
+  nextTick().then(() => {
+    console.log("滚动位置：", scrollY);
+    // 平滑滚动
+    window.scrollTo({
+      top: scrollY,
+      behavior: "smooth",
+    });
+    // 清除滚动位置
+    store.lastScrollY = 0;
+  });
+};
+
+// 监听加载结束
+watch(
+  () => store.loadingStatus,
+  (val) => restoreScrollY(val),
+);
 </script>
 
 <style lang="scss" scoped>

@@ -6,7 +6,7 @@
       :key="index"
       :class="['post-item', 's-card', 'hover', { simple, cover: item.cover }]"
       :style="{ animationDelay: `${0.4 + index / 10}s` }"
-      @click="router.go(item.regularPath)"
+      @click="toPost(item.regularPath)"
     >
       <div class="post-content">
         <div v-if="!simple && item?.categories" class="post-category">
@@ -44,8 +44,10 @@
 </template>
 
 <script setup>
+import { mainStore } from "@/store";
 import { formatTimestamp } from "@/utils/helper";
 
+const store = mainStore();
 const router = useRouter();
 
 const props = defineProps({
@@ -60,6 +62,17 @@ const props = defineProps({
     default: false,
   },
 });
+
+// 前往文章
+const toPost = (path) => {
+  // 记录滚动位置
+  if (typeof window !== "undefined") {
+    const scrollY = window.scrollY;
+    store.lastScrollY = scrollY;
+  }
+  // 跳转文章
+  router.go(path);
+};
 </script>
 
 <style lang="scss" scoped>
