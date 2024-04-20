@@ -6,7 +6,7 @@ aside: false
 <script setup>
 import { ref } from "vue";
 import Link from "@/views/Link.vue";
-import Comments from "@/components/Comments.vue";
+import Comments from "@/components/Plugins/Comments/index.vue";
 import Checkbox from "@/components/Tags/Checkbox.vue";
 
 // 添加友链勾选

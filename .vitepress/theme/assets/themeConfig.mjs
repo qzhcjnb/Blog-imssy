@@ -278,6 +278,17 @@ export const themeConfig = {
       link: "https://chat.openai.com/",
     },
   ],
+  // 评论
+  comment: {
+    enable: true,
+    // 评论系统选择
+    type: "artalk",
+    // 评论系统配置
+    artalk: {
+      site: "無名小栈",
+      server: "https://artalk.efefee.cn",
+    },
+  },
   // 打赏
   rewardData: {
     enable: true,

@@ -11,7 +11,7 @@
       title="个性化配置"
       titleIcon="style"
       @mask-click="store.changeShowStatus('showSeetings')"
-      @mask-close="store.changeShowStatus('showSeetings')"
+      @modal-close="store.changeShowStatus('showSeetings')"
     >
       <div class="set-list">
         <div class="set-item">

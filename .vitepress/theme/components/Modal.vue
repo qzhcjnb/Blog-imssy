@@ -3,7 +3,7 @@
   <Teleport to="body">
     <Transition name="fade" mode="out-in">
       <div v-if="show" class="modal">
-        <div class="modal-mask" @click="maskClick" />
+        <div class="modal-mask" @click.stop="maskClick" />
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
@@ -18,7 +18,7 @@
             <i v-if="titleIcon" :class="`iconfont icon-${titleIcon}`"></i>
             <span class="title-text">{{ title }}</span>
             <!-- 关闭按钮 -->
-            <i v-if="showClose" class="iconfont icon-close close" @click="maskClose" />
+            <i v-if="showClose" class="iconfont icon-close close" @click="modalClose" />
           </div>
           <slot />
         </div>
@@ -67,11 +67,19 @@ const props = defineProps({
 });
 
 // 发射事件
-const emit = defineEmits(["mask-click", "mask-close"]);
+const emit = defineEmits(["mask-click", "modal-close"]);
 
 // 遮罩层事件
 const maskClick = () => emit("mask-click");
-const maskClose = () => emit("mask-close");
+const modalClose = () => emit("modal-close");
+
+// 监听开启
+watch(
+  () => props.show,
+  (val) => {
+    document.body.style.overflowY = val ? "hidden" : "";
+  },
+);
 </script>
 
 <style lang="scss" scoped>
@@ -103,13 +111,16 @@ const maskClose = () => emit("mask-close");
     max-height: 80vh;
     overflow: auto;
     .title {
-      position: relative;
+      position: sticky;
+      top: 0;
       display: flex;
       flex-direction: row;
       align-items: center;
       font-size: 1.125rem;
       padding-bottom: 20px;
       margin-bottom: 20px;
+      z-index: 1;
+      background-color: var(--main-card-background);
       border-bottom: 1px solid var(--main-card-border);
       .iconfont {
         font-size: 1.25rem;
@@ -127,6 +138,16 @@ const maskClose = () => emit("mask-close");
         &:hover {
           background-color: var(--main-card-border);
         }
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        z-index: -1;
+        background-color: var(--main-card-background);
       }
     }
   }

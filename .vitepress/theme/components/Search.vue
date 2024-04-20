@@ -5,7 +5,7 @@
     title="全局搜索"
     titleIcon="search"
     @mask-click="store.changeShowStatus('searchShow')"
-    @mask-close="store.changeShowStatus('searchShow')"
+    @modal-close="store.changeShowStatus('searchShow')"
   >
     <ais-instant-search
       :search-client="searchClient"

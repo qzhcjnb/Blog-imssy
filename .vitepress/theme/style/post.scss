@@ -558,6 +558,7 @@
       border-radius: 2px 12px 12px 12px;
       padding: 1rem;
       max-width: 80%;
+      width: max-content;
       border: 1px solid var(--main-card-border);
       background-color: var(--main-card-second-background);
       > :first-child {
