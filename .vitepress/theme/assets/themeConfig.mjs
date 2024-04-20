@@ -316,6 +316,7 @@ export const themeConfig = {
       "report",
       "more-link",
       "skills-item",
+      "right-menu-link",
     ],
   },
   // 站点统计

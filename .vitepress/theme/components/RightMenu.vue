@@ -96,8 +96,8 @@
             <!-- 选中文本 -->
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://www.baidu.com/s?wd=${clickedTypeData}`"
-              class="btn"
+              :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
+              class="btn right-menu-link"
               target="_blank"
             >
               <i class="iconfont icon-baidu"></i>
@@ -105,8 +105,8 @@
             </a>
             <a
               v-if="clickedType === 'text' || clickedType === 'input'"
-              :href="`https://cn.bing.com/search?q=${clickedTypeData}`"
-              class="btn"
+              :href="`https://cn.bing.com/search?q=${encodeURIComponent(clickedTypeData)}`"
+              class="btn right-menu-link"
               target="_blank"
             >
               <i class="iconfont icon-bing"></i>
