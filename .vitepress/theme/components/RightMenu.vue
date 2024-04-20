@@ -120,7 +120,11 @@
               <i class="iconfont icon-copy"></i>
               <span class="name">复制选中文本</span>
             </div>
-            <div v-if="clickedType === 'text'" class="btn" @click="commentCopy(clickedTypeData)">
+            <div
+              v-if="clickedType === 'text' && !commentCopyShow"
+              class="btn"
+              @click="commentCopy(clickedTypeData)"
+            >
               <i class="iconfont icon-chat"></i>
               <span class="name">评论选中内容</span>
             </div>
