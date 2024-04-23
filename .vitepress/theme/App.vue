@@ -8,7 +8,7 @@
   <!-- 导航栏 -->
   <Nav />
   <!-- 主内容 -->
-  <main :class="['mian-layout', { loading: store.loadingStatus, 'is-post': isPostPage }]">
+  <main :class="['mian-layout', { loading: loadingStatus, 'is-post': isPostPage }]">
     <!-- 404 -->
     <NotFound v-if="page.isNotFound" />
     <!-- 首页 -->
@@ -22,11 +22,12 @@
     </template>
   </main>
   <!-- 页脚 -->
-  <FooterLink v-show="!store.loadingStatus" :showBar="isPostPage && !page.isNotFound" />
-  <Footer v-show="!store.loadingStatus" />
-  <!-- 左侧菜单 -->
+  <FooterLink v-show="!loadingStatus" :showBar="isPostPage && !page.isNotFound" />
+  <Footer v-show="!loadingStatus" />
+  <!-- 悬浮菜单 -->
   <Teleport to="body">
-    <div :class="['left-menu', { hidden: store.footerIsShow }]">
+    <!-- 左侧菜单 -->
+    <div :class="['left-menu', { hidden: footerIsShow }]">
       <!-- 全局设置 -->
       <Settings />
       <!-- 全局播放器 -->
@@ -47,7 +48,8 @@ import { calculateScroll, specialDayGray } from "@/utils/helper";
 const route = useRoute();
 const store = mainStore();
 const { frontmatter, page, theme } = useData();
-const { themeValue } = storeToRefs(store);
+const { loadingStatus, footerIsShow, themeValue, themeType, backgroundType, fontFamily, fontSize } =
+  storeToRefs(store);
 
 // 右键菜单
 const rightMenuRef = ref(null);
@@ -81,23 +83,27 @@ const changeSiteThemeType = () => {
     auto: "auto",
   };
   // 必要数据
-  const themeType = store.themeType;
   const htmlElement = document.documentElement;
-  console.log("当前模式：", themeType);
+  console.log("当前模式：", themeType.value);
   // 清除所有 class
   Object.values(themeClasses).forEach((themeClass) => {
     htmlElement.classList.remove(themeClass);
   });
   // 添加新的 class
-  if (themeType === "auto") {
+  if (themeType.value === "auto") {
     // 根据当前操作系统颜色方案更改明暗主题
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const autoThemeClass = systemPrefersDark ? themeClasses.dark : themeClasses.light;
     htmlElement.classList.add(autoThemeClass);
     themeValue.value = autoThemeClass;
-  } else if (themeClasses[themeType]) {
-    htmlElement.classList.add(themeClasses[themeType]);
-    themeValue.value = themeClasses[themeType];
+  } else if (themeClasses[themeType.value]) {
+    htmlElement.classList.add(themeClasses[themeType.value]);
+    themeValue.value = themeClasses[themeType.value];
+  }
+  if (backgroundType.value === "image") {
+    htmlElement.classList.add("image");
+  } else {
+    htmlElement.classList.remove("image");
   }
 };
 
@@ -106,8 +112,8 @@ const changeSiteFont = () => {
   try {
     const htmlElement = document.documentElement;
     htmlElement.classList.remove("lxgw", "hmos");
-    htmlElement.classList.add(store.fontFamily);
-    htmlElement.style.fontSize = store.fontSize + "px";
+    htmlElement.classList.add(fontFamily.value);
+    htmlElement.style.fontSize = fontSize.value + "px";
   } catch (error) {
     console.error("切换系统字体样式失败", error);
   }
@@ -115,11 +121,11 @@ const changeSiteFont = () => {
 
 // 监听设置变化
 watch(
-  () => store.themeType,
+  () => [themeType.value, backgroundType.value],
   () => changeSiteThemeType(),
 );
 watch(
-  () => store.fontFamily,
+  () => fontFamily.value,
   () => changeSiteFont(),
 );
 

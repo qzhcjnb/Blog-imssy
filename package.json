@@ -35,6 +35,7 @@
     "algoliasearch": "^4.23.3",
     "aplayer": "^1.10.1",
     "artalk": "2.8.3",
+    "dayjs": "^1.11.10",
     "instantsearch.js": "^4.67.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",

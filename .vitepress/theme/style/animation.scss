@@ -109,6 +109,17 @@
   }
 }
 
+// 循环下沉
+@keyframes moveDown {
+  0%,
+  100% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 60px;
+  }
+}
+
 // fade
 .fade-enter-active,
 .fade-leave-active {

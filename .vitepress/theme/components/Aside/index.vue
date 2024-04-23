@@ -1,15 +1,17 @@
 <template>
   <aside class="main-aside">
-    <Hello class="weidgets" />
+    <Hello v-if="theme.aside.hello.enable" class="weidgets" />
     <div class="sticky">
-      <Toc v-if="showToc" class="weidgets" />
-      <Tags class="weidgets" />
-      <SiteData class="weidgets" />
+      <Toc v-if="theme.aside.toc.enable && showToc" class="weidgets" />
+      <Countdown class="weidgets" />
+      <Tags v-if="theme.aside.tags.enable" class="weidgets" />
+      <SiteData v-if="theme.aside.siteData.enable" class="weidgets" />
     </div>
   </aside>
 </template>
 
 <script setup>
+const { theme } = useData();
 const props = defineProps({
   // 显示目录
   showToc: {

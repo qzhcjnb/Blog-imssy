@@ -1,6 +1,6 @@
 <!-- 评论 -->
 <template>
-  <div v-if="comment.enable" ref="mainCommentRef" id="main-comment" class="comment">
+  <div v-if="theme.comment.enable" ref="mainCommentRef" id="main-comment" class="comment">
     <div v-if="!fill" class="title">
       <span class="name">
         <i class="iconfont icon-chat"></i>
@@ -9,13 +9,12 @@
       <span class="tool" @click="router.go('/pages/privacy')"> 隐私政策 </span>
     </div>
     <!-- 区分评论系统 -->
-    <Artalk v-if="comment.type === 'artalk'" :fill="fill" />
+    <Artalk v-if="theme.comment.type === 'artalk'" :fill="fill" />
   </div>
 </template>
 
 <script setup>
-import { themeConfig } from "@/assets/themeConfig.mjs";
-
+const { theme } = useData();
 const router = useRouter();
 const props = defineProps({
   // 填充评论区
@@ -25,7 +24,6 @@ const props = defineProps({
   },
 });
 
-const { comment } = themeConfig;
 const mainCommentRef = ref(null);
 
 // 滚动至评论

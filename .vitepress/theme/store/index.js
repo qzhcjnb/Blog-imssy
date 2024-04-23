@@ -6,6 +6,8 @@ export const mainStore = defineStore("main", {
       // 主题类别
       themeType: "auto",
       themeValue: "light",
+      // banner
+      bannerType: "half",
       // 加载状态
       loadingStatus: true,
       // 滚动高度
@@ -48,7 +50,7 @@ export const mainStore = defineStore("main", {
       lastScrollY: 0,
       // 站点背景
       backgroundType: "patterns",
-      backgroundUrl: "https://www.loliapi.com/acg/",
+      backgroundUrl: "https://api.aixiaowai.cn/api/api.php",
     };
   },
   getters: {},
@@ -112,6 +114,7 @@ export const mainStore = defineStore("main", {
       key: "siteData",
       paths: [
         "themeType",
+        "bannerType",
         "useRightMenu",
         "playerShow",
         "backgroundBlur",

@@ -20,6 +20,8 @@ declare module 'vue' {
     Comments: typeof import('./theme/components/Plugins/Comments/index.vue')['default']
     Control: typeof import('./theme/components/Control.vue')['default']
     Copyright: typeof import('./theme/components/Copyright.vue')['default']
+    Countdown: typeof import('./theme/components/Aside/Widgets/Countdown.vue')['default']
+    Date: typeof import('./theme/components/Aside/Widgets/Date.vue')['default']
     Footer: typeof import('./theme/components/Footer.vue')['default']
     FooterLink: typeof import('./theme/components/FooterLink.vue')['default']
     Friends: typeof import('./theme/views/Friends.vue')['default']

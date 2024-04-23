@@ -76,6 +76,24 @@
             />
           </div>
         </div>
+        <span class="title">首页样式</span>
+        <div class="set-item">
+          <span class="set-label">Banner 高度</span>
+          <div class="set-options">
+            <span
+              :class="['options', { choose: bannerType === 'half' }]"
+              @click="bannerType = 'half'"
+            >
+              半屏
+            </span>
+            <span
+              :class="['options', { choose: bannerType === 'full' }]"
+              @click="bannerType = 'full'"
+            >
+              全屏
+            </span>
+          </div>
+        </div>
         <span class="title">杂项调整</span>
         <div class="set-item">
           <span class="set-label">额外信息显示位置</span>
@@ -104,7 +122,7 @@ import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 
 const store = mainStore();
-const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroundUrl } =
+const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroundUrl, bannerType } =
   storeToRefs(store);
 </script>
 
@@ -159,6 +177,9 @@ const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroun
     border-radius: 4px 8px 8px 4px;
     background-color: var(--main-border-shadow);
     padding: 6px 0 6px 12px;
+    &:first-child {
+      margin-top: 0;
+    }
   }
   .set-item {
     display: flex;

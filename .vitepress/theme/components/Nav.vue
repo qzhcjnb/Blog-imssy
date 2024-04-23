@@ -155,7 +155,9 @@ const { site, theme, frontmatter, page } = useData();
     width: 100dvw;
     height: 60px;
     background-color: var(--main-card-background);
-    transition: background-color 0.3s;
+    transition:
+      background-color 0.3s,
+      backdrop-filter 0.3s;
     &::after {
       content: "";
       position: absolute;

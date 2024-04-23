@@ -7,20 +7,23 @@
         <div
           :style="{
             maxWidth: typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`,
-            maxHeight: typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`,
-            padding: `${padding}px`,
           }"
-          class="modal-content s-card"
+          class="modal-main s-card"
           @click.stop
         >
           <!-- 标题 -->
           <div v-if="title" class="title">
-            <i v-if="titleIcon" :class="`iconfont icon-${titleIcon}`"></i>
-            <span class="title-text">{{ title }}</span>
+            <div class="title-left">
+              <i v-if="titleIcon" :class="`iconfont icon-${titleIcon}`"></i>
+              <span class="title-text">{{ title }}</span>
+            </div>
             <!-- 关闭按钮 -->
             <i v-if="showClose" class="iconfont icon-close close" @click="modalClose" />
           </div>
-          <slot />
+          <!-- 弹窗内容 -->
+          <div class="modal-content" :style="{ '--height': maxHeight + 'vh' }">
+            <slot />
+          </div>
         </div>
       </div>
     </Transition>
@@ -56,13 +59,8 @@ const props = defineProps({
   },
   // 最大高度
   maxHeight: {
-    type: [Number, String],
-    default: "80vh",
-  },
-  // 边距
-  padding: {
     type: Number,
-    default: 20,
+    default: 80,
   },
 });
 
@@ -104,31 +102,32 @@ watch(
     z-index: -1;
     background-color: var(--main-mask-background);
   }
-  .modal-content {
+  .modal-main {
     position: absolute;
+    padding: 0;
     animation: fade-up 0.5s forwards;
     width: calc(100% - 40px);
-    max-height: 80vh;
-    overflow: auto;
+    overflow: hidden;
     .title {
-      position: sticky;
-      top: 0;
       display: flex;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       font-size: 1.125rem;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      z-index: 1;
+      padding: 20px;
+      height: 64px;
       background-color: var(--main-card-background);
       border-bottom: 1px solid var(--main-card-border);
-      .iconfont {
-        font-size: 1.25rem;
-        margin-right: 8px;
+      .title-left {
+        width: 100%;
+        .iconfont {
+          font-size: 1.25rem;
+          margin-right: 8px;
+        }
       }
       .close {
         position: absolute;
-        right: 0;
+        right: 20px;
         margin-right: 0;
         font-size: 1rem;
         border-radius: 8px;
@@ -139,16 +138,11 @@ watch(
           background-color: var(--main-card-border);
         }
       }
-      &::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        z-index: -1;
-        background-color: var(--main-card-background);
-      }
+    }
+    .modal-content {
+      max-height: calc(var(--height) - 46px);
+      padding: 20px;
+      overflow: auto;
     }
   }
 }

@@ -289,6 +289,34 @@ export const themeConfig = {
       server: "https://artalk.efefee.cn",
     },
   },
+  // 侧边栏
+  aside: {
+    // 站点简介
+    hello: {
+      enable: true,
+    },
+    // 目录
+    toc: {
+      enable: true,
+    },
+    // 标签
+    tags: {
+      enable: true,
+    },
+    // 倒计时
+    countDown: {
+      enable: true,
+      // 倒计时日期
+      data: {
+        name: "春节",
+        date: "2025-01-29",
+      },
+    },
+    // 站点数据
+    siteData: {
+      enable: true,
+    },
+  },
   // 打赏
   rewardData: {
     enable: true,

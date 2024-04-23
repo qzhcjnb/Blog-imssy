@@ -1,5 +1,6 @@
 <template>
   <Teleport to="body">
+    <!-- 移动端菜单 -->
     <Transition name="fade" mode="out-in">
       <div v-show="store.mobileMenuShow" class="mobile-menu">
         <!-- 背景遮罩 -->
