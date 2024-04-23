@@ -14,18 +14,19 @@
       @modal-close="store.changeShowStatus('showSeetings')"
     >
       <div class="set-list">
+        <span class="title">字体</span>
         <div class="set-item">
           <span class="set-label">全站字体</span>
           <div class="set-options">
             <span
-              :class="['options', { choose: store.fontFamily === 'hmos' }]"
-              @click="store.fontFamily = 'hmos'"
+              :class="['options', { choose: fontFamily === 'hmos' }]"
+              @click="fontFamily = 'hmos'"
             >
               HarmonyOS Sans
             </span>
             <span
-              :class="['options', { choose: store.fontFamily === 'lxgw' }]"
-              @click="store.fontFamily = 'lxgw'"
+              :class="['options', { choose: fontFamily === 'lxgw' }]"
+              @click="fontFamily = 'lxgw'"
             >
               霞鹜文楷
             </span>
@@ -35,22 +36,59 @@
           <span class="set-label">全站字体大小</span>
           <div class="set-options">
             <span class="options" @click="store.changeFontSize(false)"> - </span>
-            <span class="num">{{ store.fontSize }}</span>
+            <span class="num">{{ fontSize }}</span>
             <span class="options" @click="store.changeFontSize(true)"> + </span>
           </div>
         </div>
+        <span class="title">壁纸个性化</span>
+        <div class="set-item">
+          <span class="set-label">全站背景</span>
+          <div class="set-options">
+            <span
+              :class="['options', { choose: backgroundType === 'close' }]"
+              @click="backgroundType = 'close'"
+            >
+              关闭
+            </span>
+            <span
+              :class="['options', { choose: backgroundType === 'patterns' }]"
+              @click="backgroundType = 'patterns'"
+            >
+              纹理
+            </span>
+            <span
+              :class="['options', { choose: backgroundType === 'image' }]"
+              @click="(backgroundType = 'image'), (themeType = 'dark')"
+            >
+              图片
+            </span>
+          </div>
+        </div>
+        <div v-if="backgroundType === 'image'" class="set-item">
+          <span class="set-label">背景图片地址</span>
+          <div class="set-options">
+            <input
+              v-model="backgroundUrl"
+              type="url"
+              pattern="https?://.+"
+              title="请输入有效的网址，例如：http://www.example.com"
+              required
+            />
+          </div>
+        </div>
+        <span class="title">杂项调整</span>
         <div class="set-item">
           <span class="set-label">额外信息显示位置</span>
           <div class="set-options">
             <span
-              :class="['options', { choose: store.infoPosition === 'normal' }]"
-              @click="store.infoPosition = 'normal'"
+              :class="['options', { choose: infoPosition === 'normal' }]"
+              @click="infoPosition = 'normal'"
             >
               默认位置
             </span>
             <span
-              :class="['options', { choose: store.infoPosition === 'fixed' }]"
-              @click="store.infoPosition = 'fixed'"
+              :class="['options', { choose: infoPosition === 'fixed' }]"
+              @click="infoPosition = 'fixed'"
             >
               右下角
             </span>
@@ -62,9 +100,12 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 
 const store = mainStore();
+const { themeType, fontFamily, fontSize, infoPosition, backgroundType, backgroundUrl } =
+  storeToRefs(store);
 </script>
 
 <style lang="scss" scoped>
@@ -108,6 +149,17 @@ const store = mainStore();
   }
 }
 .set-list {
+  .title {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-left: 4px solid var(--main-color);
+    border-radius: 4px 8px 8px 4px;
+    background-color: var(--main-border-shadow);
+    padding: 6px 0 6px 12px;
+  }
   .set-item {
     display: flex;
     flex-direction: row;
@@ -146,9 +198,32 @@ const store = mainStore();
       .num {
         margin: 0 4px;
       }
+      input {
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        color: var(--main-font-color);
+        font-family: var(--main-font-family);
+        background-color: var(--main-border-shadow);
+        height: 100%;
+        padding: 0 1rem;
+        font-size: 14px;
+      }
     }
     &:last-child {
       margin-bottom: 0;
+    }
+    @media (max-width: 512px) {
+      flex-direction: column;
+      align-items: flex-start;
+      .set-options {
+        margin-top: 8px;
+        .options {
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 }

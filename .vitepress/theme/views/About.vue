@@ -449,12 +449,13 @@ onMounted(() => {
             margin-top: auto;
             &.opacity {
               font-size: 14px;
-              color: var(--main-font-second-color);
-            }
-            a {
-              color: var(--main-font-second-color);
-              &:hover {
-                color: var(--main-color);
+              color: #eee;
+              opacity: 0.8;
+              a {
+                color: #eee;
+                &:hover {
+                  color: var(--main-color);
+                }
               }
             }
           }

@@ -146,7 +146,12 @@
       margin: 0 auto;
       border-radius: 12px;
       cursor: zoom-in;
-      transition: opacity 0.3s;
+      transition:
+        opacity 0.3s,
+        filter 0.3s;
+      &:hover {
+        filter: blur(0) brightness(0.8);
+      }
     }
     .post-img-tip {
       display: inline-flex;
@@ -325,6 +330,14 @@
         height: 0.6rem;
         background-color: var(--main-color);
         border-radius: 50%;
+      }
+      p {
+        &:first-child {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

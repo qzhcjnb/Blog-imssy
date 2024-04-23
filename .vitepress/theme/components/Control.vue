@@ -13,17 +13,7 @@
         <div class="control-content" @click.stop>
           <!-- 功能菜单 -->
           <div class="menu">
-            <div
-              class="menu-item open"
-              title="显示模式切换"
-              @click.stop="
-                store.themeType === 'auto'
-                  ? (store.themeType = 'dark')
-                  : store.themeType === 'dark'
-                    ? (store.themeType = 'light')
-                    : (store.themeType = 'auto')
-              "
-            >
+            <div class="menu-item open" title="显示模式切换" @click.stop="store.changeThemeType">
               <i :class="`iconfont icon-${store.themeType}`"></i>
             </div>
             <div

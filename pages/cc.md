@@ -1,6 +1,7 @@
 ---
 title: 版权协议
 aside: false
+card: true
 ---
 
 # 版权协议

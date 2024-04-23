@@ -1,4 +1,6 @@
 <template>
+  <!-- 背景图片 -->
+  <Background />
   <!-- 加载提示 -->
   <Loading />
   <!-- 中控台 -->
@@ -16,13 +18,7 @@
       <!-- 文章页面 -->
       <Post v-if="isPostPage" />
       <!-- 普通页面 -->
-      <Page
-        v-else-if="!page.isNotFound"
-        :type="frontmatter.layout"
-        :showAside="frontmatter.aside"
-        :showComment="frontmatter.comment"
-        :showPadding="frontmatter.padding"
-      />
+      <Page v-else-if="!page.isNotFound" />
     </template>
   </main>
   <!-- 页脚 -->
@@ -44,12 +40,14 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import { calculateScroll, specialDayGray } from "@/utils/helper";
 
 const route = useRoute();
 const store = mainStore();
 const { frontmatter, page, theme } = useData();
+const { themeValue } = storeToRefs(store);
 
 // 右键菜单
 const rightMenuRef = ref(null);
@@ -86,7 +84,7 @@ const changeSiteThemeType = () => {
   const themeType = store.themeType;
   const htmlElement = document.documentElement;
   console.log("当前模式：", themeType);
-  // 清除所有可能已经设置的主题相关的class
+  // 清除所有 class
   Object.values(themeClasses).forEach((themeClass) => {
     htmlElement.classList.remove(themeClass);
   });
@@ -96,8 +94,10 @@ const changeSiteThemeType = () => {
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const autoThemeClass = systemPrefersDark ? themeClasses.dark : themeClasses.light;
     htmlElement.classList.add(autoThemeClass);
+    themeValue.value = autoThemeClass;
   } else if (themeClasses[themeType]) {
     htmlElement.classList.add(themeClasses[themeType]);
+    themeValue.value = themeClasses[themeType];
   }
 };
 
@@ -116,15 +116,7 @@ const changeSiteFont = () => {
 // 监听设置变化
 watch(
   () => store.themeType,
-  (val) => {
-    changeSiteThemeType();
-    if (typeof $message !== "undefined") {
-      const text = val === "light" ? "浅色模式" : val === "dark" ? "深色模式" : "跟随系统";
-      $message.info("当前主题为" + text, {
-        duration: 1500,
-      });
-    }
-  },
+  () => changeSiteThemeType(),
 );
 watch(
   () => store.fontFamily,

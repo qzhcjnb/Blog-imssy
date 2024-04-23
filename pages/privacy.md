@@ -1,6 +1,7 @@
 ---
 title: 隐私政策
 aside: false
+card: true
 ---
 
 # 隐私政策

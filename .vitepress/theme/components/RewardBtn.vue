@@ -37,7 +37,8 @@ const { rewardData } = theme.value;
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 1rem 0;
+  width: max-content;
+  margin: 1rem auto;
   user-select: none;
   cursor: pointer;
   .reward-btn {

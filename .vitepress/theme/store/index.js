@@ -5,6 +5,7 @@ export const mainStore = defineStore("main", {
     return {
       // 主题类别
       themeType: "auto",
+      themeValue: "light",
       // 加载状态
       loadingStatus: true,
       // 滚动高度
@@ -45,6 +46,9 @@ export const mainStore = defineStore("main", {
       infoPosition: "fixed",
       // 上次滚动位置
       lastScrollY: 0,
+      // 站点背景
+      backgroundType: "patterns",
+      backgroundUrl: "https://www.loliapi.com/acg/",
     };
   },
   getters: {},
@@ -74,6 +78,33 @@ export const mainStore = defineStore("main", {
       const htmlElement = document.documentElement;
       htmlElement.style.fontSize = this.fontSize + "px";
     },
+    // 切换明暗模式
+    changeThemeType() {
+      // 禁止壁纸模式切换
+      if (this.backgroundType === "image") {
+        $message.warning("无法在壁纸模式下切换明暗模式", {
+          duration: 1500,
+        });
+        return false;
+      }
+      this.themeType === "auto"
+        ? (this.themeType = "dark")
+        : this.themeType === "dark"
+          ? (this.themeType = "light")
+          : (this.themeType = "auto");
+      // 弹窗提示
+      if (typeof $message !== "undefined") {
+        const text =
+          this.themeType === "light"
+            ? "浅色模式"
+            : this.themeType === "dark"
+              ? "深色模式"
+              : "跟随系统";
+        $message.info("当前主题为" + text, {
+          duration: 1500,
+        });
+      }
+    },
   },
   // 数据持久化
   persist: [
@@ -84,9 +115,11 @@ export const mainStore = defineStore("main", {
         "useRightMenu",
         "playerShow",
         "backgroundBlur",
+        "backgroundType",
         "fontFamily",
         "fontSize",
         "infoPosition",
+        "backgroundUrl",
       ],
     },
   ],

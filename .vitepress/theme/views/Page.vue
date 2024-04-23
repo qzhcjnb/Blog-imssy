@@ -1,32 +1,18 @@
 <!-- 普通页面 -->
 <template>
-  <div :class="['page', { 'has-aside': showAside }]">
+  <div :class="[frontmatter.layout || 'page', { 'has-aside': aside }]">
     <div class="page-content">
       <!-- 页面内容 -->
-      <Content id="page-content" class="markdown-main-style" />
+      <Content id="page-content" :class="['markdown-main-style', { 's-card': frontmatter.card }]" />
       <!-- 评论 -->
-      <Comments v-if="showComment" />
+      <Comments v-if="frontmatter.comment" />
     </div>
-    <Aside v-if="showAside" />
+    <Aside v-if="frontmatter.aside" />
   </div>
 </template>
 
 <script setup>
-const { page } = useData();
-const props = defineProps({
-  // 显示侧边栏
-  showAside: {
-    type: Boolean,
-    default: true,
-  },
-  // 显示评论
-  showComment: {
-    type: Boolean,
-    default: false,
-  },
-});
-
-console.log(page.value);
+const { frontmatter } = useData();
 </script>
 
 <style lang="scss" scoped>
@@ -59,6 +45,9 @@ console.log(page.value);
           }
         }
       }
+    }
+    .s-card {
+      padding: 1rem 2rem;
     }
   }
   &.has-aside {

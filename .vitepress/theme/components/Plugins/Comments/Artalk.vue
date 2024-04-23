@@ -169,31 +169,31 @@ onUnmounted(() => {
             background-color: var(--main-card-second-background);
             border-radius: 4px 8px 8px 4px;
           }
-          &.atk-height-limit {
-            .atk-height-limit-btn {
-              height: 46px;
-              width: 100%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: 12px 0;
-              border-radius: 16px;
-              transition:
-                color 0.3s,
-                background-color 0.3s;
-              &:hover {
-                color: var(--main-card-background);
-                background-color: var(--main-color);
-              }
-            }
-            &::after {
-              height: 100px;
-            }
-          }
         }
         &:last-child {
           border-bottom: none;
         }
+      }
+    }
+    .atk-height-limit {
+      .atk-height-limit-btn {
+        height: 46px;
+        width: calc(100% - 20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 0;
+        border-radius: 16px;
+        transition:
+          color 0.3s,
+          background-color 0.3s;
+        &:hover {
+          color: var(--main-card-background);
+          background-color: var(--main-color);
+        }
+      }
+      &::after {
+        height: 100px;
       }
     }
   }

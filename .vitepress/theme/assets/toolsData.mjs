@@ -26,13 +26,25 @@ const linkData = [
       {
         name: "讯飞星火",
         ico: "https://pic.efefee.cn/uploads/2024/02/27/65dd9ea2eb19b.webp",
-        desc: "感觉这个算是国内最好用的了",
+        desc: "不错，比百度的好点",
         url: "https://xinghuo.xfyun.cn/",
+      },
+      {
+        name: "智谱 AI",
+        ico: "https://pic.efefee.cn/uploads/2024/04/22/6625dcb6008f7.png",
+        desc: "用的不多，不做评价",
+        url: "https://open.bigmodel.cn/",
+      },
+      {
+        name: "通义千问",
+        ico: "https://pic.efefee.cn/uploads/2024/04/22/6625f70b5dd2d.webp",
+        desc: "用的不多，不做评价",
+        url: "https://tongyi.aliyun.com/qianwen/",
       },
       {
         name: "文心一言",
         ico: "https://pic.efefee.cn/uploads/2024/02/27/65dda11958be4.jpg",
-        desc: "感觉不如原神",
+        desc: "依托答辩，和百度一样",
         url: "https://yiyan.baidu.com/",
       },
     ],
@@ -47,6 +59,19 @@ const linkData = [
         avatar: "https://pic.efefee.cn/uploads/2024/02/27/65dda212d1fb5.png",
         desc: "非常不错的图片压缩",
         url: "https://squoosh.app/",
+      },
+    ],
+  },
+  {
+    type: "design-tool",
+    typeName: "设计工具",
+    typeDesc: "高效率开发必备？",
+    typeList: [
+      {
+        name: "Hero Patterns",
+        avatar: "https://pic.efefee.cn/uploads/2024/04/22/6625d6cf45efb.webp",
+        desc: "简单的站点纹理背景",
+        url: "https://heropatterns.com/",
       },
     ],
   },

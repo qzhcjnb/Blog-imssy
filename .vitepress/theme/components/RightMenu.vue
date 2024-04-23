@@ -149,17 +149,10 @@
               <span class="name">复制本页地址</span>
             </div>
             <!-- 明暗模式 -->
-            <div
-              class="btn"
-              @click.stop="
-                themeType === 'auto'
-                  ? (themeType = 'dark')
-                  : themeType === 'dark'
-                    ? (themeType = 'light')
-                    : (themeType = 'auto')
-              "
-            >
-              <i :class="`iconfont icon-${themeType}`"></i>
+            <div class="btn" @click.stop="store.changeThemeType">
+              <i
+                :class="`iconfont icon-${themeType === 'auto' ? 'dark' : themeType === 'dark' ? 'light' : 'auto'}`"
+              />
               <span class="name">
                 {{
                   themeType === "auto" ? "深色模式" : themeType === "dark" ? "浅色模式" : "跟随系统"

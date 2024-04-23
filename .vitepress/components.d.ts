@@ -12,6 +12,7 @@ declare module 'vue' {
     Artalk: typeof import('./theme/components/Plugins/Comments/Artalk.vue')['default']
     ArticleGPT: typeof import('./theme/components/Aside/Widgets/ArticleGPT.vue')['default']
     Aside: typeof import('./theme/components/Aside/index.vue')['default']
+    Background: typeof import('./theme/components/Background.vue')['default']
     Banner: typeof import('./theme/components/Banner.vue')['default']
     CatOrTag: typeof import('./theme/views/CatOrTag.vue')['default']
     Checkbox: typeof import('./theme/components/Tags/Checkbox.vue')['default']
