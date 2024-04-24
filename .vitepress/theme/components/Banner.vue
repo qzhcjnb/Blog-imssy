@@ -122,8 +122,14 @@ onBeforeUnmount(() => {
   animation: fade-up 0.6s 0.1s backwards;
   transition: height 0.3s;
   &.full {
+    opacity: 0;
     height: calc(100vh - 70px);
     padding-bottom: 100px;
+    animation: fade-up 0.6s 0.5s forwards;
+    .subtitle {
+      opacity: 0;
+      animation: fade-up-opacity 0.8s 0.5s forwards;
+    }
   }
   .title {
     font-family: "Site Title";

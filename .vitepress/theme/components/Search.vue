@@ -109,7 +109,6 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 .ais-InstantSearch {
-  margin-top: 20px;
   height: 100%;
   .ais-SearchBox {
     height: 40px;
