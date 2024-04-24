@@ -80,6 +80,13 @@ html {
       &.top {
         backdrop-filter: blur(0);
       }
+      @media (max-width: 768px) {
+        &.down {
+          .nav-center {
+            background-color: #1b1c20 !important;
+          }
+        }
+      }
     }
     .loading {
       backdrop-filter: blur(20px);

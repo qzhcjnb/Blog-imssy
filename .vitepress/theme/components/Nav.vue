@@ -501,6 +501,11 @@ const { site, theme, frontmatter, page } = useData();
         &:active {
           transform: scale(0.95);
         }
+        @media (max-width: 768px) {
+          &::after {
+            display: none;
+          }
+        }
       }
     }
     .right-nav {
