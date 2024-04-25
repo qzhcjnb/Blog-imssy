@@ -1,5 +1,5 @@
 <template>
-  <div v-if="type === 'text'" :class="['banner', store.bannerType]" id="banner">
+  <div v-if="type === 'text'" :class="['banner', height]" id="banner">
     <h1 class="title">你好，欢迎来到{{ theme.title }}</h1>
     <div class="subtitle">
       <Transition name="fade" mode="out-in">
@@ -9,7 +9,7 @@
       </Transition>
     </div>
     <Transition name="fade" mode="out-in">
-      <i v-if="store.bannerType === 'full'" class="iconfont icon-up" @click="scrollToHome" />
+      <i v-if="height === 'full'" class="iconfont icon-up" @click="scrollToHome" />
     </Transition>
   </div>
   <div
@@ -41,16 +41,19 @@
 </template>
 
 <script setup>
-import { mainStore } from "@/store";
 import { getHitokoto } from "@/api";
 
-const store = mainStore();
 const { theme } = useData();
 const props = defineProps({
   // 类型
   type: {
     type: String,
     default: "text",
+  },
+  // 高度
+  height: {
+    type: String,
+    default: "half",
   },
   // 标题
   title: {

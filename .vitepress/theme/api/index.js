@@ -21,6 +21,15 @@ export const getFriendsLink = async (rule = "updated") => {
 };
 
 /**
+ * 获取友链朋友圈状态
+ */
+export const getFriendsStatus = async () => {
+  const result = await fetch(`${themeConfig.serverData.circleOfFriends}/friendstatus`);
+  const status = await result.json();
+  return status;
+};
+
+/**
  * 获取给定网址的站点图标和描述
  * @param {string} url - 站点 URL
  * @returns {Promise<{iconUrl: string, description: string}>}

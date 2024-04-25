@@ -11,7 +11,7 @@
     >
       <!-- 鱼塘状态 -->
       <template v-slot:header-slot>
-        <div class="status">
+        <div class="status" @click="friendsStatusShow = true">
           <div class="status-item">
             <span class="name">总数</span>
             <span class="count">{{ friendsStatusData?.friends_num || 0 }}</span>
@@ -81,16 +81,60 @@
         <span v-else class="not-more"> 共 {{ friendsLinkData?.length }} 篇，最多显示 500 篇 </span>
       </Transition>
     </div>
+    <!-- 友链详细状态 -->
+    <Modal
+      :show="friendsStatusShow"
+      title="鱼塘状态"
+      titleIcon="fish"
+      @mask-click="friendsStatusShow = false"
+      @modal-close="friendsStatusShow = false"
+    >
+      <div class="status-modal">
+        <span class="title">友链状态</span>
+        <div class="total">
+          <div class="total-item s-card">
+            <span class="name">友链总数</span>
+            <span class="count">{{ friendsStatusData?.total_friend_num || 0 }}</span>
+          </div>
+          <div class="total-item s-card">
+            <span class="name">失联的友链</span>
+            <span class="count">{{ friendsStatusData?.total_lost_num || 0 }}</span>
+          </div>
+          <div class="total-item s-card">
+            <span class="name">正常的友链</span>
+            <span class="count">{{ friendsStatusData?.total_not_lost_num || 0 }}</span>
+          </div>
+        </div>
+        <span class="title">失联的友链</span>
+        <span class="total-tip">
+          互加友链时间较短；未检测到文章；贵站未加 RSS 或 RSS
+          抓取异常；贵站两个月没有更新文章；贵站无法访问等
+        </span>
+        <div class="loss-link">
+          <a
+            v-for="(item, key, index) in friendsStatusData?.lost_friends"
+            :key="index"
+            :href="item"
+            class="loss-link-item s-card hover"
+            target="_blank"
+          >
+            <span class="name">{{ key }}</span>
+            <span class="link">{{ item }}</span>
+          </a>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script setup>
 import { debounce } from "@/utils/helper";
-import { getFriendsLink } from "@/api";
+import { getFriendsLink, getFriendsStatus } from "@/api";
 
 // 鱼塘数据
-const friendsStatusData = ref(null);
 const friendsLinkData = ref(null);
+const friendsStatusData = ref(null);
+const friendsStatusShow = ref(false);
 
 // 显示数量
 const showNum = ref(20);
@@ -101,8 +145,12 @@ const showRule = ref("updated");
 // 获取友链朋友圈数据
 const getFriendsLinkData = async () => {
   try {
+    const status = await getFriendsStatus();
     const result = await getFriendsLink(showRule.value);
-    friendsStatusData.value = result.statistical_data;
+    friendsStatusData.value = {
+      ...status,
+      ...result.statistical_data,
+    };
     friendsLinkData.value = result.article_data;
   } catch (error) {
     $message.error("获取友链朋友圈数据失败，请稍后重试");
@@ -337,6 +385,68 @@ onMounted(() => {
     font-size: 14px;
     opacity: 0.6;
     color: var(--main-font-second-color);
+  }
+}
+// 弹窗样式
+.status-modal {
+  .title {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-left: 4px solid var(--main-color);
+    border-radius: 4px 8px 8px 4px;
+    background-color: var(--main-border-shadow);
+    padding: 6px 0 6px 12px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  .total {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    .total-item {
+      display: flex;
+      flex-direction: column;
+      .name {
+        margin-bottom: 12px;
+        opacity: 0.6;
+      }
+      .count {
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+  }
+  .total-tip {
+    font-size: 15px;
+    margin-top: -4px;
+    margin-bottom: 1rem;
+    display: block;
+    color: var(--main-font-second-color);
+    border-left: 4px solid var(--main-card-border);
+    border-radius: 4px;
+    padding: 8px 8px 8px 12px;
+    background-color: var(--main-card-second-background);
+  }
+  .loss-link {
+    display: flex;
+    flex-direction: column;
+    .loss-link-item {
+      margin-bottom: 1rem;
+      .name {
+        margin-right: 1rem;
+        font-weight: bold;
+      }
+      .link {
+        opacity: 0.6;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 </style>
