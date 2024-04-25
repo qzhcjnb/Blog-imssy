@@ -90,7 +90,7 @@ const linkData = [
         name: "别亦难",
         avatar: "https://pic.efefee.cn/uploads/2024/03/19/65f9396e66055.webp",
         desc: "准时不定期更新",
-        url: "https://lazying.xyz/",
+        url: "https://lazyingman.cn/",
       },
       {
         name: "百里飞洋",
