@@ -15,8 +15,10 @@
             class="progress-bar"
             :style="{ width: item.percentage + '%', opacity: item.percentage / 100 }"
           />
-          <span class="percentage">{{ item.percentage }}%</span>
-          <span class="remaining">
+          <span :class="['percentage', { many: item.percentage >= 46 }]">
+            {{ item.percentage }}%
+          </span>
+          <span :class="['remaining', { many: item.percentage >= 60 }]">
             <span class="tip">还剩</span>
             {{ item.remaining }}
             <span class="tip">{{ tag === "day" ? "小时" : "天" }}</span>
@@ -133,6 +135,12 @@ onBeforeUnmount(() => {
           transition:
             opacity 0.3s,
             transform 0.3s;
+          &.many {
+            color: #fff;
+            .tip {
+              opacity: 0.8;
+            }
+          }
         }
         .remaining {
           opacity: 0;

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="type === 'text'" :class="['banner', height]" id="banner">
+  <div v-if="type === 'text'" :class="['banner', bannerType]" id="main-banner">
     <h1 class="title">你好，欢迎来到{{ theme.title }}</h1>
     <div class="subtitle">
       <Transition name="fade" mode="out-in">
@@ -41,8 +41,10 @@
 </template>
 
 <script setup>
+import { mainStore } from "@/store";
 import { getHitokoto } from "@/api";
 
+const store = mainStore();
 const { theme } = useData();
 const props = defineProps({
   // 类型
@@ -80,6 +82,9 @@ const props = defineProps({
 const hitokotoData = ref(null);
 const hitokotoTimeOut = ref(null);
 
+// banner
+const bannerType = ref(null);
+
 // 获取一言数据
 const getHitokotoData = async () => {
   try {
@@ -94,7 +99,7 @@ const getHitokotoData = async () => {
 
 // 滚动至首页
 const scrollToHome = () => {
-  const bannerDom = document.getElementById("banner");
+  const bannerDom = document.getElementById("main-banner");
   if (!bannerDom) return false;
   scrollTo({
     top: bannerDom.offsetHeight,
@@ -102,12 +107,21 @@ const scrollToHome = () => {
   });
 };
 
+watch(
+  () => store.bannerType,
+  (val) => {
+    bannerType.value = val;
+  },
+);
+
 onMounted(() => {
   if (props.type === "text") {
     hitokotoTimeOut.value = setTimeout(() => {
       getHitokotoData();
     }, 2000);
   }
+  // 更改 banner 类型
+  bannerType.value = store.bannerType;
 });
 
 onBeforeUnmount(() => {

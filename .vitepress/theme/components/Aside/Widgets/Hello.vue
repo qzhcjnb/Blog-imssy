@@ -40,8 +40,9 @@ const helloText = ref(getGreetings());
 
 // 恢复问候语
 const resetHello = () => {
-  helloText.value = getGreetings();
   helloClick.value = 0;
+  if (isHasUser()) return false;
+  helloText.value = getGreetings();
 };
 
 // 更改问候语
@@ -64,6 +65,23 @@ const changeHello = () => {
     resetHello();
   }, 3000);
 };
+
+// 是否具有用户
+const isHasUser = () => {
+  // 检查本地存储
+  const userData = localStorage.getItem("ArtalkUser");
+  if (!userData) return false;
+  // 获取用户数据
+  const { nick } = JSON.parse(userData);
+  const hello = ["很高兴见到你", "好久不见", "欢迎回来"];
+  // 随机问候语
+  helloText.value = hello[Math.floor(Math.random() * hello.length)] + "，" + nick;
+  return true;
+};
+
+onMounted(() => {
+  isHasUser();
+});
 
 onBeforeUnmount(() => {
   clearTimeout(helloTimeOut.value);

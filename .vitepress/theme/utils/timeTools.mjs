@@ -22,12 +22,16 @@ export const getTimeRemaining = () => {
     // 获取当前时间单位的结束时间
     const end = now.endOf(unit);
     // 计算总的天数或小时数
-    const total = Math.floor(end.diff(start, unit === "day" ? "hour" : "day")) + 1;
+    const total = end.diff(start, unit === "day" ? "hour" : "day") + 1;
     // 计算已经过去的天数或小时数
-    const passed = Math.floor(now.diff(start, unit === "day" ? "hour" : "day"));
-    // 计算剩余的天数或小时数
+    let passed;
+    if (unit === "week" && now.day() === 0) {
+      // 如果是星期日
+      passed = total - 1;
+    } else {
+      passed = now.diff(start, unit === "day" ? "hour" : "day");
+    }
     const remaining = total - passed;
-    // 计算已经过去的时间占总时间的百分比
     const percentage = (passed / total) * 100;
     // 返回数据
     return {
