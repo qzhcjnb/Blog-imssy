@@ -104,6 +104,12 @@ const linkData = [
         desc: "AIGC / 设计 / 摄影 / 代码",
         url: "https://pipuwong.com/",
       },
+      {
+        name: "btwoa",
+        avatar: "https://blog.btwoa.com/btwoa.jpg",
+        url: "https://blog.btwoa.com/",
+        desc: "世界为你简单"
+      }
     ],
   },
   // 失联
