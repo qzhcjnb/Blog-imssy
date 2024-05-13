@@ -52,6 +52,7 @@ declare module 'vue' {
     Settings: typeof import('./theme/components/Settings.vue')['default']
     SiteData: typeof import('./theme/components/Aside/Widgets/SiteData.vue')['default']
     Tags: typeof import('./theme/components/Aside/Widgets/Tags.vue')['default']
+    Thanks: typeof import('./theme/views/Thanks.vue')['default']
     Theme: typeof import('./theme/views/Theme.vue')['default']
     Toc: typeof import('./theme/components/Aside/Widgets/Toc.vue')['default']
     TypeBar: typeof import('./theme/components/List/TypeBar.vue')['default']
