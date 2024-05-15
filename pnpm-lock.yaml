@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
       '@vite-pwa/vitepress':
         specifier: ^0.4.0
-        version: 0.4.0(vite-plugin-pwa@0.19.8(vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0))
+        version: 0.4.0(vite-plugin-pwa@0.19.8(vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0))
       algoliasearch:
         specifier: ^4.23.3
         version: 4.23.3
@@ -18,8 +21,8 @@ importers:
         specifier: ^1.10.1
         version: 1.10.1
       artalk:
-        specifier: 2.8.3
-        version: 2.8.3
+        specifier: 2.8.6
+        version: 2.8.6
       dayjs:
         specifier: ^1.11.11
         version: 1.11.11
@@ -95,10 +98,10 @@ importers:
         version: 34.1.14
       vitepress:
         specifier: 1.1.0
-        version: 1.1.0(@algolia/client-search@4.23.3)(@types/node@16.18.11)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5)
+        version: 1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.12)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5)
       vitepress-plugin-tabs:
         specifier: ^0.5.0
-        version: 0.5.0(vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@16.18.11)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5))(vue@3.4.27(typescript@4.9.5))
+        version: 0.5.0(vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.12)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5))(vue@3.4.27(typescript@4.9.5))
 
 packages:
 
@@ -1147,11 +1150,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@shikijs/core@1.5.1':
-    resolution: {integrity: sha512-xjV63pRUBvxA1LsxOUhRKLPh0uUjwBLzAKLdEuYSLIylo71sYuwDcttqNP01Ib1TZlLfO840CXHPlgUUsYFjzg==}
+  '@shikijs/core@1.5.2':
+    resolution: {integrity: sha512-wSAOgaz48GmhILFElMCeQypSZmj6Ru6DttOOtl3KNkdJ17ApQuGNCfzpk4cClasVrnIu45++2DBwG4LNMQAfaA==}
 
-  '@shikijs/transformers@1.5.1':
-    resolution: {integrity: sha512-vir+y0elkjh2CepLVbqeGX+ftuc6WpfWNCMV/EBIallSLzhBfDO9r/TORDVOzegbTg9JMEmtOFv6PT9cSZTcyA==}
+  '@shikijs/transformers@1.5.2':
+    resolution: {integrity: sha512-/Sh64rKOFGMQLCvtHeL1Y7EExdq8LLxcdVkvoGx2aMHsYMOn8DckYl2gYKMHRBu/YUt1C38/Amd1Jdh48tWHgw==}
 
   '@sinclair/typebox@0.25.24':
     resolution: {integrity: sha512-XJfwUVUKDHF5ugKwIcxEgc9k8b7HbznCp6eUfWgu710hMPNIO4aw4/zB5RogDQz8nd6gyCDpU9O/m6qYEWY6yQ==}
@@ -1511,8 +1514,8 @@ packages:
     resolution: {integrity: sha512-bMxMKAjg13EBSVscxTaYA4mRc5t1UAXa2kXiGTNfZ079HIWXEkKmkgFrh/nJqamaLSrXO5H4WFFkPEaLJWbs3A==}
     engines: {node: '>= 0.4'}
 
-  artalk@2.8.3:
-    resolution: {integrity: sha512-AaBPo4LEyikJmJIj2kZ3YgLP3mT/8CuLdbyNffsmdpiMES1Kmn/Jlno2L3cXhON9jPXLuUqZVWz6oJOFQDSLWQ==}
+  artalk@2.8.6:
+    resolution: {integrity: sha512-Wt6x9F6A9l7Bw6y8tZayheHkJJ2tF0T3yZVxtqHTpDgZOKlOI91UzBvZ2bSjScayy7JH9ZSAkTC/qVDODeUhbA==}
 
   assignment@2.0.0:
     resolution: {integrity: sha512-naMULXjtgCs9SVUEtyvJNt68aF18em7/W+dhbR59kbz9cXWPEvUkCun2tqlgqRPSqZaKPpqLc5ZnwL8jVmJRvw==}
@@ -2725,8 +2728,8 @@ packages:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
 
-  marked@11.2.0:
-    resolution: {integrity: sha512-HR0m3bvu0jAPYiIvLUUQtdg1g6D247//lvcekpHO1WMvbwDlwSkZAX9Lw4F4YHE1T0HaaNve0tuAWuV1UJ6vtw==}
+  marked@12.0.2:
+    resolution: {integrity: sha512-qXUm7e/YKFoqFPYPa3Ukg9xlI5cyAtGmyEIzMfW//m6kXwCy2Ps9DYf5ioijFKQ8qyuscrHoY04iJGctu2Kg0Q==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -3280,8 +3283,8 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shiki@1.5.1:
-    resolution: {integrity: sha512-vx4Ds3M3B9ZEmLeSXqBAB85osBWV8ErZfP69kuFQZozPgHc33m7spLTCUkcjwEjFm3gk3F9IdXMv8kX+v9xDHA==}
+  shiki@1.5.2:
+    resolution: {integrity: sha512-fpPbuSaatinmdGijE7VYUD3hxLozR3ZZ+iAx8Iy2X6REmJGyF5hQl94SgmiUNTospq346nXUVZx0035dyGvIVw==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -3615,8 +3618,8 @@ packages:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
 
-  update-browserslist-db@1.0.15:
-    resolution: {integrity: sha512-K9HWH62x3/EalU1U6sjSZiylm9C8tgq2mSvshZpqc7QE69RaA2qjhkW2HlNA0tFpEbtyFz7HTqbSdN4MSwUodA==}
+  update-browserslist-db@1.0.16:
+    resolution: {integrity: sha512-KVbTxlBYlckhF5wgfyZXTWnMn7MMZjMu9XG8bPlliUOP9ThaF4QnhP8qrjrH7DRzHfSk0oQv1wToW+iA5GajEQ==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
@@ -5007,11 +5010,11 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.17.2':
     optional: true
 
-  '@shikijs/core@1.5.1': {}
+  '@shikijs/core@1.5.2': {}
 
-  '@shikijs/transformers@1.5.1':
+  '@shikijs/transformers@1.5.2':
     dependencies:
-      shiki: 1.5.1
+      shiki: 1.5.2
 
   '@sinclair/typebox@0.25.24': {}
 
@@ -5227,13 +5230,13 @@ snapshots:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
 
-  '@vite-pwa/vitepress@0.4.0(vite-plugin-pwa@0.19.8(vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0))':
+  '@vite-pwa/vitepress@0.4.0(vite-plugin-pwa@0.19.8(vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0))':
     dependencies:
-      vite-plugin-pwa: 0.19.8(vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0)
+      vite-plugin-pwa: 0.19.8(vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0)
 
-  '@vitejs/plugin-vue@5.0.4(vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0))(vue@3.4.27(typescript@4.9.5))':
+  '@vitejs/plugin-vue@5.0.4(vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0))(vue@3.4.27(typescript@4.9.5))':
     dependencies:
-      vite: 5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0)
       vue: 3.4.27(typescript@4.9.5)
 
   '@vue/compiler-core@3.4.27':
@@ -5496,12 +5499,12 @@ snapshots:
       is-array-buffer: 3.0.4
       is-shared-array-buffer: 1.0.3
 
-  artalk@2.8.3:
+  artalk@2.8.6:
     dependencies:
       abortcontroller-polyfill: 1.7.5
       hanabi: 0.4.0
       insane: 2.6.2
-      marked: 11.2.0
+      marked: 12.0.2
 
   assignment@2.0.0: {}
 
@@ -5575,7 +5578,7 @@ snapshots:
       caniuse-lite: 1.0.30001618
       electron-to-chromium: 1.4.767
       node-releases: 2.0.14
-      update-browserslist-db: 1.0.15(browserslist@4.23.0)
+      update-browserslist-db: 1.0.16(browserslist@4.23.0)
 
   buffer-crc32@0.2.13: {}
 
@@ -6831,7 +6834,7 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
-  marked@11.2.0: {}
+  marked@12.0.2: {}
 
   mathjax-full@3.2.2:
     dependencies:
@@ -7353,9 +7356,9 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shiki@1.5.1:
+  shiki@1.5.2:
     dependencies:
-      '@shikijs/core': 1.5.1
+      '@shikijs/core': 1.5.2
 
   side-channel@1.0.6:
     dependencies:
@@ -7729,7 +7732,7 @@ snapshots:
 
   upath@1.2.0: {}
 
-  update-browserslist-db@1.0.15(browserslist@4.23.0):
+  update-browserslist-db@1.0.16(browserslist@4.23.0):
     dependencies:
       browserslist: 4.23.0
       escalade: 3.1.2
@@ -7767,49 +7770,49 @@ snapshots:
       - encoding
       - supports-color
 
-  vite-plugin-pwa@0.19.8(vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0):
+  vite-plugin-pwa@0.19.8(vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0))(workbox-build@7.0.0)(workbox-window@7.0.0):
     dependencies:
       debug: 4.3.4
       fast-glob: 3.3.2
       pretty-bytes: 6.1.1
-      vite: 5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0)
       workbox-build: 7.0.0
       workbox-window: 7.0.0
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0):
+  vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.17.2
     optionalDependencies:
-      '@types/node': 16.18.11
+      '@types/node': 20.12.12
       fsevents: 2.3.3
       sass: 1.77.1
       terser: 5.31.0
 
-  vitepress-plugin-tabs@0.5.0(vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@16.18.11)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5))(vue@3.4.27(typescript@4.9.5)):
+  vitepress-plugin-tabs@0.5.0(vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.12)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5))(vue@3.4.27(typescript@4.9.5)):
     dependencies:
-      vitepress: 1.1.0(@algolia/client-search@4.23.3)(@types/node@16.18.11)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5)
+      vitepress: 1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.12)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5)
       vue: 3.4.27(typescript@4.9.5)
 
-  vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@16.18.11)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5):
+  vitepress@1.1.0(@algolia/client-search@4.23.3)(@types/node@20.12.12)(markdown-it-mathjax3@4.3.2)(postcss@8.4.38)(sass@1.77.1)(search-insights@2.13.0)(terser@5.31.0)(typescript@4.9.5):
     dependencies:
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.23.3)(search-insights@2.13.0)
-      '@shikijs/core': 1.5.1
-      '@shikijs/transformers': 1.5.1
+      '@shikijs/core': 1.5.2
+      '@shikijs/transformers': 1.5.2
       '@types/markdown-it': 13.0.8
-      '@vitejs/plugin-vue': 5.0.4(vite@5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0))(vue@3.4.27(typescript@4.9.5))
+      '@vitejs/plugin-vue': 5.0.4(vite@5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0))(vue@3.4.27(typescript@4.9.5))
       '@vue/devtools-api': 7.1.3(vue@3.4.27(typescript@4.9.5))
       '@vueuse/core': 10.9.0(vue@3.4.27(typescript@4.9.5))
       '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(vue@3.4.27(typescript@4.9.5))
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 6.3.0
-      shiki: 1.5.1
-      vite: 5.2.11(@types/node@16.18.11)(sass@1.77.1)(terser@5.31.0)
+      shiki: 1.5.2
+      vite: 5.2.11(@types/node@20.12.12)(sass@1.77.1)(terser@5.31.0)
       vue: 3.4.27(typescript@4.9.5)
     optionalDependencies:
       markdown-it-mathjax3: 4.3.2

@@ -113,7 +113,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .footer-link {
-  position: relative;
   width: 100%;
   max-width: 1200px;
   display: flex;
@@ -124,7 +123,6 @@ onMounted(() => {
   margin-bottom: 3rem;
   padding: 0 1rem;
   animation: show 0.3s backwards;
-  z-index: -1;
   .footer-bar {
     width: 100%;
     display: flex;

@@ -53,7 +53,7 @@ const closeControlRef = ref(null);
 
 // 更正关闭按钮位置
 const changeCloseStyle = () => {
-  nextTick(() => {
+  nextTick().then(() => {
     const controlOpenDom = document.querySelector("#open-control");
     if (controlOpenDom && closeControlRef.value) {
       const { top, left } = controlOpenDom.getBoundingClientRect();
@@ -80,9 +80,7 @@ const rightMenuSwitch = () => {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  width: 100dvw;
   height: 100vh;
-  height: 100dvh;
   z-index: 1109;
   .close-control {
     position: absolute;

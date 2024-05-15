@@ -44,9 +44,7 @@ const coverLoaded = (e) => {
   top: 0;
   left: 0;
   width: 100vw;
-  width: 100dvw;
   height: 100vh;
-  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;

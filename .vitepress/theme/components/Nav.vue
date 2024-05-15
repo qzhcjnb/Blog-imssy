@@ -152,7 +152,6 @@ const { site, theme, frontmatter, page } = useData();
     top: 0;
     left: 0;
     width: 100vw;
-    width: 100dvw;
     height: 60px;
     background-color: var(--main-card-background);
     transition:

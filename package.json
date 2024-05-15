@@ -31,10 +31,11 @@
     "vitepress-plugin-tabs": "^0.5.0"
   },
   "dependencies": {
+    "@types/node": "^20.12.12",
     "@vite-pwa/vitepress": "^0.4.0",
     "algoliasearch": "^4.23.3",
     "aplayer": "^1.10.1",
-    "artalk": "2.8.3",
+    "artalk": "2.8.6",
     "dayjs": "^1.11.11",
     "instantsearch.js": "^4.68.1",
     "pinia": "^2.1.7",

@@ -26,9 +26,7 @@ const { loadingStatus } = storeToRefs(store);
   align-items: center;
   justify-content: center;
   width: 100vw;
-  width: 100dvw;
   height: 100vh;
-  height: 100dvh;
   background-color: var(--main-card-background);
   z-index: 9999;
   .logo {

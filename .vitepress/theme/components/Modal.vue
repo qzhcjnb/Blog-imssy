@@ -89,9 +89,7 @@ watch(
   align-items: center;
   justify-content: center;
   width: 100vw;
-  width: 100dvw;
   height: 100vh;
-  height: 100dvh;
   z-index: 2000;
   .modal-mask {
     position: absolute;

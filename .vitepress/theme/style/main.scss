@@ -155,8 +155,8 @@ a {
 
 #app {
   width: 100vw;
-  height: 100vh;
-  height: 100dvh;
+  width: 100dvw;
+  // height: 100vh;
   transition: filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   // 滚动条
   .simplebar-scrollbar {

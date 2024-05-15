@@ -31,7 +31,6 @@
 
 <script setup>
 import { mainStore } from "@/store";
-import { nextTick } from "vue";
 
 const { theme } = useData();
 const store = mainStore();

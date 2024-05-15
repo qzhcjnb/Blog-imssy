@@ -399,9 +399,7 @@ defineExpose({ openRightMenu });
   top: 0;
   left: 0;
   width: 100vw;
-  width: 100dvw;
   height: 100vh;
-  height: 100dvh;
   z-index: 9999;
   transition: opacity 0.2s;
   .menu-content {

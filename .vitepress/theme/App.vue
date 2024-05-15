@@ -155,8 +155,8 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .mian-layout {
-  width: 100vw;
-  width: 100dvw;
+  width: 100%;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem 2rem;
