@@ -109,6 +109,12 @@ const linkData = [
         avatar: "https://blog.btwoa.com/btwoa.jpg",
         url: "https://blog.btwoa.com/",
         desc: "世界为你简单"
+      },
+      {
+        name: "楠笙",
+        avatar: "https://nanshengwx.cn/upload/logo.png",
+        url: "https://nanshengwx.cn/",
+        desc: "空谈误国，实干兴邦"
       }
     ],
   },

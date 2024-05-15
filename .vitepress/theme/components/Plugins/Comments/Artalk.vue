@@ -102,8 +102,14 @@ onUnmounted(() => {
   --at-color-light: var(--main-color);
   --at-color-bg: var(--main-card-background);
   --at-color-bg-grey: var(--main-card-border);
+  --at-color-bg-grey-transl: var(--main-card-border);
   --at-color-bg-transl: var(--main-card-second-background);
   --at-color-gradient: linear-gradient(180deg, transparent, var(--main-card-background));
+}
+.atk-layer-wrap {
+  .atk-layer-mask {
+    background: var(--main-mask-background);
+  }
 }
 </style>
 
@@ -116,6 +122,9 @@ onUnmounted(() => {
       .atk-send-btn {
         height: 40px;
       }
+    }
+    .atk-user-btn {
+      transition: background 0.3s;
     }
   }
   :deep(.atk-list) {
