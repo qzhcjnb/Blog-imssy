@@ -3,13 +3,14 @@ import { jumpRedirect } from "./commonTools.mjs";
 
 // 必要数据
 let loadingTimer = null;
-let lastPathName = window.location.pathname;
+let lastPathName = null;
 
 /**
  * 判断是否即将导航到的地址和当前地址是相同页面
  * @return {boolean} 为 true 时表示是相同页面
  */
 export const isSamePage = (to) => {
+  if (typeof window === "undefined") return false;
   // 获取跳转到的页面路径
   const toURL = new URL(to, window.location.origin);
   const targetPathWithoutHash = toURL.pathname;
@@ -25,6 +26,7 @@ export const isSamePage = (to) => {
 
 // 路由跳转前
 export const routeChange = (type, to) => {
+  if (typeof window === "undefined") return false;
   console.log("触发", type, to);
   // 跳转前
   if (type === "before") {
