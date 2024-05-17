@@ -115,6 +115,12 @@ const linkData = [
         avatar: "https://nanshengwx.cn/upload/logo.png",
         url: "https://nanshengwx.cn/",
         desc: "空谈误国，实干兴邦"
+      },
+      {
+        name: "Eval",
+        avatar: "https://image.ohahah.com/webAvatar/Sara11714440758986450.jpg",
+        url: "https://blog.ohahah.com/",
+        desc: "心有所畏，方能言有所戒，行有所止"
       }
     ],
   },

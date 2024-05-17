@@ -102,6 +102,7 @@
 <script setup>
 import { formatTimestamp } from "@/utils/helper";
 import { generateId } from "@/utils/commonTools";
+import initFancybox from "@/utils/initFancybox";
 
 const { page, theme, frontmatter } = useData();
 
@@ -112,6 +113,10 @@ const commentRef = ref(null);
 const postMetaData = computed(() => {
   const postId = generateId(page.value.relativePath);
   return theme.value.postData.find((item) => item.id === postId);
+});
+
+onMounted(() => {
+  initFancybox();
 });
 </script>
 

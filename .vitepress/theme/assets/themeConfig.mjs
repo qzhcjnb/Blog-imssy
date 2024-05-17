@@ -326,6 +326,13 @@ export const themeConfig = {
     // 支付宝二维码
     alipay: "https://pic.efefee.cn/uploads/2024/04/07/661206631d3b5.webp",
   },
+  // 图片灯箱
+  fancybox: {
+    enable: true,
+    js: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js",
+    css: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css",
+    l10n: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/l10n/zh_CN.umd.js",
+  },
   // 外链中转
   jumpRedirect: {
     enable: true,

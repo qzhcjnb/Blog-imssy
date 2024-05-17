@@ -95,6 +95,15 @@
             </div>
             <!-- 选中文本 -->
             <a
+              v-if="(clickedType === 'text' || clickedType === 'input') && isLink(clickedTypeData)"
+              :href="`${isLink(clickedTypeData)}`"
+              class="btn right-menu-link"
+              target="_blank"
+            >
+              <i class="iconfont icon-link"></i>
+              <span class="name">在新标签页打开</span>
+            </a>
+            <a
               v-if="clickedType === 'text' || clickedType === 'input'"
               :href="`https://www.baidu.com/s?wd=${encodeURIComponent(clickedTypeData)}`"
               class="btn right-menu-link"
@@ -373,6 +382,19 @@ const playerControl = (type) => {
   }
 };
 
+// 选中内容是否为链接
+const isLink = (data) => {
+  if (!data) return false;
+  const hasProtocol = /^(http|https):\/\//i.test(data);
+  const urlData = hasProtocol ? data : `http://${data}`;
+  try {
+    new URL(urlData);
+    return urlData;
+  } catch (error) {
+    return false;
+  }
+};
+
 // 评论选中内容
 const commentCopy = (data) => {
   if (!data) return false;
@@ -404,7 +426,7 @@ defineExpose({ openRightMenu });
   transition: opacity 0.2s;
   .menu-content {
     position: absolute;
-    width: 180px;
+    min-width: 180px;
     background-color: var(--main-card-background);
     animation: fade-up 0.2s forwards;
     transition:

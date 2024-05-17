@@ -79,9 +79,7 @@ watch(
 );
 
 onMounted(() => {
-  nextTick().then(() => {
-    initArtalk();
-  });
+  initArtalk();
 });
 
 onUnmounted(() => {

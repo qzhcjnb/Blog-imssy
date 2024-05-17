@@ -1,6 +1,6 @@
 import { h } from "vue";
 import { createPinia } from "pinia";
-import { routerTools } from "@/utils/initTools.mjs";
+import { routeChange } from "@/utils/initTools.mjs";
 import { enhanceAppWithTabs } from "vitepress-plugin-tabs/client";
 import LazyLoader from "@/components/LazyLoader.vue";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
@@ -31,11 +31,11 @@ const Theme = {
     // 插件
     enhanceAppWithTabs(app);
     // 路由守卫
-    router.onBeforeRouteChange = (to, from) => {
-      routerTools("before", to, from);
+    router.onBeforeRouteChange = (to) => {
+      routeChange("before", to);
     };
-    router.onAfterRouteChanged = () => {
-      routerTools("after");
+    router.onAfterRouteChanged = (to) => {
+      routeChange("after", to);
     };
   },
 };

@@ -1,4 +1,5 @@
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
+import { themeConfig } from "../assets/themeConfig.mjs";
 import markdownItAttrs from "markdown-it-attrs";
 import container from "markdown-it-container";
 
@@ -60,6 +61,9 @@ const markdownConfig = (md) => {
     const token = tokens[idx];
     const src = token.attrs[token.attrIndex("src")][1];
     const alt = token.content;
+    if (!themeConfig.fancybox.enable) {
+      return `<img src="${src}" alt="${alt}" loading="lazy">`;
+    }
     return `<a class="img-fancybox" href="${src}" data-fancybox="gallery" data-caption="${alt}">
                 <img class="post-img" src="${src}" alt="${alt}" loading="lazy" />
                 <span class="post-img-tip">${alt}</span>

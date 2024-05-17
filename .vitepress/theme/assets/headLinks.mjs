@@ -66,16 +66,6 @@ const headLinks = [
       rel: "stylesheet",
     },
   ],
-  // Fancybox
-  [
-    "link",
-    {
-      rel: "stylesheet",
-      crossorigin: "anonymous",
-      href: "https://cdn.staticfile.net/fancyapps-ui/4.0.27/fancybox.min.css",
-    },
-  ],
-  ["script", { src: "https://cdn.staticfile.net/fancyapps-ui/4.0.27/fancybox.umd.js" }],
   // 预载 DocSearch
   [
     "link",

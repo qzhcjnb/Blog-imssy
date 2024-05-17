@@ -54,6 +54,7 @@ const getAllTitle = () => {
 const generateDirData = () => {
   // 所有标题
   const headers = getAllTitle();
+  if (!headers) return false;
   // 构造目录数据
   const nestedData = [];
   headers.forEach((header) => {
