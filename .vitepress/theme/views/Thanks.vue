@@ -11,7 +11,7 @@
         </span>
       </div>
       <div class="reward-list">
-        <div v-for="(item, index) in rewardData" :key="index" class="reward-item s-card">
+        <div v-for="(item, index) in rewardData.reverse()" :key="index" class="reward-item s-card">
           <span class="name">{{ item.name }}</span>
           <div class="data">
             <span :class="['money', { big: Number(item.money) > 10 }]">￥{{ item.money }}</span>
