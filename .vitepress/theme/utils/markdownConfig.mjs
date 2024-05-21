@@ -38,6 +38,18 @@ const markdownConfig = (md) => {
       }
     },
   });
+  // button
+  md.use(container, "button", {
+    render: (tokens, idx, _options) => {
+      const token = tokens[idx];
+      const check = token.info.trim().slice("button".length).trim();
+      if (token.nesting === 1) {
+        return `<button class="button ${check}">`;
+      } else {
+        return "</button>";
+      }
+    },
+  });
   // card
   md.use(container, "card", {
     render: (tokens, idx, _options) => {

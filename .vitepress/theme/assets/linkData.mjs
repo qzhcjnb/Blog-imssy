@@ -53,7 +53,7 @@ const linkData = [
       {
         name: "無名小栈",
         avatar: "https://pic.efefee.cn/uploads/2024/02/02/65bc526a940e3.png",
-        desc: "前端开发工程师，开发了一些可能有用的小项目",
+        desc: "分享技术与科技生活",
         url: "https://blog.imsyy.top/",
       },
       {

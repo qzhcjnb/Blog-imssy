@@ -667,4 +667,31 @@
       }
     }
   }
+  // button
+  .button {
+    outline: none;
+    border-radius: 8px;
+    padding: 6px 16px;
+    border: 1px solid var(--main-card-border);
+    background-color: var(--main-card-second-background);
+    transition: background-color 0.3s;
+    cursor: pointer;
+    p,
+    a {
+      padding: 0;
+      margin: 0;
+      font-size: 1rem;
+      color: var(--main-font-color);
+      &::before {
+        display: none;
+      }
+    }
+    &.primary {
+      color: var(--main-card-background);
+      background-color: var(--main-color);
+    }
+    &:hover {
+      background-color: var(--main-card-border);
+    }
+  }
 }

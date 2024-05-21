@@ -30,7 +30,6 @@
 <script setup>
 import { getSiteInfo } from "@/api";
 
-const router = useRouter();
 const props = defineProps({
   // 地址
   url: {
@@ -69,6 +68,7 @@ const isOutLink = computed(() => {
 const getSiteInfoData = async () => {
   const url = props.url;
   if (!url) return false;
+  if (props.title || props.desc || props.icon) return false;
   // 获取数据
   const result = await getSiteInfo(url);
   siteInfo.value = result;

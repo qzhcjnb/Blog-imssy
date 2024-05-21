@@ -1,16 +1,11 @@
 ---
 title: 友情链接
 aside: false
+comment: true
 ---
 
 <script setup>
-import { ref } from "vue";
 import Link from "@/views/Link.vue";
-import Comments from "@/components/Plugins/Comments/index.vue";
-import Checkbox from "@/components/Tags/Checkbox.vue";
-
-// 添加友链勾选
-const addLinkChecked = ref(false);
 </script>
 
 <Link />
@@ -53,12 +48,6 @@ rss: https://blog.imsyy.top/rss.xml
 
 > 若申请时或日后有违反上述规定的站点，博主有权**自行删除且不进行通知！**
 
----
+<LinkCard url="https://imsyy-admin.feishu.cn/share/base/form/shrcnQi0d4KyL4uS4mXt1xDYRXF" title="申请友情链接" desc="匿名表单 - 飞书云文档" />
 
-<Checkbox v-model="addLinkChecked">
-  我确认已认真阅读上方要求，并希望添加友链
-</Checkbox>
-
-<Transition name="fade" mode="out-in">
-  <Comments v-if="addLinkChecked" />
-</Transition>
+<LinkCard url="https://imsyy-admin.feishu.cn/share/base/query/shrcn2w0w1sr2akahasGPS6AUPh" title="友情链接查询" desc="在此查询您申请的友情链接，支持模糊搜索" />

@@ -331,7 +331,6 @@ export const themeConfig = {
     enable: true,
     js: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js",
     css: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css",
-    l10n: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.36/fancybox/l10n/zh_CN.umd.js",
   },
   // 外链中转
   jumpRedirect: {
