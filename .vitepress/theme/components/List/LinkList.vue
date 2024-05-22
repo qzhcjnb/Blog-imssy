@@ -1,46 +1,49 @@
 <template>
-  <div class="link-list">
-    <div v-for="(type, index) in listData" :key="index" class="link-type-list">
-      <div class="title">
-        <h2 class="name">
-          <span class="name-text">{{ type?.typeName || "未知分组" }}</span>
-          <span v-if="showCount" class="name-count">（{{ type?.typeList?.length || 0 }}）</span>
-        </h2>
-        <span class="tip">{{ type?.typeDesc || "分组暂无简介" }}</span>
-      </div>
-      <div class="all-link" v-if="type?.typeList">
-        <a
-          v-for="(link, index) in type.typeList"
-          :class="[
-            'link-card',
-            's-card',
-            {
-              loss: type?.type === 'loss',
-              'cf-friends-link': type?.type !== 'loss' && useFriendsLink,
-            },
-          ]"
-          :key="index"
-          :href="type?.type !== 'loss' ? link.url : null"
-          target="_blank"
-        >
-          <div class="cover">
-            <LazyLoader :useFriendsLink="link.avatar || link.ico">
-              <img
-                :src="link.avatar || link.ico"
-                :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
-                :alt="link?.name || 'cover'"
-                @load="(e) => e.target.classList.add('loaded')"
-              />
-            </LazyLoader>
-          </div>
-          <div class="data">
-            <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
-            <span class="desc">{{ link.desc }}</span>
-          </div>
-        </a>
+  <Transition name="fade" mode="out-in">
+    <div v-if="listData?.length" class="link-list">
+      <div v-for="(type, index) in listData" :key="index" class="link-type-list">
+        <div class="title">
+          <h2 class="name">
+            <span class="name-text">{{ type?.typeName || "未知分组" }}</span>
+            <span v-if="showCount" class="name-count">（{{ type?.typeList?.length || 0 }}）</span>
+          </h2>
+          <span class="tip">{{ type?.typeDesc || "分组暂无简介" }}</span>
+        </div>
+        <div class="all-link" v-if="type?.typeList">
+          <a
+            v-for="(link, index) in type.typeList"
+            :class="[
+              'link-card',
+              's-card',
+              {
+                loss: type?.type === 'loss',
+                'cf-friends-link': type?.type !== 'loss' && useFriendsLink,
+              },
+            ]"
+            :key="index"
+            :href="type?.type !== 'loss' ? link.url : null"
+            target="_blank"
+          >
+            <div class="cover">
+              <LazyLoader :useFriendsLink="link.avatar || link.ico">
+                <img
+                  :src="link.avatar || link.ico"
+                  :class="['cover-img', { 'cf-friends-avatar': useFriendsLink }]"
+                  :alt="link?.name || 'cover'"
+                  @load="(e) => e.target.classList.add('loaded')"
+                />
+              </LazyLoader>
+            </div>
+            <div class="data">
+              <span :class="['name', { 'cf-friends-name': useFriendsLink }]">{{ link.name }}</span>
+              <span class="desc">{{ link.desc }}</span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+    <div v-else class="no-data">暂无友链数据</div>
+  </Transition>
 </template>
 
 <script setup>
@@ -193,5 +196,11 @@ const props = defineProps({
       }
     }
   }
+}
+.no-data {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 </style>

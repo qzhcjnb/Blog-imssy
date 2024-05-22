@@ -14,8 +14,8 @@ export const getHitokoto = async () => {
  * 获取友链朋友圈
  * @param {string} [rule="updated"] - 文章的排序规则，可以是 "created" 或 "updated"
  */
-export const getFriendsLink = async (rule = "updated") => {
-  const result = await fetch(`${themeConfig.serverData.circleOfFriends}/all?rule=${rule}`);
+export const getCircleOfFriends = async (rule = "updated") => {
+  const result = await fetch(`${themeConfig.friends.circleOfFriends}/all?rule=${rule}`);
   const friends = await result.json();
   return friends;
 };
@@ -24,9 +24,19 @@ export const getFriendsLink = async (rule = "updated") => {
  * 获取友链朋友圈状态
  */
 export const getFriendsStatus = async () => {
-  const result = await fetch(`${themeConfig.serverData.circleOfFriends}/friendstatus`);
+  const result = await fetch(`${themeConfig.friends.circleOfFriends}/friendstatus`);
   const status = await result.json();
   return status;
+};
+
+/**
+ * 动态友链数据
+ */
+export const getFriendsLink = async () => {
+  const { server, app_token, table_id } = themeConfig.friends.dynamicLink;
+  const result = await fetch(`${server}?app_token=${app_token}&table_id=${table_id}`);
+  const data = await result.json();
+  return data;
 };
 
 /**

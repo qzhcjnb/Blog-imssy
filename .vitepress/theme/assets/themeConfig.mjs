@@ -318,6 +318,17 @@ export const themeConfig = {
       enable: true,
     },
   },
+  // 友链
+  friends: {
+    // 友链朋友圈
+    circleOfFriends: "https://friends.efefee.cn",
+    // 动态友链
+    dynamicLink: {
+      server: "https://api.efefee.cn/feishu/getTable.php",
+      app_token: "HuDQbZDF8anb1tsnzPqcnboangc",
+      table_id: "tblQ6FOkOBwDn6Br",
+    },
+  },
   // 打赏
   rewardData: {
     enable: true,
@@ -358,10 +369,5 @@ export const themeConfig = {
   // 站点统计
   tongji: {
     "51la": "KKMqCI5RC3srS4kX",
-  },
-  // 服务地址
-  serverData: {
-    // 友链朋友圈
-    circleOfFriends: "https://friends.efefee.cn",
   },
 };

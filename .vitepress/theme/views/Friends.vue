@@ -129,7 +129,7 @@
 
 <script setup>
 import { debounce } from "@/utils/helper";
-import { getFriendsLink, getFriendsStatus } from "@/api";
+import { getCircleOfFriends, getFriendsStatus } from "@/api";
 
 // 鱼塘数据
 const friendsLinkData = ref(null);
@@ -143,10 +143,10 @@ const showNum = ref(20);
 const showRule = ref("updated");
 
 // 获取友链朋友圈数据
-const getFriendsLinkData = async () => {
+const getCircleOfFriendsData = async () => {
   try {
     const status = await getFriendsStatus();
-    const result = await getFriendsLink(showRule.value);
+    const result = await getCircleOfFriends(showRule.value);
     friendsStatusData.value = {
       ...status,
       ...result.statistical_data,
@@ -161,7 +161,7 @@ const getFriendsLinkData = async () => {
 const changeRule = debounce(() => {
   showRule.value = showRule.value === "updated" ? "created" : "updated";
   friendsLinkData.value = null;
-  getFriendsLinkData();
+  getCircleOfFriendsData();
 }, 300);
 
 // 获取作者博客
@@ -178,7 +178,7 @@ const getAuthorUrl = (link) => {
 };
 
 onMounted(() => {
-  getFriendsLinkData();
+  getCircleOfFriendsData();
 });
 </script>
 

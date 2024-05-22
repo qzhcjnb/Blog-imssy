@@ -31,11 +31,12 @@
       </div> -->
     </Banner>
     <!-- 友链数据 -->
-    <LinkList :listData="linkData" :useFriendsLink="true" />
+    <LinkList :listData="linkTypeData" :useFriendsLink="true" />
   </div>
 </template>
 
 <script setup>
+import { getFriendsLink } from "@/api";
 import { smoothScrolling } from "@/utils/helper";
 import linkData from "@/assets/linkData.mjs";
 
@@ -43,6 +44,9 @@ import linkData from "@/assets/linkData.mjs";
 const allLinkData = computed(() => {
   return linkData.flatMap((item) => item.typeList);
 });
+
+// 友链分类数据
+const linkTypeData = ref([]);
 
 // 使链接两个为一组
 const pairedLinks = (data) => {
@@ -52,6 +56,28 @@ const pairedLinks = (data) => {
     pairs.push(data.slice(i, i + 2));
   }
   return pairs;
+};
+
+// 获取友情链接数据
+const getFriendsLinkData = async () => {
+  const allLinks = await getFriendsLink();
+  const { data, lossData } = allLinks;
+  // 附加友链数据
+  // linkTypeData.value = [];
+  linkTypeData.value = linkData.slice();
+  console.log(linkData);
+  linkTypeData.value.push({
+    type: "friend",
+    typeName: "小伙伴们",
+    typeDesc: "由添加时间综合排序",
+    typeList: data || [],
+  });
+  linkTypeData.value.push({
+    type: "loss",
+    typeName: "失联",
+    typeDesc: "持续超过 3 天无法访问的站点会出现在此处",
+    typeList: lossData || [],
+  });
 };
 
 // 随机跳转
@@ -74,6 +100,10 @@ const randomJump = () => {
     $message.error("友链随机访问时出错，请重试");
   }
 };
+
+onMounted(() => {
+  getFriendsLinkData();
+});
 </script>
 
 <style lang="scss" scoped>
