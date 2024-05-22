@@ -5,8 +5,7 @@
 <script setup>
 import { jumpRedirect } from "@/utils/commonTools";
 import { themeConfig } from "@/assets/themeConfig.mjs";
-import Artalk from "artalk";
-import "artalk/dist/Artalk.css";
+import initComments from "@/utils/initComments";
 
 const route = useRoute();
 const props = defineProps({
@@ -23,8 +22,10 @@ const artalk = ref(null);
 const commentRef = ref(null);
 
 // 初始化 Artalk
-const initArtalk = () => {
+const initArtalk = async () => {
   try {
+    await nextTick();
+    const Artalk = await initComments();
     artalk.value = Artalk.init({
       el: commentRef.value || "#comment-dom",
       locale: "auto",
@@ -88,31 +89,31 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss">
-.artalk,
+#comment-dom,
 .atk-layer-wrap,
 .comment-content {
-  --at-color-font: var(--main-font-color);
-  --at-color-deep: var(--main-font-second-color);
-  --at-color-grey: var(--main-font-second-color);
-  --at-color-meta: var(--main-font-second-color);
-  --at-color-border: var(--main-card-border);
-  --at-color-main: var(--main-color);
-  --at-color-light: var(--main-color);
-  --at-color-bg: var(--main-card-background);
-  --at-color-bg-grey: var(--main-card-border);
-  --at-color-bg-grey-transl: var(--main-card-border);
-  --at-color-bg-transl: var(--main-card-second-background);
-  --at-color-gradient: linear-gradient(180deg, transparent, var(--main-card-background));
+  --at-color-font: var(--main-font-color) !important;
+  --at-color-deep: var(--main-font-second-color) !important;
+  --at-color-grey: var(--main-font-second-color) !important;
+  --at-color-meta: var(--main-font-second-color) !important;
+  --at-color-border: var(--main-card-border) !important;
+  --at-color-main: var(--main-color) !important;
+  --at-color-light: var(--main-color) !important;
+  --at-color-bg: var(--main-card-background) !important;
+  --at-color-bg-grey: var(--main-card-border) !important;
+  --at-color-bg-grey-transl: var(--main-card-border) !important;
+  --at-color-bg-transl: var(--main-card-second-background) !important;
+  --at-color-gradient: linear-gradient(180deg, transparent, var(--main-card-background)) !important;
 }
 .atk-layer-wrap {
   .atk-layer-mask {
-    background: var(--main-mask-background);
+    background: var(--main-mask-background) !important;
   }
 }
 </style>
 
 <style lang="scss" scoped>
-.comment-content {
+#comment-dom {
   :deep(.atk-main-editor) {
     .atk-bottom {
       padding: 0 0 0 8px;
@@ -121,7 +122,8 @@ onUnmounted(() => {
         height: 40px;
       }
     }
-    .atk-user-btn {
+    .atk-user-btn,
+    .atk-plug-btn {
       transition: background 0.3s;
     }
   }

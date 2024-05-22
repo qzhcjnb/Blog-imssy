@@ -352,6 +352,7 @@ export const themeConfig = {
       "more-link",
       "skills-item",
       "right-menu-link",
+      "link-card",
     ],
   },
   // 站点统计
