@@ -110,6 +110,7 @@ html {
 html {
   user-select: none;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
   // 特殊情况
   &.dark {
     // 代码高亮

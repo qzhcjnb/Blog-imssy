@@ -426,7 +426,7 @@ defineExpose({ openRightMenu });
   transition: opacity 0.2s;
   .menu-content {
     position: absolute;
-    min-width: 180px;
+    width: 180px;
     background-color: var(--main-card-background);
     animation: fade-up 0.2s forwards;
     transition:
