@@ -5,8 +5,8 @@
       <!-- 介绍 -->
       <div class="about-item hello">
         <span class="text1">你好，很高兴认识你👋</span>
-        <span class="text2 title2">我是 無名</span>
-        <span class="text3">是一名 前端开发工程师、独立开发者、博主</span>
+        <span class="text2 title2">我是 秦子涵</span>
+        <span class="text3">是一名 学生</span>
       </div>
       <!-- 追求 -->
       <div class="about-item pursuit">
@@ -58,7 +58,7 @@
       <!-- 性格 -->
       <div class="about-item character" style="--color: #4298b4">
         <span class="tip">性格</span>
-        <span class="title2">物流师</span>
+        <span class="title2">无</span>
         <span class="title2" style="color: var(--color)">ISTJ-A / ISTJ-T</span>
         <span class="more">
           在
@@ -77,8 +77,8 @@
       <!-- 座右铭 -->
       <div class="about-item">
         <span class="tip">座右铭</span>
-        <span class="title1" style="margin-top: 20px">脚踏实地，</span>
-        <span class="title2">一丝不苟。</span>
+        <span class="title1" style="margin-top: 20px">结成伤疤的地方，</span>
+        <span class="title2">才会最坚硬。</span>
       </div>
     </div>
     <div class="about-content" style="grid-template-columns: 2fr 3fr">
@@ -92,7 +92,7 @@
       >
         <div class="image-content">
           <span class="tip">爱好游戏</span>
-          <span class="title2">原神</span>
+          <span class="title2">cs</span>
           <div class="image-desc">
             <span class="left">Lv 60 - 摆烂中</span>
             <span class="right">UID 110223613</span>
@@ -108,7 +108,7 @@
       >
         <div class="image-content">
           <span class="tip">爱好游戏</span>
-          <span class="title2">崩坏：星穹铁道</span>
+          <span class="title2">Minecraft</span>
           <div class="image-desc">
             <span class="left">Lv 70</span>
             <span class="right">UID 101477712</span>
@@ -179,7 +179,7 @@
           class="about-item map image"
           style="background-image: url(https://pic.efefee.cn/uploads/2024/04/15/661cbccc56af5.webp)"
         >
-          <span class="position">我现在住在 <strong>中国，河南省</strong></span>
+          <span class="position">我现在住在 <strong>中国，苏州</strong></span>
         </div>
         <div class="about-item info">
           <div class="info-item">
