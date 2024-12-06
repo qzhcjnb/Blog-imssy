@@ -2,7 +2,7 @@
   <footer id="main-footer" class="main-footer">
     <div class="footer-content">
       <div class="copyright">
-        <span class="time">@ 2019 - {{ thisYear }} By </span>
+        <span class="time">@ 2023 - {{ thisYear }} By </span>
         <a :href="theme.author.link" class="author link" target="_blank">
           {{ theme.author.name }}
         </a>
@@ -12,11 +12,11 @@
         </a>
         <a
           class="upyun link"
-          href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
+          href="https://home.qzhcjnb.com"
           target="_blank"
         >
           <i class="iconfont icon-upyun" />
-          又拍云
+          个人主页
         </a>
       </div>
       <div class="meta">
