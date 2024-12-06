@@ -1,14 +1,14 @@
 // 站点基础数据
 export const siteBasicData = {
   title: "秦子涵的博客",
-  description: "结成伤疤的地方才会最坚硬",
+  description: "分享技术与科技生活",
   logo: "/images/logo/logo.webp",
-  site: "https://blog.qzhcjnb.com",
+  site: "https://blog.imsyy.top",
   author: {
     name: "秦子涵",
     cover: "/images/logo/logo.webp",
-    email: "qzhcjnb@outlook.com",
-    link: "https://blog.qzhcjnb.com",
+    email: "one@imsyy.top",
+    link: "https://www.imsyy.top",
   },
 };
 
@@ -83,7 +83,7 @@ export const themeConfig = {
         {
           icon: "https://pic.efefee.cn/uploads/2024/04/08/661346d418ad7.png",
           name: "今日热榜",
-          url: "https://dailyhot.qzhcjnb.com",
+          url: "https://hot.imsyy.top/",
         },
         {
           icon: "https://pic.efefee.cn/uploads/2024/04/08/66134722586fa.png",
@@ -134,11 +134,11 @@ export const themeConfig = {
     social: [
       {
         icon: "email",
-        link: "qzhcjnb@outlook.com",
+        link: "mailto:one@imsyy.top",
       },
       {
         icon: "github",
-        link: "https://www.github.com/qzhcjnb/",
+        link: "https://www.github.com/imsyy/",
       },
       {
         icon: "telegram",
@@ -146,15 +146,15 @@ export const themeConfig = {
       },
       {
         icon: "bilibili",
-        link: "https://b23.tv/eZ2uJf7",
+        link: "https://space.bilibili.com/98544142",
       },
       {
         icon: "qq",
-        link: "https://res.abeim.cn/api/qq/?qq=1925527196",
+        link: "https://res.abeim.cn/api/qq/?qq=1539250352",
       },
       {
         icon: "twitter-x",
-        link: "https://twitter.com/qinzh",
+        link: "https://twitter.com/iimmsyy",
       },
     ],
     // sitemap
